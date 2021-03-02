@@ -1,0 +1,14 @@
+.header {
+    grid-area: h;
+    background-color: cadetblue;
+}
+.header img{
+    width: 100px;
+}
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color:  white;
+    margin: 5px 0px 0px 5px;
+}
