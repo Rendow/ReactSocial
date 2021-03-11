@@ -8,18 +8,18 @@ import {Route} from "react-router-dom";
 import News from './Components/News/News';
 import Music from './Components/Music/Music';
 import Settings from "./Components/Settings/Settings";
-import {StateType} from "./Redux/State";
+import store, {StateType} from "./Redux/State";
 
 
 type AppPropsType = {
     state: StateType
-    addPost:() => void
-    updateNewPostText:(newText:string) => void
+    dispatch:(action:any) => void
 }
 
 
 function App(props: AppPropsType) {
-    console.log(props.state)
+
+
     return (
 
             <div className="app-wrapper">
@@ -27,9 +27,9 @@ function App(props: AppPropsType) {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/profile' render={() => <Profile
-                        addPost={props.addPost}
+                        dispatch={props.dispatch.bind(store)}
                         profilePage={props.state.profilePage}
-                        updateNewPostText={props.updateNewPostText}
+
                     />}/>
                     <Route path='/dialogs' render={() => <Dialogs dialogsPage ={props.state.dialogsPage} />}/>
                     <Route path='/news' render={() => <News/>}/>
