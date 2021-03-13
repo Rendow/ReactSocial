@@ -6,7 +6,7 @@ import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 
 
-let renderTree =  () => {
+const renderTree =  () => {
      const state = store.getState()
     ReactDOM.render(
         <React.StrictMode>

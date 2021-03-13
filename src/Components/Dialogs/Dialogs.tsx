@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from './Message/Message';
-import { DialogsPageType } from '../../Redux/State';
+import {DialogsPageType, sendMessageCreator, updateNewMessageCreator} from '../../Redux/State';
 
 
 type DialogType = {
     dialogsPage:DialogsPageType
+    dispatch:(action:any) => void
 }
 
 function Dialogs(props:DialogType) {
@@ -14,8 +15,17 @@ function Dialogs(props:DialogType) {
     let dialogsElements = props.dialogsPage.dialogs.map (dialog =>  <DialogItem name={dialog.name} id={dialog.id}/> )
     let messagesElements = props.dialogsPage.messages.map ( message => <Message message={message.messages}/>)
 
+    let newMessageBody = props.dialogsPage.newMessageBody
+    let onChange =  (event: ChangeEvent<HTMLTextAreaElement>) => {
+        let text = event.currentTarget.value
+        let action = updateNewMessageCreator(text);
+        props.dispatch(action)
+    }
+
     let newPostElement = React.createRef<HTMLTextAreaElement>()
-    let addPost = () =>  newPostElement.current ? alert(newPostElement.current.value) : ''
+    let onClick = () => {
+        props.dispatch(sendMessageCreator())
+    }/* newPostElement.current ? alert(newPostElement.current.value) : ''*/
 
     return (
         <div className={s.dialogs}>
@@ -26,11 +36,15 @@ function Dialogs(props:DialogType) {
             </div>
             <div className={s.messages}>
                 {messagesElements}
-                <div>
-                    <textarea  ref={newPostElement}></textarea>
+                <div> <div>
+                    <textarea
+                        onChange={onChange}
+                        value={newMessageBody}
+                        ref={newPostElement}> </textarea>
                 </div>
-                <div>
-                    <button onClick={addPost}> Add post</button>
+                    <div>
+                        <button onClick={onClick}> Add post</button>
+                    </div>
                 </div>
             </div>
 
