@@ -2,16 +2,28 @@
 .content {
     grid-area: c;
     background-color: chocolate;
-
-}
-
-.content {
     color: azure;
     padding: 10px 0px;
+
+    display: flex;
+    flex-wrap:wrap;
+    width: 300px;
+}
+.img{
+    flex: 0 1 30%;
+}
+.message{
+    margin-top: 20px;
+    flex: 0 1 70%;
+    text-align: left;
+}
+.like{
+    flex: 0 1 100%;
+    margin-left: 5px;
 }
 
 .content img {
-    width: 60px;
+    width: 70px;
     height: 60px;
     border-radius: 50%;
 

@@ -15,7 +15,7 @@ export type MyPostsPropsType = {
 function MyPosts(props: MyPostsPropsType) {
 
     let PostsElements =
-        props.posts.map (post => <Post message={post.messages} like={post.likesCount} img={post.img}/>)
+        props.posts.map (post => <Post message={post.messages} like={post.likesCount} />)
 
   let newPostElement = React.createRef<HTMLTextAreaElement>()
 
@@ -31,7 +31,7 @@ function MyPosts(props: MyPostsPropsType) {
 
             <div className={classes.postBlock}>
                 <div>
-                    <h3>my posts</h3>
+                    <h4>My publications</h4>
                 </div>
                 <div>
                     <textarea
@@ -40,7 +40,7 @@ function MyPosts(props: MyPostsPropsType) {
                         ref={newPostElement}> </textarea>
                 </div>
                 <div>
-                    <button onClick={addPost}> Add post</button>
+                    <button onClick={addPost}> Publish</button>
                 </div>
             </div>
             <div className={classes.posts}>

@@ -1,9 +1,8 @@
 import React from "react";
 import classes from "./Post.module.css";
-
+import Logo from './img.webp';
 
 type PostType = {
-    img:string
     message:string
     like:number
 }
@@ -14,12 +13,9 @@ function Post(props:PostType) {
 
         <div className={classes.content}>
 
-            <img src= {props.img} alt=""/>
-            {props.message}
-            <div>
-                <span> like {props.like}</span>
-            </div>
-
+                <div className={classes.img}><img src={Logo} alt=""/></div>
+                <div className={classes.message}> {props.message}</div>
+                <div className={classes.like}>like {props.like}</div>
         </div>
 
     )

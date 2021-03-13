@@ -13,7 +13,6 @@ export type PostsType ={
     id: number
     messages: string
     likesCount: number
-    img: string
 }
 
 export type DialogsPageType ={
@@ -49,13 +48,11 @@ let store:StoreType = {
                     id: 1,
                     messages: 'Hi,how are you?',
                     likesCount: 11,
-                    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Spb_metro_logo.svg/1280px-Spb_metro_logo.svg.png'
                 },
                 {
                     id: 2,
                     messages: 'its my first posts',
                     likesCount: 41,
-                    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/200px-NASA_logo.svg.png'
                 },
 
             ],
@@ -95,7 +92,6 @@ let store:StoreType = {
                 id:new Date().getTime(),
                 messages:this._state.profilePage.newPostText,
                 likesCount: 0,
-                img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/200px-NASA_logo.svg.png'
             }
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.newPostText = ''
