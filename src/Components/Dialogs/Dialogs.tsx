@@ -2,7 +2,8 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from './Message/Message';
-import {DialogsPageType, sendMessageCreator, updateNewMessageCreator} from '../../Redux/State';
+import {DialogsPageType} from '../../Redux/state';
+import {sendMessageCreator, updateNewMessageCreator} from '../../Redux/dialogs-reducer';
 
 
 type DialogType = {
@@ -25,7 +26,7 @@ function Dialogs(props:DialogType) {
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     let onClick = () => {
         props.dispatch(sendMessageCreator())
-    }/* newPostElement.current ? alert(newPostElement.current.value) : ''*/
+    }
 
     return (
         <div className={s.dialogs}>
@@ -43,7 +44,7 @@ function Dialogs(props:DialogType) {
                         ref={newPostElement}> </textarea>
                 </div>
                     <div>
-                        <button onClick={onClick}> Add post</button>
+                        <button onClick={onClick}> Send message</button>
                     </div>
                 </div>
             </div>
