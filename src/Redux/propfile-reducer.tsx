@@ -1,4 +1,4 @@
-import {PostsType} from "./state";
+import {PostsType } from "./state";
 
 const UPDATE_NEW_POST = 'UPDATE-NEW-POST-TEXT';
 const ADD_POST = 'ADD-POST';
@@ -25,6 +25,13 @@ export const profileReducer = (state: any, action: any) => {
 }
 
 
-export const addPostCreator = () => ({type: ADD_POST});
-export const updateNewPostCreator = (text: string) =>
-    ({type: UPDATE_NEW_POST, newText: text});
+export const addPostCreator = () => {
+   return {
+        type: ADD_POST
+    } as const
+}
+export const updateNewPostCreator = (text: string)=> {
+    return {
+        type: UPDATE_NEW_POST, newText: text
+    }as const
+}

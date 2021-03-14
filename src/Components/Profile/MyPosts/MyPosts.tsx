@@ -2,13 +2,13 @@ import React, {ChangeEvent} from "react";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import {addPostCreator, updateNewPostCreator} from "../../../Redux/propfile-reducer";
-import {PostsType} from "../../../Redux/state";
+import {DispatchType, PostsType} from "../../../Redux/state";
 
 
 export type MyPostsPropsType = {
     posts:Array<PostsType>
     newPostText:string
-    dispatch:(action:any) => void
+    dispatch:(action:DispatchType) => void
 }
 
 

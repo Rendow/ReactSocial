@@ -1,5 +1,5 @@
-import {profileReducer} from "./propfile-reducer";
-import {dialogsReducer} from "./dialogs-reducer";
+import {addPostCreator, profileReducer, updateNewPostCreator} from "./propfile-reducer";
+import {dialogsReducer, sendMessageCreator, updateNewMessageCreator} from "./dialogs-reducer";
 import { sidebarReducer } from "./sidebar-reducer";
 
 export type MessagesType = {
@@ -35,11 +35,17 @@ export type StateType ={
 }
 export type StoreType = {
     _state: StateType
-    subscribe:(observer:any) => void
+    subscribe:(observer:() => void) => void
     _callSubscriber: () => void
     getState:() => StateType
-    dispatch:(action:any) => void
+    dispatch:(action:DispatchType) => void
 }
+export type DispatchType = AddPostActionType | UpdatePostActionType | UpdateNewMessageBodyActionType | SendMessageActionType
+
+ type AddPostActionType = ReturnType<typeof addPostCreator>
+ type UpdatePostActionType = ReturnType<typeof updateNewPostCreator>
+ type UpdateNewMessageBodyActionType = ReturnType<typeof updateNewMessageCreator>
+ type SendMessageActionType = ReturnType<typeof sendMessageCreator>
 
 let store:StoreType = {
     _state: {
@@ -81,13 +87,13 @@ let store:StoreType = {
      _callSubscriber ()  {
         console.log('State changed')
     },
-     subscribe (observer:any) {
+     subscribe (observer:() => void) {
         this._callSubscriber = observer
     },
      getState(){
         return this._state
     },
-     dispatch(action: any) {
+     dispatch(action: DispatchType) {
 
         this._state.profilePage = profileReducer(this._state.profilePage,action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage,action)
