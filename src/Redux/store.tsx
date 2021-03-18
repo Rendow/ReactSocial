@@ -42,6 +42,7 @@ export type StoreType = {
 }
 export type DispatchType = AddPostActionType | UpdatePostActionType | UpdateNewMessageBodyActionType | SendMessageActionType
 
+
  type AddPostActionType = ReturnType<typeof addPostCreator>
  type UpdatePostActionType = ReturnType<typeof updateNewPostCreator>
  type UpdateNewMessageBodyActionType = ReturnType<typeof updateNewMessageCreator>

@@ -1,7 +1,8 @@
-import {PostsType} from "./state";
+let initialState = {}
 
 
-export const sidebarReducer = (state:any,action:any) => {
+export const sidebarReducer = (state:any = initialState,action:any) => {
 
+    return state
 
 }
