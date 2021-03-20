@@ -1,54 +1,54 @@
+import {sidebarReducer} from "./sidebar-reducer";
 import {addPostCreator, profileReducer, updateNewPostCreator} from "./propfile-reducer";
 import {dialogsReducer, sendMessageCreator, updateNewMessageCreator} from "./dialogs-reducer";
-import { sidebarReducer } from "./sidebar-reducer";
 
-export type MessagesType = {
+type MessagesType = {
     id: number
     messages: string
 }
 
-export type DialogsType = {
+type DialogsType = {
     id: number
     name: string
 }
 
-export type PostsType ={
+type PostsType = {
     id: number
     messages: string
     likesCount: number
 }
 
-export type DialogsPageType ={
+type DialogsPageType = {
     dialogs: DialogsType[]
     messages: MessagesType[]
-    newMessageBody:string
+    newMessageBody: string
 }
 
-export type ProfilePageType ={
+type ProfilePageType = {
     posts: PostsType[]
     newPostText: string
 }
-export type StateType ={
+type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-    sidebar:any
+    sidebar: any
 }
-export type StoreType = {
+type StoreType = {
     _state: StateType
-    subscribe:(observer:() => void) => void
+    subscribe: (observer: () => void) => void
     _callSubscriber: () => void
-    getState:() => StateType
-    dispatch:(action:DispatchType) => void
+    getState: () => StateType
+    dispatch: (action: DispatchType) => void
 }
-export type DispatchType = AddPostActionType | UpdatePostActionType | UpdateNewMessageBodyActionType | SendMessageActionType
+type DispatchType = AddPostActionType | UpdatePostActionType | UpdateNewMessageBodyActionType | SendMessageActionType
 
 
- type AddPostActionType = ReturnType<typeof addPostCreator>
- type UpdatePostActionType = ReturnType<typeof updateNewPostCreator>
- type UpdateNewMessageBodyActionType = ReturnType<typeof updateNewMessageCreator>
- type SendMessageActionType = ReturnType<typeof sendMessageCreator>
+type AddPostActionType = ReturnType<typeof addPostCreator>
+type UpdatePostActionType = ReturnType<typeof updateNewPostCreator>
+type UpdateNewMessageBodyActionType = ReturnType<typeof updateNewMessageCreator>
+type SendMessageActionType = ReturnType<typeof sendMessageCreator>
 
-let store:StoreType = {
+let store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -64,7 +64,7 @@ let store:StoreType = {
                 },
 
             ],
-            newPostText:''
+            newPostText: ''
 
         },
         dialogsPage: {
@@ -81,31 +81,29 @@ let store:StoreType = {
                 {id: 2, messages: 'How are you?'},
                 {id: 3, messages: 'Good'},
             ],
-            newMessageBody:''
+            newMessageBody: ''
         },
-        sidebar:{}
+        sidebar: {}
     },
-     _callSubscriber ()  {
+    _callSubscriber() {
         console.log('State changed')
     },
-     subscribe (observer:() => void) {
+    subscribe(observer: () => void) {
         this._callSubscriber = observer
     },
-     getState(){
+    getState() {
         return this._state
     },
-     dispatch(action: DispatchType) {
+    dispatch(action: DispatchType) {
 
-        this._state.profilePage = profileReducer(this._state.profilePage,action)
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage,action)
-        this._state.sidebar = sidebarReducer(this._state.sidebar,action)
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
         this._callSubscriber()
     },
 }
 
 
-
-
-export default  store
+export {}
 

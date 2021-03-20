@@ -1,31 +1,25 @@
 import React, {ChangeEvent} from "react";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {addPostCreator, updateNewPostCreator} from "../../../Redux/propfile-reducer";
-import {DispatchType, PostsType} from "../../../Redux/store";
+import {MyPostsMapDispatchToPropsType, MyPostsMapStateToPropsType} from "./MyPostsContainer";
 
 
-export type MyPostsPropsType = {
-    posts:Array<PostsType>
-    newPostText:string
-    dispatch:(action:DispatchType) => void
-}
-
+export type MyPostsPropsType = MyPostsMapStateToPropsType & MyPostsMapDispatchToPropsType
 
 
 function MyPosts(props: MyPostsPropsType) {
 
-    let PostsElements =
-        props.posts.map (post => <Post message={post.messages} like={post.likesCount} />)
+     let PostsElements =
+        props.profilePage.posts.map (post => <Post message={post.messages} like={post.likesCount} />)
 
-  let newPostElement = React.createRef<HTMLTextAreaElement>()
-
-    let addPost = () =>  { props.dispatch(addPostCreator())}
+     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
     const onPostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         let text = event.currentTarget.value
-        let action = updateNewPostCreator(text);
-        props.dispatch(action)
+        props.onChange(text);
+    }
+    let addPost = () => {
+        props.onClick()
     }
     return (
         <div className={classes.content}>
@@ -37,7 +31,7 @@ function MyPosts(props: MyPostsPropsType) {
                 <div>
                     <textarea
                         onChange={onPostChange}
-                        value={props.newPostText}
+                        value={props.profilePage.newPostText}
                         ref={newPostElement}> </textarea>
                 </div>
                 <div>
@@ -46,7 +40,6 @@ function MyPosts(props: MyPostsPropsType) {
             </div>
             <div className={classes.posts}>
                 {PostsElements}
-
             </div>
         </div>
 
