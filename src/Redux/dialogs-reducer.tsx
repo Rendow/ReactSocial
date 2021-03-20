@@ -2,11 +2,7 @@
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
 const SEND_MESSAGE = 'SEND_MESSAGE'
 
-export type DialogsPageType ={
-    dialogs: DialogsType[]
-    messages: MessagesType[]
-    newMessageBody:string
-}
+
 export type MessagesType = {
     id: number
     messages: string
@@ -22,7 +18,7 @@ type UpdateNewMessageBodyActionType = ReturnType<typeof updateNewMessageCreator>
 type SendMessageActionType = ReturnType<typeof sendMessageCreator>
 
 
-let initialState:DialogsPageType = {
+let initialState = {
     dialogs: [
         {id: 1, name: 'Dimych'},
         {id: 2, name: 'Andrey'},
@@ -30,16 +26,17 @@ let initialState:DialogsPageType = {
         {id: 4, name: 'Sveta'},
         {id: 5, name: 'Viktor'},
         {id: 6, name: 'Valera'},
-    ],
+    ] as DialogsType[],
     messages: [
         {id: 1, messages: 'Hi'},
         {id: 2, messages: 'How are you?'},
         {id: 3, messages: 'Good'},
-    ],
+    ] as MessagesType[],
     newMessageBody:''
 }
+ export type InitialStateType = typeof initialState
 
-export const dialogsReducer = (state: DialogsPageType = initialState, action: DispatchType):DialogsPageType => {
+export const dialogsReducer = (state: InitialStateType = initialState, action: DispatchType):InitialStateType => {
 
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
