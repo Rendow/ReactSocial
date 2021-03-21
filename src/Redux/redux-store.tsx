@@ -13,4 +13,6 @@ export type ReduxStateType = ReturnType<typeof rootReducer>
 
 let store = createStore(rootReducer)
 
+
+
 export default store

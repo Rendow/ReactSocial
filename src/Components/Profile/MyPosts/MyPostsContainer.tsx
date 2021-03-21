@@ -1,5 +1,5 @@
 import React from "react";
-import {addPostCreator, ProfilePageType, updateNewPostCreator} from "../../../Redux/propfile-reducer";
+import {addPostCreator, PostsType, updateNewPostCreator} from "../../../Redux/propfile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {ReduxStateType} from "../../../Redux/redux-store";
@@ -7,7 +7,8 @@ import {Dispatch} from "redux";
 
 
 export type MyPostsMapStateToPropsType = {
-    profilePage:ProfilePageType
+    posts:PostsType[]
+    newPostText:string
 }
 export  type MyPostsMapDispatchToPropsType = {
     onChange:(text:string) => void
@@ -15,7 +16,8 @@ export  type MyPostsMapDispatchToPropsType = {
 }
 const mapStateToProps = (state:ReduxStateType):MyPostsMapStateToPropsType => {
     return {
-        profilePage:state.profilePage
+        posts: state.profilePage.posts,
+        newPostText: state.profilePage.newPostText
     }
 }
 const mapDispatchToProps = (dispatch:Dispatch):MyPostsMapDispatchToPropsType => {

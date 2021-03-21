@@ -34,7 +34,7 @@ let initialState = {
     ] as MessagesType[],
     newMessageBody:''
 }
- export type InitialStateType = typeof initialState
+export type InitialStateType = typeof initialState
 
 export const dialogsReducer = (state: InitialStateType = initialState, action: DispatchType):InitialStateType => {
 

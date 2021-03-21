@@ -10,7 +10,7 @@ export type MyPostsPropsType = MyPostsMapStateToPropsType & MyPostsMapDispatchTo
 function MyPosts(props: MyPostsPropsType) {
 
      let PostsElements =
-        props.profilePage.posts.map (post => <Post message={post.messages} like={post.likesCount} />)
+        props.posts.map (post => <Post message={post.messages} like={post.likesCount} />)
 
      let newPostElement = React.createRef<HTMLTextAreaElement>()
 
@@ -31,7 +31,7 @@ function MyPosts(props: MyPostsPropsType) {
                 <div>
                     <textarea
                         onChange={onPostChange}
-                        value={props.profilePage.newPostText}
+                        value={props.newPostText}
                         ref={newPostElement}> </textarea>
                 </div>
                 <div>
