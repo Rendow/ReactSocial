@@ -9,8 +9,8 @@ type DialogType = DialogsMapStateToPropsType & DialogsMapDispatchToPropsType
 
 function Dialogs(props: DialogType) {
 
-    let dialogsElements = props.dialogsPage.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>)
-    let messagesElements = props.dialogsPage.messages.map(message => <Message message={message.messages}/>)
+    let dialogsElements = props.dialogsPage.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
+    let messagesElements = props.dialogsPage.messages.map(message => <Message key={message.id} message={message.messages}/>)
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
     let newMessageBody = props.dialogsPage.newMessageBody
