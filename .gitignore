@@ -23,6 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea/*
-React-samurai.docx
-Схема.png
-~$act-samurai.docx
+/React-samurai.docx
+/Схема.png
+/~$act-samurai.docx
