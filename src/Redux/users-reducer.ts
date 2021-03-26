@@ -6,6 +6,7 @@ const SET_USERS = 'SET_USERS';
 
 export type UsersType = {
     id:number
+    photoUrl:string
     followed:boolean
     fullName:string
     status: string
@@ -21,15 +22,13 @@ type UnFollowActionType = ReturnType<typeof unfollowAC>
 type SetUsersActionType = ReturnType<typeof setUsersAC>
 
 
-let initialState = {
-    users: [/*
-        {id:1,followed: false, fullName:'Dmitriy', status:' I am a boss', location:{city:'Minsk',country:'Belarus'}},
-        {id:2,followed: true, fullName:'Oleg', status:' I am a boss', location:{city:'Kiev',country:'Ukraine'}},
-        {id:3,followed: false, fullName:'Ivan', status:' I am a boss', location:{city:'Moscow',country:'Russia'}},
-   */ ] as UsersType []
+let initialState: InitialStateType = {
+    users: []
 }
 
-export type InitialStateType = typeof initialState
+export type InitialStateType = {
+    users:UsersType[]
+}
 
 export const usersReducer = (state: InitialStateType = initialState, action: DispatchType):InitialStateType => {
 
@@ -74,7 +73,7 @@ export const unfollowAC = (id:number) => {
         type: UNFOLLOW, userID: id
     }as const
 }
-export const setUsersAC = (users:[]) => {
+export const setUsersAC = (users:UsersType[]) => {
     return {
         type: SET_USERS, users: users
     }as const
