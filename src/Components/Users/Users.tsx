@@ -1,39 +1,20 @@
 import React from 'react';
 import {dispatchToPropsType, mapStateToPropsType} from './UsersContainer';
 import s from './Users.module.css';
+import axios from 'axios';
+import logo from './img/logo.png';
+
 
 
 type UsersPropsType = mapStateToPropsType & dispatchToPropsType
 
 export function Users(props: UsersPropsType) {
-    debugger
     if (props.users.length === 0) {
-        props.setUsers([
-            {
-                id: 1,
-                photoUrl: 'http://www.granadoespada.com/uploads/character/0a5be4bf6ba103f9534e7e82e12e0f0d.png',
-                followed: false,
-                fullName: 'Dmitriy',
-                status: ' I am a boss',
-                location: {city: 'Minsk', country: 'Belarus'}
-            },
-            {
-                id: 2,
-                photoUrl: 'http://www.granadoespada.com/uploads/character/0a5be4bf6ba103f9534e7e82e12e0f0d.png',
-                followed: true,
-                fullName: 'Oleg',
-                status: ' I am a boss',
-                location: {city: 'Kiev', country: 'Ukraine'}
-            },
-            {
-                id: 3,
-                photoUrl: 'http://www.granadoespada.com/uploads/character/0a5be4bf6ba103f9534e7e82e12e0f0d.png',
-                followed: false,
-                fullName: 'Ivan',
-                status: ' I am a boss',
-                location: {city: 'Moscow', country: 'Russia'}
-            },
-        ])
+
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response =>{
+            props.setUsers(response.data.items)
+        })
+
     }
 
     return (
@@ -42,7 +23,7 @@ export function Users(props: UsersPropsType) {
             props.users.map(u => <div className={s.wrap} key={u.id}>
                 <span>
                     <div>
-                    <img src={u.photoUrl} className={s.photo}/>
+                    <img src={u.photos.small != null ? u.photos.small : logo} className={s.photo}/>
                 </div>
                     <div>
                         {u.followed
@@ -52,12 +33,12 @@ export function Users(props: UsersPropsType) {
                 </span>
                 <span> 
                     <span>
-                        <div> {u.fullName}</div>
+                        <div> {u.name}</div>
                         <div> {u.status}</div>
                     </span>
                     <span>
-                         <div>{u.location.country}</div>
-                         <div>{u.location.city}</div>
+                         <div>{'u.location.country'}</div>
+                         <div>{'u.location.city'}</div>
                     </span>
                 </span>
             </div>)

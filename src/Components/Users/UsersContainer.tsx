@@ -37,4 +37,3 @@ let mapDispatchToProps = (dispatch: Dispatch):dispatchToPropsType => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users)
-const UsersContainer = React.memo(Users)

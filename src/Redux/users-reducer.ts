@@ -8,13 +8,18 @@ export type UsersType = {
     id:number
     photoUrl:string
     followed:boolean
-    fullName:string
+    name:string
     status: string
+    photos:{
+        small: string
+        large:string
+    }
     location: {
         city: string
         country: string
     }
 }
+
 
 export type DispatchType = FollowActionType | UnFollowActionType | SetUsersActionType
 type FollowActionType = ReturnType<typeof followAC>
