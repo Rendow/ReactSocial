@@ -9,21 +9,15 @@ type UsersPropsType = mapStateToPropsType & dispatchToPropsType
 
 class Users extends React.Component <UsersPropsType,{}>{
 
-   getUsers = () => { if (this.props.users.length === 0) {
+    componentDidMount() {
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response =>{
             this.props.setUsers(response.data.items)
         })
-
-    }}
+    }
 
     render(){
         return (
-
             <div>
-                <button onClick={this.getUsers}>
-                    GET USERS
-                </button>
-
                 {this.props.users.map(u => <div className={s.wrap} key={u.id}>
                 <span>
                     <div>
