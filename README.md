@@ -1,5 +1,5 @@
 
 # Work in progress.
-## React + TypeScript
+## React + Redux + TypeScript 
 ## There is will be social network
 
