@@ -29,7 +29,7 @@ class Users extends React.Component <UsersPropsType,{}>{
         let pages:number[] = []
         pages.slice(0.15).map(p=>p)
 
-        // for (let i = 1;1 <= pagesCount && 10 < i;i++){
+        //. for (let i = 1;1 <= pagesCount && 10 < i;i++){
         //
         //     pages.push(i)
         // }
