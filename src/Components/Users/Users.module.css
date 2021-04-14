@@ -6,6 +6,9 @@
 .photo {
     width: 100px;
 }
+.pagination{
+    cursor: pointer;
+}
 .selectedPage{
     font-style: italic;
 }

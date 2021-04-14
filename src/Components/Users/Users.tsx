@@ -24,9 +24,10 @@ class Users extends React.Component <UsersPropsType,{}>{
            })
    }
     render(){
-
+        let selectedPage = s.selectedPage + ' ' + s.pagination
         let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
-        let pages = []
+        let pages:number[] = []
+        pages.slice(0.15).map(p=>p)
 
         // for (let i = 1;1 <= pagesCount && 10 < i;i++){
         //
@@ -65,7 +66,7 @@ class Users extends React.Component <UsersPropsType,{}>{
 
                 <div>
                     {pages.map(p => {
-                        return <span className={this.props.currentPage === p ? s.selectedPage : ''}
+                        return <span className={this.props.currentPage === p ? selectedPage : s.pagination}
                                      onClick={()=>{this.onPageChanged(p)}}>
                        {p} </span>  })}
                 </div>
