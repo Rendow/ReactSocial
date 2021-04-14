@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/ReactSocial/static/css/main.6c64fff7.chunk.css",
-    "main.js": "/ReactSocial/static/js/main.331214fe.chunk.js",
-    "main.js.map": "/ReactSocial/static/js/main.331214fe.chunk.js.map",
+    "main.js": "/ReactSocial/static/js/main.98711a08.chunk.js",
+    "main.js.map": "/ReactSocial/static/js/main.98711a08.chunk.js.map",
     "runtime-main.js": "/ReactSocial/static/js/runtime-main.9b2fd5dd.js",
     "runtime-main.js.map": "/ReactSocial/static/js/runtime-main.9b2fd5dd.js.map",
-    "static/js/2.3e3785e0.chunk.js": "/ReactSocial/static/js/2.3e3785e0.chunk.js",
-    "static/js/2.3e3785e0.chunk.js.map": "/ReactSocial/static/js/2.3e3785e0.chunk.js.map",
+    "static/js/2.86fa92ba.chunk.js": "/ReactSocial/static/js/2.86fa92ba.chunk.js",
+    "static/js/2.86fa92ba.chunk.js.map": "/ReactSocial/static/js/2.86fa92ba.chunk.js.map",
     "index.html": "/ReactSocial/index.html",
     "static/css/main.6c64fff7.chunk.css.map": "/ReactSocial/static/css/main.6c64fff7.chunk.css.map",
-    "static/js/2.3e3785e0.chunk.js.LICENSE.txt": "/ReactSocial/static/js/2.3e3785e0.chunk.js.LICENSE.txt",
+    "static/js/2.86fa92ba.chunk.js.LICENSE.txt": "/ReactSocial/static/js/2.86fa92ba.chunk.js.LICENSE.txt",
     "static/media/img.1c5b1442.webp": "/ReactSocial/static/media/img.1c5b1442.webp",
     "static/media/logo.ef2c408a.png": "/ReactSocial/static/media/logo.ef2c408a.png"
   },
   "entrypoints": [
     "static/js/runtime-main.9b2fd5dd.js",
-    "static/js/2.3e3785e0.chunk.js",
+    "static/js/2.86fa92ba.chunk.js",
     "static/css/main.6c64fff7.chunk.css",
-    "static/js/main.331214fe.chunk.js"
+    "static/js/main.98711a08.chunk.js"
   ]
 }
