@@ -10,5 +10,5 @@
     cursor: pointer;
 }
 .selectedPage{
-    font-style: italic;
+    font-weight: 900;
 }
