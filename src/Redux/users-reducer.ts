@@ -25,12 +25,12 @@ export type UsersType = {
 
 export type DispatchType = FollowActionType | UnFollowActionType | SetUsersActionType | setCurrentPageActionType | setUsersTotalCountActionType | setIsFetchingACActionType
 
-type FollowActionType = ReturnType<typeof followAC>
-type UnFollowActionType = ReturnType<typeof unfollowAC>
-type SetUsersActionType = ReturnType<typeof setUsersAC>
-type setCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
-type setUsersTotalCountActionType = ReturnType<typeof setUsersTotalCountAC>
-type setIsFetchingACActionType = ReturnType<typeof setIsFetchingAC>
+type FollowActionType = ReturnType<typeof follow>
+type UnFollowActionType = ReturnType<typeof unfollow>
+type SetUsersActionType = ReturnType<typeof setUsers>
+type setCurrentPageActionType = ReturnType<typeof setCurrentPage>
+type setUsersTotalCountActionType = ReturnType<typeof setTotalUsersCount>
+type setIsFetchingACActionType = ReturnType<typeof toggleIsFetching>
 
 
 let initialState: InitialStateType = {
@@ -92,33 +92,33 @@ export const usersReducer = (state: InitialStateType = initialState, action: Dis
 }
 
 
-export const followAC = (id: number) => {
+export const follow = (id: number) => {
     return {
         type: FOLLOW, userID: id
     } as const
 }
 
-export const unfollowAC = (id: number) => {
+export const unfollow = (id: number) => {
     return {
         type: UNFOLLOW, userID: id
     } as const
 }
-export const setUsersAC = (users: UsersType[]) => {
+export const setUsers = (users: UsersType[]) => {
     return {
         type: SET_USERS, users: users
     } as const
 }
-export const setCurrentPageAC = (page: number) => {
+export const setCurrentPage = (page: number) => {
     return {
         type: SET_CURRENT_PAGE, currentPage: page
     } as const
 }
-export const setUsersTotalCountAC = (count: number) => {
+export const setTotalUsersCount = (count: number) => {
     return {
         type: SET_TOTAL_USERS_COUNT, totalCount: count
     } as const
 }
-export const setIsFetchingAC = (isFetching: boolean) => {
+export const toggleIsFetching = (isFetching: boolean) => {
     return {
         type: TOGGLE_IS_FETCHING, isFetching
     } as const

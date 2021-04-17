@@ -3,11 +3,11 @@ import {connect} from "react-redux";
 import {ReduxStateType} from "../../Redux/redux-store";
 import {Dispatch} from "redux";
 import {
-    followAC,
-    setCurrentPageAC, setIsFetchingAC,
-    setUsersAC,
-    setUsersTotalCountAC,
-    unfollowAC,
+    follow,
+    setCurrentPage, toggleIsFetching,
+    setUsers,
+    setTotalUsersCount,
+    unfollow,
     UsersType
 } from "../../Redux/users-reducer";
 import axios from "axios";
@@ -80,28 +80,29 @@ let mapStateToProps = (state: ReduxStateType):mapStateToPropsType => {
     }
 }
 
-let mapDispatchToProps = (dispatch: Dispatch):dispatchToPropsType => {
- return {
-     follow: (userId:number) => {
-         dispatch(followAC(userId))
-     },
-     unfollow: (userId:number) => {
-         dispatch(unfollowAC(userId))
-     },
-     setUsers: (users: UsersType[]) => {
-         dispatch(setUsersAC(users))
-     },
-     setCurrentPage: (page: number) => {
-         dispatch(setCurrentPageAC(page))
-     },
-     setTotalUsersCount: (totalCount: number) => {
-         dispatch(setUsersTotalCountAC(totalCount))
-     },
-     toggleIsFetching: (isFetching:boolean) => {
-         dispatch(setIsFetchingAC(isFetching))
-     }
+// let mapDispatchToProps = (dispatch: Dispatch):dispatchToPropsType => {
+//  return {
+//      follow: (userId:number) => {
+//          dispatch(followAC(userId))
+//      },
+//      unfollow: (userId:number) => {
+//          dispatch(unfollowAC(userId))
+//      },
+//      setUsers: (users: UsersType[]) => {
+//          dispatch(setUsersAC(users))
+//      },
+//      setCurrentPage: (page: number) => {
+//          dispatch(setCurrentPageAC(page))
+//      },
+//      setTotalUsersCount: (totalCount: number) => {
+//          dispatch(setUsersTotalCountAC(totalCount))
+//      },
+//      toggleIsFetching: (isFetching:boolean) => {
+//          dispatch(setIsFetchingAC(isFetching))
+//      }
+//
+//  }
+// }
 
- }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps, {follow, unfollow, setUsers,
+    setCurrentPage, setTotalUsersCount, toggleIsFetching})(UsersContainer)
