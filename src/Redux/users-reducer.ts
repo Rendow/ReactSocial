@@ -3,6 +3,7 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 
 export type UsersType = {
@@ -22,20 +23,22 @@ export type UsersType = {
 }
 
 
-export type DispatchType = FollowActionType | UnFollowActionType | SetUsersActionType | setCurrentPageActionType | setUsersTotalCountActionType
+export type DispatchType = FollowActionType | UnFollowActionType | SetUsersActionType | setCurrentPageActionType | setUsersTotalCountActionType | setIsFetchingACActionType
 
 type FollowActionType = ReturnType<typeof followAC>
 type UnFollowActionType = ReturnType<typeof unfollowAC>
 type SetUsersActionType = ReturnType<typeof setUsersAC>
 type setCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
 type setUsersTotalCountActionType = ReturnType<typeof setUsersTotalCountAC>
+type setIsFetchingACActionType = ReturnType<typeof setIsFetchingAC>
 
 
 let initialState: InitialStateType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 2
+    currentPage: 1,
+    isFetching:false,
 }
 
 export type InitialStateType = {
@@ -43,6 +46,7 @@ export type InitialStateType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching:boolean
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: DispatchType): InitialStateType => {
@@ -78,6 +82,9 @@ export const usersReducer = (state: InitialStateType = initialState, action: Dis
         case SET_TOTAL_USERS_COUNT: {
             return {...state, totalUsersCount: action.totalCount}
         }
+        case TOGGLE_IS_FETCHING: {
+            return {...state, isFetching: action.isFetching}
+        }
 
         default:
             return state
@@ -109,5 +116,10 @@ export const setCurrentPageAC = (page: number) => {
 export const setUsersTotalCountAC = (count: number) => {
     return {
         type: SET_TOTAL_USERS_COUNT, totalCount: count
+    } as const
+}
+export const setIsFetchingAC = (isFetching: boolean) => {
+    return {
+        type: TOGGLE_IS_FETCHING, isFetching
     } as const
 }
