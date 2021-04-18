@@ -80,29 +80,7 @@ let mapStateToProps = (state: ReduxStateType):mapStateToPropsType => {
     }
 }
 
-// let mapDispatchToProps = (dispatch: Dispatch):dispatchToPropsType => {
-//  return {
-//      follow: (userId:number) => {
-//          dispatch(followAC(userId))
-//      },
-//      unfollow: (userId:number) => {
-//          dispatch(unfollowAC(userId))
-//      },
-//      setUsers: (users: UsersType[]) => {
-//          dispatch(setUsersAC(users))
-//      },
-//      setCurrentPage: (page: number) => {
-//          dispatch(setCurrentPageAC(page))
-//      },
-//      setTotalUsersCount: (totalCount: number) => {
-//          dispatch(setUsersTotalCountAC(totalCount))
-//      },
-//      toggleIsFetching: (isFetching:boolean) => {
-//          dispatch(setIsFetchingAC(isFetching))
-//      }
-//
-//  }
-// }
+
 
 export default connect(mapStateToProps, {follow, unfollow, setUsers,
     setCurrentPage, setTotalUsersCount, toggleIsFetching})(UsersContainer)
