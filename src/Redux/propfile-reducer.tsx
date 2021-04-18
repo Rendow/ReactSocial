@@ -8,12 +8,6 @@ export type PostsType = {
     messages: string
     likesCount: number
 }
-export type ProfilePageType = {
-    posts: PostsType[]
-    newPostText: string
-    profile: ProfileType | null
-}
-//export type ProfileType = {profile:any}
 
 export type ContactsType = {
     facebook: string
@@ -25,6 +19,10 @@ export type ContactsType = {
     github: string
     mainLink: null
 }
+export type PhotosType = {
+    small: string
+    large: string
+}
 export type ProfileType = {
         aboutMe: string
         contacts: ContactsType
@@ -32,11 +30,14 @@ export type ProfileType = {
         lookingForAJobDescription: string
         fullName: string
         userId: number
-        photos: {
-            small: string
-            large: string
-        }
+        photos: PhotosType
     }
+export type ProfilePageType = {
+    posts: PostsType[]
+    newPostText: string
+    profile: ProfileType | null
+}
+
 export type DispatchType = AddPostActionType | UpdatePostActionType | SetUsersProfileActionType
 type AddPostActionType = ReturnType<typeof addPostCreator>
 type UpdatePostActionType = ReturnType<typeof updateNewPostCreator>

@@ -13,7 +13,6 @@ type UsersPropsType = {
     currentPage: number
     follow: (userId: number) => void
     unfollow: (userId: number) => void
-
 }
 
 
