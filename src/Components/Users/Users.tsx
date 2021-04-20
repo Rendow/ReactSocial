@@ -2,7 +2,8 @@ import React from 'react';
 import s from "./Users.module.css";
 import logo from "./img/logo.png";
 import {UsersType} from "../../Redux/users-reducer";
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import {userAPI} from "../../api/api";
 
 
 type UsersPropsType = {
@@ -38,8 +39,23 @@ export const Users = (props:UsersPropsType) => {
                 </div>
                     <div>
                         {u.followed
-                            ? <button onClick={() => {props.unfollow(u.id)}}>Unfollow</button>
-                            : <button onClick={() => {props.follow(u.id)}}>Follow</button>}
+                            ? <button onClick={() => {
+                                userAPI.delUsers(u.id)
+                                    .then(data => {
+                                        if (data.resultCode === 0){
+                                            props.unfollow(u.id)
+                                        }
+                                    })
+
+                            }}>Unfollow</button>
+                            : <button onClick={() => {
+                                userAPI.postUsers(u.id)
+                                    .then(data => {
+                                        if (data.resultCode === 0){
+                                            props.follow(u.id)
+                                        }
+                                    })
+                           }}>Follow</button>}
                     </div>
                 </span>
                 <span>
