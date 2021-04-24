@@ -39,7 +39,7 @@ let initialState: InitialStateType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1,
+    currentPage: 3,
     isFetching:false,
     followingInProgress:[1,2],
 }
