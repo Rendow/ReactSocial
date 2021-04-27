@@ -12,10 +12,7 @@ import HeaderContainer from "./Components/Header/HeaderContainer";
 
 
 function App() {
-
-
     return (
-
             <div className="app-wrapper">
                 <HeaderContainer/>
                 <Navbar/>

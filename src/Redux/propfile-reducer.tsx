@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {userAPI} from "../api/api";
+
 const UPDATE_NEW_POST = 'UPDATE-NEW-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -107,4 +110,13 @@ export const setUsersProfile = (profile: ProfileType) => {
     return {
         type: SET_USER_PROFILE, profile
     } as const
+}
+
+export const setUserById = (id:number) => {
+    return (dispatch: Dispatch<DispatchType>) => {
+        userAPI.setUserById(id)
+            .then(data => {
+                    dispatch(setUsersProfile(data.data))
+                }
+            )}
 }

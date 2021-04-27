@@ -17,50 +17,35 @@ export const userAPI = {
                 return response.data
             })
     },
-    delUsers  (id = 1)  {
+    followUser(id = 1)  {
         return   instance.delete(`/follow/${id}`)
             .then(response => {
                 return response.data
             })
     },
     //without instance
-    postUsers  (id = 1) {
+    unFollowUser(id = 1) {
         return   axios.post(baseUrl + `/follow/${id}`, {},{
             withCredentials:true,
             headers:{
                 'API-KEY':'7e928b19-02e3-4839-a906-80cc9541b152'
-            }
-        })
+            }})
             .then(response => {
                 return response.data
             })
-    }
-
-}
-
-//with instance
-export const getUsers = (currentPage = 1, pageSize = 5) =>{
-    return    instance.get( `/users?page=${currentPage}&count=${pageSize}`)
-        .then(response => {
-            return response.data
+    },
+    authUser() {
+        return axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
+            withCredentials:true
         })
-}
-export const delUsers = (id = 1) => {
-  return   instance.delete(`/follow/${id}`)
-      .then(response => {
-            return response.data
-        })
+            .then(response => {
+              return response.data
+            })},
+    setUserById(userId:number) {
+        return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/`+ userId)
+            .then(response => {
+                return response
+            })},
 }
 
-//without instance
-export const postUsers = (id = 1) =>{
-    return   axios.post(baseUrl + `/follow/${id}`, {},{
-        withCredentials:true,
-        headers:{
-            'API-KEY':'7e928b19-02e3-4839-a906-80cc9541b152'
-        }
-    })
-        .then(response => {
-            return response.data
-        })
-}
+
