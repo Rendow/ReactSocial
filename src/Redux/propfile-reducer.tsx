@@ -112,9 +112,9 @@ export const setUsersProfile = (profile: ProfileType) => {
     } as const
 }
 
-export const setUserById = (id:number) => {
+export const getProfile = (id:number) => {
     return (dispatch: Dispatch<DispatchType>) => {
-        userAPI.setUserById(id)
+        userAPI.getProfile(id)
             .then(data => {
                     dispatch(setUsersProfile(data.data))
                 }

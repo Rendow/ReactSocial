@@ -41,11 +41,17 @@ export const userAPI = {
             .then(response => {
               return response.data
             })},
-    setUserById(userId:number) {
+    getProfile(userId:number) {
         return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/`+ userId)
             .then(response => {
                 return response
             })},
 }
 
-
+export const authAPI = {
+    me() {
+        return instance.get(`/auth/me`, {})
+            .then(response => {
+                return response.data
+            })},
+}
