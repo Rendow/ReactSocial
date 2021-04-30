@@ -26,7 +26,7 @@ type PropsType = RouteComponentProps<PathParamsType> & ProfileContainerType
     componentDidMount() {
         let userId = +this.props.match.params.userId;
         if(!userId) {
-            userId = 12
+            userId = 4
         }
         this.props.getProfile(userId)
     }
