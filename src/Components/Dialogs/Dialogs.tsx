@@ -25,7 +25,6 @@ function Dialogs(props: DialogType) {
         debugger
     }
 
-   //  if(!props.auth){ return <Redirect to={'/login'}/> }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>

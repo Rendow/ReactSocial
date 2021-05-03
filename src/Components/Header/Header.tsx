@@ -14,7 +14,7 @@ function Header(props:HeaderPropsType) {
             <div className={classes.wrap}>
                 <div className={classes.logo}><img  src={logo} alt=""/></div>
                 <div className={classes.loginBlock}>
-                    {props.isAuth ? props.login : <NavLink to={'./login'}> Login </NavLink>}
+                    {props.isAuth ? props.login : <NavLink to={'./Login'}> Login </NavLink>}
                 </div>
             </div>
         </header>
