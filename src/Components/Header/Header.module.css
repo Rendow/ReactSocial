@@ -1,6 +1,8 @@
 .header {
     grid-area: h;
     background-color: cadetblue;
+    font-size: 16px;
+
 }
 .header img{
     width: 100px;
@@ -19,6 +21,7 @@
     height: 90px;
 }
 .loginBlock{
+    cursor: pointer;
  margin: -15px 30px 0 0;
 
 }

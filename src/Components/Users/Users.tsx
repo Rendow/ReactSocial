@@ -4,6 +4,7 @@ import logo from "./img/logo.png";
 import {UsersType} from "../../Redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import {userAPI} from "../../api/api";
+import {Button} from "@material-ui/core";
 
 
 type UsersPropsType = {
@@ -41,13 +42,19 @@ export const Users = (props:UsersPropsType) => {
                     <div>
                         {
                             u.followed
-                                ? <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                      onClick={() => {props.unfollow(u.id)}}>
-                                    Unfollow  </button>
+                                ? <Button
+                                    variant={"contained"}
+                                    style={{margin:'5px 0'}}
+                                    disabled={props.followingInProgress.some(id => id === u.id)}
+                                    onClick={() => {props.unfollow(u.id)}}>
+                                    Unfollow  </Button>
 
-                            : <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                      onClick={() => {props.follow(u.id)}}>
-                                Follow  </button>
+                            :  <Button
+                                    variant={"contained"}
+                                    style={{margin:'5px 0'}}
+                                    disabled={props.followingInProgress.some(id => id === u.id)}
+                                    onClick={() => {props.follow(u.id)}}>
+                                Follow  </Button>
                         }
                     </div>
                 </span>
