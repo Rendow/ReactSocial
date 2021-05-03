@@ -35,7 +35,7 @@ function MyPosts(props: MyPostsPropsType) {
                         ref={newPostElement}> </textarea>
                 </div>
                 <div>
-                    <button onClick={addPost}> Publish</button>
+                    <button disabled={props.newPostText === ''} onClick={addPost}> Publish</button>
                 </div>
             </div>
             <div className={classes.posts}>

@@ -21,14 +21,14 @@ function Dialogs(props: DialogType) {
     }
     let sendMessage = () => {
         props.sendMessage()
+        debugger
     }
+
    //  if(!props.auth){ return <Redirect to={'/login'}/> }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-
                 {dialogsElements}
-
             </div>
             <div className={s.messages}>
                 {messagesElements}
@@ -40,7 +40,7 @@ function Dialogs(props: DialogType) {
                         ref={newPostElement}> </textarea>
                     </div>
                     <div>
-                        <button onClick={sendMessage}> Send message</button>
+                        <button disabled={newMessageBody === ''} onClick={sendMessage}> Send message</button>
                     </div>
                 </div>
             </div>

@@ -14,6 +14,7 @@ import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import Dialogs from "../Dialogs/Dialogs";
+import {compose} from "redux";
 
 
 
@@ -74,10 +75,7 @@ let mapStateToProps = (state: ReduxStateType):mapStateToPropsType => {
     }
 }
 
-const AuthRedirectComponent = WithAuthRedirect(UsersContainer)
-
-
-export default connect(mapStateToProps,
+export default compose<React.ComponentType>(connect(mapStateToProps,
     {follow: followSuccess, unfollow: unFollowSuccess, setUsers,
         setCurrentPage, setTotalUsersCount, toggleIsFetching,
-        toggleIsFollowingProgress,getUsers, getPage})(AuthRedirectComponent)
+        toggleIsFollowingProgress,getUsers, getPage}), WithAuthRedirect)(UsersContainer)

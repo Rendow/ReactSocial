@@ -3,9 +3,9 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {getProfile, ProfileType} from "../../Redux/propfile-reducer";
 import {ReduxStateType} from "../../Redux/redux-store";
-import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
-import Dialogs from "../Dialogs/Dialogs";
+import {compose} from "redux";
 
 type mapStateToPropsType = {
      profile:ProfileType | null
@@ -35,8 +35,6 @@ type PropsType = RouteComponentProps<PathParamsType> & ProfileContainerType
         return <Profile {...this.props} profile={this.props.profile}  />
     }
 }
-const AuthRedirectComponent = WithAuthRedirect(ProfileContainer)
-
 
 let mapStateToProps = (state: ReduxStateType): mapStateToPropsType => {
     return {
@@ -44,5 +42,4 @@ let mapStateToProps = (state: ReduxStateType): mapStateToPropsType => {
     }
 }
 
-let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
-export default connect(mapStateToProps,{getProfile})(WithUrlDataContainerComponent)
+export default  compose<React.ComponentType>(connect(mapStateToProps,{getProfile}),withRouter, WithAuthRedirect)(ProfileContainer)
