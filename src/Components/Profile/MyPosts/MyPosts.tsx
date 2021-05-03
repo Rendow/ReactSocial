@@ -39,7 +39,7 @@ function MyPosts(props: MyPostsPropsType) {
                         variant={"outlined"}> </TextField>
                 </div>
                 <div>
-                    <Button variant={"contained"} disabled={props.newPostText === ''} onClick={addPost}> Publish</Button>
+                    <Button color={"primary"} variant={"contained"} disabled={props.newPostText === ''} onClick={addPost}> Publish</Button>
                 </div>
             </div>
             <div className={classes.posts}>

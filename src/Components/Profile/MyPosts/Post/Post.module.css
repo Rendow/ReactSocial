@@ -1,8 +1,9 @@
 
 .content {
     grid-area: c;
-    background-color: chocolate;
-    color: azure;
+    background-color: #F5F5F5;
+    color: #212121;
+    font-size: 16px;
     padding: 10px 0px;
 
     display: flex;

@@ -45,6 +45,7 @@ function Dialogs(props: DialogType) {
                     </div>
                     <div>
                         <Button
+                            color={"primary"}
                             variant={"contained"}
                             style={{margin:'5px 0'}}
                             disabled={newMessageBody === ''}

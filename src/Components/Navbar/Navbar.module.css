@@ -1,6 +1,6 @@
 .nav {
     grid-area: n;
-    background-color: burlywood;
+    background-color: rgba(158, 158, 158, 0.78);
     padding: 20px;
     font-size: 18px;
 
@@ -19,5 +19,5 @@
 }
 
 .item a.active {
-    color: goldenrod;
+    color: #303F9F;
 }

@@ -50,6 +50,7 @@ export const Users = (props:UsersPropsType) => {
                                     Unfollow  </Button>
 
                             :  <Button
+                                    color={"primary"}
                                     variant={"contained"}
                                     style={{margin:'5px 0'}}
                                     disabled={props.followingInProgress.some(id => id === u.id)}

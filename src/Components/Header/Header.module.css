@@ -1,7 +1,7 @@
 .header {
     grid-area: h;
-    background-color: cadetblue;
-    font-size: 16px;
+    background-color: #9E9E9E;
+    font-size: 15px;
 
 }
 .header img{
@@ -14,18 +14,16 @@
     align-items: center;
 }
 .logo {
-    margin: -14px 0 0 15px;
+    margin:3px 0 0 23px;
 }
 .logo img{
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 55px;
 }
-.loginBlock{
-    cursor: pointer;
- margin: -15px 30px 0 0;
 
-}
-.loginBlock a{
-    color: #e7fdd8;
-    text-decoration: none
+.loginBlock {
+    cursor: pointer;
+    margin: 4px 30px 0 0;
+    color: #28378d;
+    font-weight: bold;
 }
