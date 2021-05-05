@@ -42,10 +42,8 @@ export const userAPI = {
               return response.data
             })},
     getProfile(userId:number) {
-        return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/`+ userId)
-            .then(response => {
-                return response
-            })},
+        return profileAPI.getProfile(userId)
+    },
 }
 
 export const authAPI = {
@@ -53,5 +51,24 @@ export const authAPI = {
         return instance.get(`/auth/me`, {})
             .then(response => {
                 return response.data
+            })},
+}
+
+export const profileAPI = {
+
+    getProfile(userId:number) {
+        return instance.get(`profile/`+ userId)
+            .then(response => {
+                return response
+            })},
+    getStatus(userId:number) {
+        return instance.get(`profile/status/`+ userId)
+            .then(response => {
+                return response
+            })},
+    updateStatus(text:string) {
+        return instance.put(`profile/status/`, {status:text})
+            .then(response => {
+                return response
             })},
 }

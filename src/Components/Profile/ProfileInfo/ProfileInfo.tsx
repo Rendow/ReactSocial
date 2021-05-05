@@ -7,6 +7,8 @@ import { ProfileStatus } from "./ProfileStatus";
 
 type PropsType = {
     profile: ProfileType | null
+    status: string
+    updateStatus:(text:string) => void
 }
 
 function ProfileInfo(props: PropsType) {
@@ -20,7 +22,7 @@ function ProfileInfo(props: PropsType) {
             <div className={classes.descriptionBlock}>
                 <div>{img}</div>
                 <div className={classes.textBlock}>
-                    <div className={classes.status}> <ProfileStatus/></div>
+                    <div className={classes.status}> <ProfileStatus  updateStatus= {props.updateStatus} status={props.status} /></div>
                     <div className={classes.description}>Nice to meet you on my page.
                         Now page look not so good, but only because i working on functional. There is will be beautiful
                         design in the future.
