@@ -18,12 +18,16 @@ function ProfileInfo(props: PropsType) {
     return (
         <div>
             <div className={classes.descriptionBlock}>
-                {img}
-                <div className={classes.description}> Hello! Nice to meet you on my page.
-                    Now page look not so good, but only because i working on functional. There is will be beautiful
-                    design in the future.
+                <div>{img}</div>
+                <div className={classes.textBlock}>
+                    <div className={classes.status}> <ProfileStatus/></div>
+                    <div className={classes.description}>Nice to meet you on my page.
+                        Now page look not so good, but only because i working on functional. There is will be beautiful
+                        design in the future.
+                    </div>
+
                 </div>
-                <ProfileStatus/>
+
             </div>
         </div>
 

@@ -3,8 +3,11 @@ import React from "react";
 
 
 export class ProfileStatus extends React.Component <any> {
+
+
     state = {
-        editMode: false
+        editMode: false,
+        text:'Hello There!'
     }
     activateEditMode = () => {
      this.setState({
@@ -16,15 +19,23 @@ export class ProfileStatus extends React.Component <any> {
             editMode:false
         })
     }
+    // setText () {
+    //     this.setState({
+    //         text:
+    //     })
+    // }
     render() {
         return <div>
             {!this.state.editMode &&
-            <div>
-                <span onDoubleClick={this.activateEditMode}> sdasd</span>
+            <div className={s.statusInputDiv}>
+                <span onDoubleClick={this.activateEditMode} > {this.state.text}</span>
             </div>}
             {this.state.editMode &&
-            <div>
-                <input autoFocus={true} onBlur={this.deactivateEditMode} type="text" value={'sadasd'}/>
+            <div  className={s.statusInputDiv}>
+                <input onChange={(e) => {this.setState({text: e.currentTarget.value })}}
+                       autoFocus={true} onBlur={this.deactivateEditMode}
+                       className={s.statusInput}
+                       type="text" value={this.state.text}/>
             </div>}
         </div>
     }
