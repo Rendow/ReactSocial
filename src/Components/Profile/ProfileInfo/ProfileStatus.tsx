@@ -26,8 +26,16 @@ export class ProfileStatus extends React.Component<PropsType> {
             status: e.currentTarget.value
         })
     }
+    componentDidUpdate(prevProps:{status: string},prevState: { editMode: false, status: string }) {
+        if(prevProps.status !== this.props.status){
+            this.setState({
+                status:this.props.status
+            })
+        }
+    }
+
     render() {
-        let status = this.state.status === null ? 'Hello There!' : this.state.status
+        let status = this.state.status === null ? 'Hello!' : this.state.status
         return <div>
             {!this.state.editMode &&
             <div className={s.statusInputDiv}>

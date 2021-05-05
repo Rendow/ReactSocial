@@ -143,13 +143,14 @@ export const getStatus = (id:number)  => {
                 }
             )}
 }
-export const updateStatus = (text: string)  => {
+export const updateStatus = (text: string) => {
     return (dispatch: Dispatch<DispatchType>) => {
         profileAPI.updateStatus(text)
-            .then(res => {
-                if(res.data.resultCode === 0){
-                    dispatch(setStatus(res.data))
+            .then(data => {
+                    if (data.data.resultCode === 0) {
+                        dispatch(setStatus(data.data))
+                    }
                 }
-                }
-            )}
+            )
+    }
 }

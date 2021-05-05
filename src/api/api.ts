@@ -63,12 +63,9 @@ export const profileAPI = {
             })},
     getStatus(userId:number) {
         return instance.get(`profile/status/`+ userId)
-            .then(response => {
-                return response
-            })},
-    updateStatus(text:string) {
-        return instance.put(`profile/status/`, {status:text})
-            .then(response => {
-                return response
-            })},
+          },
+    updateStatus(status:string) {
+        return instance.put(`profile/status/`, {status})
+           },
+
 }
