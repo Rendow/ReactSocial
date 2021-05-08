@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://rendow.github.io/ReactSocial/",
   "dependencies": {
+    "@autocomplete/material-ui": "0.0.17",
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "@testing-library/jest-dom": "^5.11.4",

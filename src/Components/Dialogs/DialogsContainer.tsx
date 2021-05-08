@@ -12,7 +12,7 @@ export type DialogsMapStateToPropsType = {
 }
 export type DialogsMapDispatchToPropsType = {
     updateNewMessageBody:(text:string) => void
-    sendMessage:() => void
+    sendMessage:(text:any) => void
 }
 const mapStateToProps = (state:ReduxStateType):DialogsMapStateToPropsType => {
     return {
@@ -25,8 +25,8 @@ const mapDispatchToProps = (dispatch:Dispatch):DialogsMapDispatchToPropsType => 
          let action = updateNewMessageCreator(text);
          dispatch(action)
      },
-        sendMessage: () => {
-           dispatch(sendMessageCreator())
+        sendMessage: (text:any) => {
+           dispatch(sendMessageCreator(text))
         }
     }
 }

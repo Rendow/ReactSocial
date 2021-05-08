@@ -12,7 +12,8 @@ export type DialogsType = {
     id: number
     name: string
 }
-export type DispatchType = UpdateNewMessageBodyActionType | SendMessageActionType
+export type DispatchType = SendMessageActionType
+    //| UpdateNewMessageBodyActionType
 
 type UpdateNewMessageBodyActionType = ReturnType<typeof updateNewMessageCreator>
 type SendMessageActionType = ReturnType<typeof sendMessageCreator>
@@ -31,23 +32,21 @@ let initialState = {
         {id: 1, messages: 'Hi'},
         {id: 2, messages: 'How are you?'},
         {id: 3, messages: 'Good'},
-    ] as MessagesType[],
-    newMessageBody:''
+    ] as MessagesType[]
 }
 export type InitialStateType = typeof initialState
 
 export const dialogsReducer = (state: InitialStateType = initialState, action: DispatchType):InitialStateType => {
 
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY:
-
-            return {...state,
-                newMessageBody: action.body}
+        // case UPDATE_NEW_MESSAGE_BODY:
+        //
+        //     return {...state,
+        //         newMessageBody: action.body}
 
         case SEND_MESSAGE:
-            let body = state.newMessageBody
+            let body = action.newMessageBody
             return {...state,
-                newMessageBody: '',
                 messages:[...state.messages,{id: new Date().getTime(), messages: body}]}
 
         default:
@@ -56,9 +55,9 @@ export const dialogsReducer = (state: InitialStateType = initialState, action: D
 }
 
 
-export const sendMessageCreator = () => {
+export const sendMessageCreator = (newMessageBody:any) => {
    return {
-        type: SEND_MESSAGE
+        type: SEND_MESSAGE, newMessageBody
     } as const
 }
 export const updateNewMessageCreator = (text: string) => {
