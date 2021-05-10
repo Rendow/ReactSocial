@@ -47,7 +47,7 @@ const AddNewPostForm = (props:InjectedFormProps<FormDataType> ) => {
         <form onSubmit={props.handleSubmit}>
             <div>
                 <Field
-                    placeholder={'Enter your message'}
+                    placeholder={'  Enter your message'}
                     style={{margin: '10px 0'}}
                     name={'newPostText'}
                     component={Textarea}
