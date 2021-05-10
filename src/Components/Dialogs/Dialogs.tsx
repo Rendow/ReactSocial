@@ -2,10 +2,8 @@ import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from './Message/Message';
 import {DialogsMapDispatchToPropsType, DialogsMapStateToPropsType} from "./DialogsContainer";
-import {Button, TextField} from "@material-ui/core";
-import {ChangeEvent} from "react";
-import React from 'react';
-import {Field, reduxForm, InjectedFormProps, SubmitHandler, FormSubmitHandler} from "redux-form";
+import React from "react";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {FormDataType} from "../Login/Login";
 
 

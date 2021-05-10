@@ -1,5 +1,5 @@
 
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
+//const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
 const SEND_MESSAGE = 'SEND_MESSAGE'
 
 
@@ -13,9 +13,8 @@ export type DialogsType = {
     name: string
 }
 export type DispatchType = SendMessageActionType
-    //| UpdateNewMessageBodyActionType
 
-type UpdateNewMessageBodyActionType = ReturnType<typeof updateNewMessageCreator>
+
 type SendMessageActionType = ReturnType<typeof sendMessageCreator>
 
 
@@ -60,8 +59,8 @@ export const sendMessageCreator = (newMessageBody:any) => {
         type: SEND_MESSAGE, newMessageBody
     } as const
 }
-export const updateNewMessageCreator = (text: string) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_BODY, body: text
-    } as const
-}
+// export const updateNewMessageCreator = (text: string) => {
+//     return {
+//         type: UPDATE_NEW_MESSAGE_BODY, body: text
+//     } as const
+// }

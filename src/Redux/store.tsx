@@ -1,6 +1,5 @@
-import {sidebarReducer} from "./sidebar-reducer";
-import {addPostCreator, profileReducer, updateNewPostCreator} from "./propfile-reducer";
-import {dialogsReducer, sendMessageCreator, updateNewMessageCreator} from "./dialogs-reducer";
+import {addPostCreator} from "./propfile-reducer";
+import {sendMessageCreator} from "./dialogs-reducer";
 
 type MessagesType = {
     id: number
@@ -40,12 +39,12 @@ type StoreType = {
     getState: () => StateType
     dispatch: (action: DispatchType) => void
 }
-type DispatchType = AddPostActionType | UpdatePostActionType | UpdateNewMessageBodyActionType | SendMessageActionType
+type DispatchType = AddPostActionType  | SendMessageActionType
 
 
 type AddPostActionType = ReturnType<typeof addPostCreator>
-type UpdatePostActionType = ReturnType<typeof updateNewPostCreator>
-type UpdateNewMessageBodyActionType = ReturnType<typeof updateNewMessageCreator>
+//type UpdatePostActionType = ReturnType<typeof updateNewPostCreator>
+//type UpdateNewMessageBodyActionType = ReturnType<typeof updateNewMessageCreator>
 type SendMessageActionType = ReturnType<typeof sendMessageCreator>
 
 let store: StoreType = {

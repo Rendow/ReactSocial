@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
 import {profileAPI, userAPI} from "../api/api";
 
-const UPDATE_NEW_POST = 'UPDATE-NEW-POST-TEXT';
+//const UPDATE_NEW_POST = 'UPDATE-NEW-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
@@ -44,9 +44,9 @@ export type ProfilePageType = {
 
 }
 
-export type DispatchType = AddPostActionType | UpdatePostActionType | SetUsersProfileActionType | SetStatusActionType
+export type DispatchType = AddPostActionType  | SetUsersProfileActionType | SetStatusActionType
 type AddPostActionType = ReturnType<typeof addPostCreator>
-type UpdatePostActionType = ReturnType<typeof updateNewPostCreator>
+//type UpdatePostActionType = ReturnType<typeof updateNewPostCreator>
 type SetUsersProfileActionType = ReturnType<typeof setUsersProfile>
 type SetStatusActionType = ReturnType<typeof setStatus>
 
@@ -76,7 +76,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Di
         case ADD_POST:
             let newPost: PostsType = {
                 id: new Date().getTime(),
-                messages: state.newPostText,
+                messages: action.newPostText,
                 likesCount: 0,
             }
             return {
@@ -86,11 +86,11 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Di
 
             }
 
-        case UPDATE_NEW_POST:
-            return {
-                ...state,
-                newPostText: action.newText
-            }
+        // case UPDATE_NEW_POST:
+        //     return {
+        //         ...state,
+        //         newPostText: action.newText
+        //     }
         case SET_STATUS:
             return {
                 ...state,
@@ -106,16 +106,16 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Di
 }
 
 
-export const addPostCreator = () => {
+export const addPostCreator = (newPostText:any) => {
     return {
-        type: ADD_POST
+        type: ADD_POST, newPostText
     } as const
 }
-export const updateNewPostCreator = (text: string) => {
-    return {
-        type: UPDATE_NEW_POST, newText: text
-    } as const
-}
+// export const updateNewPostCreator = (text: string) => {
+//     return {
+//         type: UPDATE_NEW_POST, newText: text
+//     } as const
+// }
 export const setStatus = (text: string) => {
     return {
         type: SET_STATUS, text
