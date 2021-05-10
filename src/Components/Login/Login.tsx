@@ -1,5 +1,8 @@
 import React from 'react'
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {Input} from "../common/FormsControl/FormsControls";
+import {maxLenghtCreator, minLenghtCreator, required} from "../../utils/validators/validators";
+import SuperButton from "../common/FormsControl/SuperButton";
 
 
 export type FormDataType = {
@@ -7,19 +10,32 @@ export type FormDataType = {
     password:string
     rememberMe:boolean
 }
+let maxLength = maxLenghtCreator(20)
+let minLength = minLenghtCreator(4)
 export const LoginForm = (props:InjectedFormProps<FormDataType>) => {
+
     return <div>
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={'Login'} name={'login'} component={'input'}/>
+                <Field placeholder={'   Login'}
+                       style={{height: '35px'}}
+                       validate={[required, maxLength, minLength]}
+                       name={'login'}
+                       component={Input}/>
             </div>
             <div>
-                <Field placeholder={'Password'} name={'password'} component={'input'}/>
+                <Field placeholder={'   Password'}
+                       style={{height: '35px'}}
+                       validate={[required, maxLength, minLength]}
+                       name={'password'}
+                       component={Input}/>
             </div>
             <div>
-                <Field component={'input'} name={'rememberMe'} type={"checkbox"}/> Remember me</div>
+                <Field component={'input'}
+                       name={'rememberMe'}
+                       type={"checkbox"}/> Remember me</div>
             <div>
-                <button>Login</button>
+                <SuperButton> Login</SuperButton>
             </div>
         </form>
     </div>

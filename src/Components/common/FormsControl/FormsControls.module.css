@@ -1,0 +1,24 @@
+.form-control{
+
+}
+.input,
+.textarea {
+    border: #303f9f solid 2px;
+    box-shadow: 1px 1px 10px #C0C0C0;
+    font-size: 16px;
+    border-radius: 13px;
+    padding: 5px;
+    height: 60px;
+    width: 30%;
+    resize: none;
+}
+
+.errorInput,
+.errorTextarea {
+    border: #8e2121 solid 2px;
+
+}
+.errorSpan{
+    color: #8e2121;
+    font-size: 16px;
+}

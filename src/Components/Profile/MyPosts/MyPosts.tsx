@@ -5,12 +5,16 @@ import {MyPostsMapDispatchToPropsType, MyPostsMapStateToPropsType} from "./MyPos
 import {Button, TextField} from "@material-ui/core";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {FormDataType} from "../../Login/Login";
+import {maxLenghtCreator, minLenghtCreator, required} from "../../../utils/validators/validators";
+import {Textarea} from "../../common/FormsControl/FormsControls";
+import SuperButton from "../../common/FormsControl/SuperButton";
 
 
 export type MyPostsPropsType = MyPostsMapStateToPropsType & MyPostsMapDispatchToPropsType
 
 
 function MyPosts(props: MyPostsPropsType) {
+
 
      let PostsElements =
         props.posts.map (post => <Post message={post.messages} like={post.likesCount} />)
@@ -29,7 +33,7 @@ function MyPosts(props: MyPostsPropsType) {
 
             <div className={classes.postBlock}>
                 <div className={classes.header}>
-                    <h4>My publications</h4>
+                    <h4> My publications</h4>
                 </div>
 
                 <AddNewPostFormRedux onSubmit={addPost}/>
@@ -53,18 +57,23 @@ function MyPosts(props: MyPostsPropsType) {
 
     )
 }
+let maxLength = maxLenghtCreator(20)
+let minLength = minLenghtCreator(4)
 const AddNewPostForm = (props:InjectedFormProps<FormDataType> ) => {
-
     return  <div>
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={'Enter your message'}
-                       name={'newPostText'} component={'textarea'}/>
+                <Field
+                    placeholder={'Enter your message'}
+                    style={{margin: '10px 0'}}
+                    name={'newPostText'}
+                    component={Textarea}
+                    validate={[required, maxLength, minLength]}
+                />
             </div>
-            <button
-                style={{margin:'5px 0'}}>
+            <SuperButton>
                 Publish
-            </button>
+            </SuperButton>
         </form>
     </div>
 }

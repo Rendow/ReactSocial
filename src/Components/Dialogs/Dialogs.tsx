@@ -5,6 +5,9 @@ import {DialogsMapDispatchToPropsType, DialogsMapStateToPropsType} from "./Dialo
 import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {FormDataType} from "../Login/Login";
+import {Textarea} from "../common/FormsControl/FormsControls";
+import {maxLenghtCreator, minLenghtCreator, required} from "../../utils/validators/validators";
+import SuperButton from "../common/FormsControl/SuperButton";
 
 
 export type DialogType = DialogsMapStateToPropsType & DialogsMapDispatchToPropsType
@@ -13,20 +16,11 @@ function Dialogs(props: DialogType) {
 
     let dialogsElements = props.dialogsPage.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
     let messagesElements = props.dialogsPage.messages.map(message => <Message key={message.id} message={message.messages}/>)
-    // let newPostElement = React.createRef<HTMLDivElement>()
-    //
-    // let newMessageBody = props.dialogsPage.newMessageBody
-    //
-    // let updateNewMessageBody = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    //     let text = event.currentTarget.value
-    //     props.updateNewMessageBody(text)
-    // }
-    // let sendMessage = () => {
-    //     props.sendMessage()
-    // }
+
 
     let sendMessage = (text:any) => {
         props.sendMessage(text.newMessageBody)
+        console.log(text)
     }
 
     return (
@@ -63,23 +57,24 @@ function Dialogs(props: DialogType) {
     )
 }
 
-
-const AddMessageForm = (props:InjectedFormProps<FormDataType> ) => {
-
+let maxLength = maxLenghtCreator(40)
+let minLength = minLenghtCreator(4)
+const AddMessageForm = (props: InjectedFormProps<FormDataType> ) => {
     return  <div>
         <form onSubmit={props.handleSubmit}>
             <div>
                 <Field placeholder={'Enter your message'}
-                       name={'newMessageBody'} component={'textarea'}/>
+                       style={{margin: '10px 0'}}
+                       validate={[required, maxLength, minLength]}
+                       name={'newMessageBody'} component={Textarea}/>
             </div>
-            <button
-                style={{margin:'5px 0'}}>
+            <SuperButton style={{width:'120px'}}>
                 Send message
-            </button>
+            </SuperButton>
         </form>
     </div>
 }
-export const AddMessageFormRedux = reduxForm<FormDataType >({form: 'dialogAddMessageForm'})(AddMessageForm)
+export const AddMessageFormRedux = reduxForm<FormDataType>({form: 'dialogAddMessageForm'})(AddMessageForm)
 
 export default Dialogs
 

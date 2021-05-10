@@ -1,0 +1,70 @@
+.default {
+    background-color: #303f9f;
+    border-radius: 13px;
+    width: 100px;
+    outline: none;
+    box-shadow: 1px 1px 10px #C0C0C0;
+    padding: 8px;
+    margin: 10px 0px;
+    color: white;
+    font-size:15px;
+}
+
+.red {
+    background-color: darkred;
+}
+@keyframes blink {
+    0% {
+        left: -130%;
+    }
+    100% {
+        left: 130%;
+    }
+}
+.button{
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.button:hover::after {
+    animation: blink 0.35s ease;
+}
+.button::after {
+    display: block;
+    content: '';
+    position: absolute;
+
+    left: -130%;
+    top:0;
+    height: 100%;
+    width: 20%;
+
+    transform: skew(45deg);
+
+    background-color: white;
+    opacity: 0.7;
+
+    z-index: 14;
+}
+
+.button:hover::before {
+    display: block;
+    content: '';
+    position: absolute;
+
+    left: -100vh;
+    top:0;
+    height: 100vh;
+    width: 300vh;
+
+    background-color: #C0C0C0;
+    opacity: 0.2;
+
+    z-index: 7;
+}
+.button:disabled::after{
+    z-index: -1;
+}
+.button:disabled::before{
+    z-index: -1;
+}

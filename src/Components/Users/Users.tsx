@@ -5,6 +5,7 @@ import {UsersType} from "../../Redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import {userAPI} from "../../api/api";
 import {Button} from "@material-ui/core";
+import SuperButton from "../common/FormsControl/SuperButton";
 
 
 type UsersPropsType = {
@@ -40,7 +41,7 @@ export const Users = (props:UsersPropsType) => {
                         </NavLink>
                 </div>
                     <div>
-                        {
+                     {/*   {
                             u.followed
                                 ? <Button
                                     variant={"contained"}
@@ -56,7 +57,21 @@ export const Users = (props:UsersPropsType) => {
                                     disabled={props.followingInProgress.some(id => id === u.id)}
                                     onClick={() => {props.follow(u.id)}}>
                                 Follow  </Button>
+                        }*/}
+                        {  u.followed
+                        ? <SuperButton
+                                style={{letterSpacing:'1px', fontSize:'14px'}}
+                                      disabled={props.followingInProgress.some(id => id === u.id)}
+                                      onClick={() => {props.unfollow(u.id)}}>
+                            UNFOLLOW
+                        </SuperButton>
+                            : <SuperButton  style={{letterSpacing:'1px', fontSize:'14px'}}
+                                            disabled={props.followingInProgress.some(id => id === u.id)}
+                                            onClick={() => {props.follow(u.id)}}>
+                                FOLLOW
+                            </SuperButton>
                         }
+
                     </div>
                 </span>
                 <span>
