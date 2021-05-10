@@ -19,12 +19,6 @@ function MyPosts(props: MyPostsPropsType) {
      let PostsElements =
         props.posts.map (post => <Post message={post.messages} like={post.likesCount} />)
 
-    //  let newPostElement = React.createRef<HTMLDivElement>()
-    //
-    // const onPostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    //     let text = event.currentTarget.value
-    //     props.onChange(text);
-    // }
     let addPost = (text:any) => {
         props.onClick(text.newPostText)
     }
@@ -37,18 +31,7 @@ function MyPosts(props: MyPostsPropsType) {
                 </div>
 
                 <AddNewPostFormRedux onSubmit={addPost}/>
-                {/*<div>*/}
-                {/*    <TextField*/}
-                {/*        color={"primary"}*/}
-                {/*        style={{margin:'10px 0'}}*/}
-                {/*        onChange={onPostChange}*/}
-                {/*        value={props.newPostText}*/}
-                {/*        ref={newPostElement}*/}
-                {/*        variant={"outlined"}> </TextField>*/}
-                {/*</div>*/}
-                {/*<div>*/}
-                {/*    <Button color={"primary"} variant={"contained"} disabled={props.newPostText === ''} onClick={addPost}> Publish</Button>*/}
-                {/*</div>*/}
+
             </div>
             <div className={classes.posts}>
                 {PostsElements}

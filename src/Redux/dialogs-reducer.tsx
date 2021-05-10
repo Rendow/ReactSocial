@@ -1,5 +1,4 @@
 
-//const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
 const SEND_MESSAGE = 'SEND_MESSAGE'
 
 
@@ -12,9 +11,7 @@ export type DialogsType = {
     id: number
     name: string
 }
-export type DispatchType = SendMessageActionType
-
-
+export type DialogActionType = SendMessageActionType
 type SendMessageActionType = ReturnType<typeof sendMessageCreator>
 
 
@@ -35,14 +32,9 @@ let initialState = {
 }
 export type InitialStateType = typeof initialState
 
-export const dialogsReducer = (state: InitialStateType = initialState, action: DispatchType):InitialStateType => {
+export const dialogsReducer = (state: InitialStateType = initialState, action: DialogActionType):InitialStateType => {
 
     switch (action.type) {
-        // case UPDATE_NEW_MESSAGE_BODY:
-        //
-        //     return {...state,
-        //         newMessageBody: action.body}
-
         case SEND_MESSAGE:
             let body = action.newMessageBody
             return {...state,
@@ -53,14 +45,8 @@ export const dialogsReducer = (state: InitialStateType = initialState, action: D
     }
 }
 
-
 export const sendMessageCreator = (newMessageBody:any) => {
    return {
         type: SEND_MESSAGE, newMessageBody
     } as const
 }
-// export const updateNewMessageCreator = (text: string) => {
-//     return {
-//         type: UPDATE_NEW_MESSAGE_BODY, body: text
-//     } as const
-// }
