@@ -5,9 +5,9 @@ import {maxLenghtCreator, minLenghtCreator, required} from "../../utils/validato
 import SuperButton from "../common/FormsControl/SuperButton";
 import {connect} from "react-redux";
 import {login} from "../../Redux/auth-reducer";
-import {AppThunkType, ReduxStateType} from "../../Redux/redux-store";
+import {ReduxStateType} from "../../Redux/redux-store";
 import {Redirect} from "react-router-dom";
-
+import s from "../common/FormsControl/FormsControls.module.css";
 
 
 export type FormDataType = {
@@ -15,8 +15,10 @@ export type FormDataType = {
     password:string
     rememberMe:boolean
 }
+
 let maxLength = maxLenghtCreator(20)
 let minLength = minLenghtCreator(4)
+
 export const LoginForm = (props:InjectedFormProps<FormDataType>) => {
 
     return <div>
@@ -24,9 +26,10 @@ export const LoginForm = (props:InjectedFormProps<FormDataType>) => {
             <div>
                 <Field placeholder={'   Email'}
                        style={{height: '35px'}}
-                       validate={[required, maxLength, minLength]}
+                       validate={[required]}
                        name={'email'}
-                       component={Input}/>
+                       component={Input}
+                />
             </div>
             <div>
                 <Field placeholder={'   Password'}
@@ -43,6 +46,7 @@ export const LoginForm = (props:InjectedFormProps<FormDataType>) => {
             <div>
                 <SuperButton> Login</SuperButton>
             </div>
+            {props.error && <div className={s.errorTextarea}>{props.error}</div>}
         </form>
     </div>
 }
@@ -58,14 +62,14 @@ const Login = (props:LoginType) => {
         props.login(formData.email,formData.password,formData.rememberMe)
     }
 
-    if(props.isAuth){
-        return <Redirect to={'/profile'}/>
-    }
+    if(props.isAuth){ return <Redirect to={'/profile'}/> }
+
     return <div>
-        <div>Login</div>
+         <div>Login</div>
         <LoginReduxForm onSubmit={onSubmit}/>
     </div>
 }
+
 type mapStateToPropsType = {
     isAuth:boolean
 }

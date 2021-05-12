@@ -171,7 +171,7 @@ export const getPage = (pageNumber: number, currentPage: number) => {
 export const follow = (userId:number) => {
     return (dispatch: Dispatch<UsersActionType>) => {
         dispatch(toggleIsFollowingProgress(true, userId))
-        userAPI.unFollowUser(userId)
+        userAPI.followUser(userId)
             .then(data => {
                 if (data.resultCode === 0) {
                 dispatch(followSuccess(userId))
@@ -183,7 +183,7 @@ export const follow = (userId:number) => {
 export const unFollow = (userId:number) => {
     return (dispatch: Dispatch<UsersActionType>) => {
         dispatch(toggleIsFollowingProgress(true, userId))
-        userAPI.followUser(userId)
+        userAPI.unFollowUser(userId)
             .then(data => {
                 if (data.resultCode === 0){
                     dispatch(unFollowSuccess(userId))

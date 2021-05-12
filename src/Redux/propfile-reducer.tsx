@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {profileAPI, userAPI} from "../api/api";
+import {profileAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -13,27 +13,27 @@ export type PostsType = {
 }
 
 export type ContactsType = {
-    facebook: string
-    website: null
-    vk: string
-    twitter: string
-    instagram: string
-    youtube: null
-    github: string
-    mainLink: null
+    github: string | null
+    vk: string | null
+    facebook: string | null
+    instagram: string | null
+    twitter: string | null
+    website: string | null
+    youtube: string | null
+    mainLink: string | null
 }
 export type PhotosType = {
     small: string
     large: string
 }
 export type ProfileType = {
-        aboutMe: string
-        contacts: ContactsType
-        lookingForAJob: boolean
-        lookingForAJobDescription: string
-        fullName: string
-        userId: number
-        photos: PhotosType
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string | null
+    fullName: string
+    aboutMe: string | null
+    contacts: ContactsType
+    photos: PhotosType
     }
 export type ProfilePageType = {
     posts: PostsType[]
@@ -119,7 +119,7 @@ export const setUsersProfile = (profile: ProfileType) => {
 
 export const getProfile = (id:number) => {
     return (dispatch: Dispatch<ProfileActionType>) => {
-        userAPI.getProfile(id)
+        profileAPI.getProfile(id)
             .then(data => {
                     dispatch(setUsersProfile(data.data))
                 }
