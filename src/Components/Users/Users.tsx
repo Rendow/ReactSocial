@@ -3,8 +3,6 @@ import s from "./Users.module.css";
 import logo from "./img/logo.png";
 import {UsersType} from "../../Redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import {userAPI} from "../../api/api";
-import {Button} from "@material-ui/core";
 import SuperButton from "../common/FormsControl/SuperButton";
 
 
@@ -15,7 +13,7 @@ type UsersPropsType = {
     totalUsersCount:number
     currentPage: number
     follow: (userId: number) => void
-    unfollow: (userId: number) => void
+    unFollow: (userId: number) => void
     toggleIsFollowingProgress:(followingInProgress: boolean, userId:number) => void
     followingInProgress:number[]
 }
@@ -46,7 +44,7 @@ export const Users = (props:UsersPropsType) => {
                         ? <SuperButton
                                 style={{letterSpacing:'1px', fontSize:'14px'}}
                                       disabled={props.followingInProgress.some(id => id === u.id)}
-                                      onClick={() => {props.unfollow(u.id)}}>
+                                      onClick={() => {props.unFollow(u.id)}}>
                             UNFOLLOW
                         </SuperButton>
                             : <SuperButton  style={{letterSpacing:'1px', fontSize:'14px'}}

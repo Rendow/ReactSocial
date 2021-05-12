@@ -44,7 +44,7 @@ let initialState: InitialStateType = {
     totalUsersCount: 0,
     currentPage: 3,
     isFetching:false,
-    followingInProgress:[1,2],
+    followingInProgress:[],
 }
 
 export type InitialStateType = {

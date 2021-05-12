@@ -68,3 +68,6 @@
 .button:disabled::before{
     z-index: -1;
 }
+.button:disabled{
+    opacity: 0.3;
+}

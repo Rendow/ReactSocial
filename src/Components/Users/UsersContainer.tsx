@@ -2,20 +2,20 @@ import React from 'react';
 import {connect} from "react-redux";
 import {ReduxStateType} from "../../Redux/redux-store";
 import {
-    followSuccess, getPage, getUsers,
+    follow,
+    getPage,
+    getUsers,
     setCurrentPage,
     setTotalUsersCount,
     setUsers,
-    toggleIsFetching, toggleIsFollowingProgress,
-    unFollowSuccess,
+    toggleIsFetching,
+    toggleIsFollowingProgress, unFollow,
     UsersType
 } from "../../Redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
-import Dialogs from "../Dialogs/Dialogs";
 import {compose} from "redux";
-
 
 
 export type mapStateToPropsType = {
@@ -28,7 +28,7 @@ export type mapStateToPropsType = {
 }
 export type dispatchToPropsType = {
     follow: (userId: number) => void
-    unfollow: (userId: number) => void
+    unFollow: (userId: number) => void
     toggleIsFollowingProgress:(followingInProgress: boolean, userId:number) => void
     getUsers:(pageSize: number, currentPage: number)  => void
     getPage:(pageNumber: number, currentPage: number)  => void
@@ -56,7 +56,7 @@ class UsersContainer extends React.Component <UsersPropsType,{}>{
             onPageChanged={this.onPageChanged}
             users={this.props.users}
             follow={this.props.follow}
-            unfollow={this.props.unfollow}
+            unFollow={this.props.unFollow}
             toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
             followingInProgress={this.props.followingInProgress}
         />
@@ -76,6 +76,6 @@ let mapStateToProps = (state: ReduxStateType):mapStateToPropsType => {
 }
 
 export default compose<React.ComponentType>(connect(mapStateToProps,
-    {follow: followSuccess, unfollow: unFollowSuccess, setUsers,
+    {follow, unFollow, setUsers,
         setCurrentPage, setTotalUsersCount, toggleIsFetching,
         toggleIsFollowingProgress,getUsers, getPage}), WithAuthRedirect)(UsersContainer)
