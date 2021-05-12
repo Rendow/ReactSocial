@@ -14,12 +14,12 @@ let mapStateToPropsForRedirect = (state: ReduxStateType): mapStateForRedirectPro
 export function WithAuthRedirect <T>(Component: ComponentType<T>)  {
 
     const RedirectComponent = (props:mapStateForRedirectPropsType) => {
-            let {auth, ...restPtops} = props
+            let {auth, ...restProps} = props
             if (!props.auth) return <Redirect to={'/Login'}/>
-            return <Component {...restPtops as T}/>
+
+            return <Component {...restProps as T}/>
 
     }
 
-    const ConnectAuthRedirectComponent = connect(mapStateToPropsForRedirect)(RedirectComponent)
-    return ConnectAuthRedirectComponent
+    return connect(mapStateToPropsForRedirect)(RedirectComponent)
 }

@@ -54,12 +54,12 @@ let initialState = {
     posts: [
         {
             id: 1,
-            messages: 'Hi,how are you?',
+            messages: 'Falcon 9’s first stage has landed on!',
             likesCount: 11,
         },
         {
             id: 2,
-            messages: 'its my first posts',
+            messages: 'Yuri Gagarin was the first person to fly in space.',
             likesCount: 41,
         },
 

@@ -1,8 +1,7 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import {MyPostsMapDispatchToPropsType, MyPostsMapStateToPropsType} from "./MyPostsContainer";
-import {Button, TextField} from "@material-ui/core";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {FormDataType} from "../../Login/Login";
 import {maxLenghtCreator, minLenghtCreator, required} from "../../../utils/validators/validators";
@@ -12,16 +11,13 @@ import SuperButton from "../../common/FormsControl/SuperButton";
 
 export type MyPostsPropsType = MyPostsMapStateToPropsType & MyPostsMapDispatchToPropsType
 
-
 function MyPosts(props: MyPostsPropsType) {
-
 
      let PostsElements =
         props.posts.map (post => <Post message={post.messages} like={post.likesCount} />)
 
-    let addPost = (text:any) => {
-        props.onClick(text.newPostText)
-    }
+    let addPost = (text:any) => {props.onClick(text.newPostText)}
+
     return (
         <div className={classes.content}>
 
@@ -37,11 +33,12 @@ function MyPosts(props: MyPostsPropsType) {
                 {PostsElements}
             </div>
         </div>
-
     )
 }
+
 let maxLength = maxLenghtCreator(20)
 let minLength = minLenghtCreator(4)
+
 const AddNewPostForm = (props:InjectedFormProps<FormDataType> ) => {
     return  <div>
         <form onSubmit={props.handleSubmit}>

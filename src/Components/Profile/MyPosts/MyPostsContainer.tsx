@@ -24,11 +24,7 @@ const mapDispatchToProps = (dispatch:Dispatch):MyPostsMapDispatchToPropsType => 
     return {
         onClick: (text:any) => {
             dispatch(addPostCreator(text))
-        },
-        // onChange: (text: string) => {
-        //     let action = updateNewPostCreator(text);
-        //     dispatch(action)
-        // }
+        }
     }
 }
 

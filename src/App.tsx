@@ -19,7 +19,7 @@ function App() {
                 <Navbar/>
                 <div className='app-wrapper-content'>
 
-                {/*   <Route path='/' render={() => <Redirect to={'profile'}/>}/>*/}
+                    <Route path='/' render={() => <Redirect to={'profile'}/>}/>
                     <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                     <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                     <Route path='/users' render={() => <UsersContainer/>}/>

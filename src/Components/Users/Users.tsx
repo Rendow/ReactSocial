@@ -41,23 +41,7 @@ export const Users = (props:UsersPropsType) => {
                         </NavLink>
                 </div>
                     <div>
-                     {/*   {
-                            u.followed
-                                ? <Button
-                                    variant={"contained"}
-                                    style={{margin:'5px 0'}}
-                                    disabled={props.followingInProgress.some(id => id === u.id)}
-                                    onClick={() => {props.unfollow(u.id)}}>
-                                    Unfollow  </Button>
 
-                            :  <Button
-                                    color={"primary"}
-                                    variant={"contained"}
-                                    style={{margin:'5px 0'}}
-                                    disabled={props.followingInProgress.some(id => id === u.id)}
-                                    onClick={() => {props.follow(u.id)}}>
-                                Follow  </Button>
-                        }*/}
                         {  u.followed
                         ? <SuperButton
                                 style={{letterSpacing:'1px', fontSize:'14px'}}
