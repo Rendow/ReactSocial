@@ -40,9 +40,9 @@ type toggleIsFollowingProgressActionType = ReturnType<typeof toggleIsFollowingPr
 
 let initialState: InitialStateType = {
     users: [],
-    pageSize: 4,
+    pageSize: 3,
     totalUsersCount: 0,
-    currentPage: 3,
+    currentPage: 1,
     isFetching:false,
     followingInProgress:[],
 }

@@ -36,6 +36,7 @@ class App extends React.Component<HeaderContainerType, {}> {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/' exact render={() => <Redirect to={'profile'}/>}/>
+                    <Route path='/ReactSocial' exact render={() => <Redirect to={'profile'}/>}/>
 
                     <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                     <Route path='/dialogs' render={() => <DialogsContainer/>}/>
