@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./ProfileInfo.module.css";
 import Logo from './../MyPosts/Post/img.webp';
-import {ProfileType} from "../../../Redux/propfile-reducer";
+import {ProfileType} from "../../../redux/propfile-reducer";
 import {Preloader} from "../../common/Preloader/Preloader";
 import { ProfileStatus } from "./ProfileStatus";
 

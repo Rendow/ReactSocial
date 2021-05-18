@@ -1,8 +1,8 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getProfile, getStatus, ProfileType, updateStatus} from "../../Redux/propfile-reducer";
-import {ReduxStateType} from "../../Redux/redux-store";
+import {getProfile, getStatus, ProfileType, updateStatus} from "../../redux/propfile-reducer";
+import {ReduxStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
 
@@ -30,7 +30,9 @@ type PropsType = RouteComponentProps<PathParamsType> & ProfileContainerType
     componentDidMount() {
         let userId = +this.props.match.params.userId;
         if(!userId) {
-            userId = Number(this.props.authorizedUserId)
+            this.props.isAuth
+                ? Number(this.props.authorizedUserId)
+                : this.props.history.push('/login')
         }
         this.props.getProfile(userId)
         this.props.getStatus(userId)

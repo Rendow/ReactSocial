@@ -1,17 +1,15 @@
 import React from "react";
 import Header from "./Header";
 import {connect} from "react-redux";
-import {ReduxStateType} from "../../Redux/redux-store";
-import {authUser, logout} from "../../Redux/auth-reducer";
+import {ReduxStateType} from "../../redux/redux-store";
+import {authUser, logout} from "../../redux/auth-reducer";
 
 type HeaderContainerType = MapStateToPropsType &{
     authUser:() => void
     logout:() => void
 }
 class HeaderContainer extends React.Component<HeaderContainerType, {}>{
-    componentDidMount() {
-       this.props.authUser()
-    }
+
     render() {
       return <Header {...this.props}/>
     }

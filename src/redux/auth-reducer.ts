@@ -42,16 +42,15 @@ export const setAuthUserData = (userId:number| null, email:string| null, login:s
     } as const
 }
 
-export const authUser = ():AppThunkType => {
-    return (dispatch) => {
-        authAPI.me()
+export const authUser = ():AppThunkType =>
+     (dispatch) => {
+         return  authAPI.me()
             .then(data => {
                 if (data.resultCode === 0) {
                     let {id, login, email} = data.data
                     dispatch(setAuthUserData(id, email, login, true))
                 }
             })
-    }
 }
 
 export const login = (email:string, password:string, rememberMe:boolean) => {

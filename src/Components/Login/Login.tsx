@@ -4,8 +4,8 @@ import {Input} from "../common/FormsControl/FormsControls";
 import {maxLenghtCreator, minLenghtCreator, required} from "../../utils/validators/validators";
 import SuperButton from "../common/FormsControl/SuperButton";
 import {connect} from "react-redux";
-import {login} from "../../Redux/auth-reducer";
-import {ReduxStateType} from "../../Redux/redux-store";
+import {login} from "../../redux/auth-reducer";
+import {ReduxStateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
 import s from "../common/FormsControl/FormsControls.module.css";
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {ReduxStateType} from "../../Redux/redux-store";
+import {ReduxStateType} from "../../redux/redux-store";
 import {
     follow,
     getPage,
@@ -11,7 +11,7 @@ import {
     toggleIsFetching,
     toggleIsFollowingProgress, unFollow,
     UsersType
-} from "../../Redux/users-reducer";
+} from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";

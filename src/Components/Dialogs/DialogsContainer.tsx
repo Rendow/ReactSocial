@@ -1,8 +1,8 @@
 import React from 'react';
-import {InitialStateType, sendMessageCreator} from '../../Redux/dialogs-reducer';
+import {InitialStateType, sendMessageCreator} from '../../redux/dialogs-reducer';
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
-import {ReduxStateType} from "../../Redux/redux-store";
+import {ReduxStateType} from "../../redux/redux-store";
 import {compose, Dispatch} from "redux";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 

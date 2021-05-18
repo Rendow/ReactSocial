@@ -1,7 +1,7 @@
 import React from 'react';
 import s from "./Users.module.css";
 import logo from "./img/logo.png";
-import {UsersType} from "../../Redux/users-reducer";
+import {UsersType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import SuperButton from "../common/FormsControl/SuperButton";
 
