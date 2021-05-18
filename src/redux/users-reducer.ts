@@ -40,7 +40,7 @@ type toggleIsFollowingProgressActionType = ReturnType<typeof toggleIsFollowingPr
 
 let initialState: InitialStateType = {
     users: [],
-    pageSize: 5,
+    pageSize: 4,
     totalUsersCount: 0,
     currentPage: 3,
     isFetching:false,
@@ -146,6 +146,8 @@ export const toggleIsFollowingProgress = (followingInProgress: boolean, userId:n
 export const getUsers = (pageSize: number, currentPage: number) => {
     return (dispatch: Dispatch<UsersActionType>) => {
         dispatch(toggleIsFetching(true))
+        dispatch(setCurrentPage(currentPage))
+
         userAPI.getUsers(currentPage, pageSize)
             .then(data => {
                 dispatch(toggleIsFetching(false))

@@ -1,20 +1,20 @@
 import React from 'react';
 import './App.css';
-import Navbar from "./Components/Navbar/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import {Route} from "react-router-dom";
-import News from './Components/News/News';
-import Music from './Components/Music/Music';
-import Settings from "./Components/Settings/Settings";
-import DialogsContainer from "./Components/Dialogs/DialogsContainer";
-import UsersContainer from "./Components/Users/UsersContainer";
-import ProfileContainer from "./Components/Profile/ProfileContainer";
-import HeaderContainer from "./Components/Header/HeaderContainer";
-import Login from "./Components/Login/Login";
+import News from './components/News/News';
+import Music from './components/Music/Music';
+import Settings from "./components/Settings/Settings";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 import {connect} from "react-redux";
 import {authUser} from "./redux/auth-reducer";
 import {initialize} from "./redux/app-reducer";
 import {ReduxStateType} from "./redux/redux-store";
-import {Preloader} from "./Components/common/Preloader/Preloader";
+import {Preloader} from "./components/common/Preloader/Preloader";
 
 type HeaderContainerType  =  MapStateToPropsType & {
     initialize:() => void
