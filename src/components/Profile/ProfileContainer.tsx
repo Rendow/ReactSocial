@@ -31,9 +31,10 @@ type PropsType = RouteComponentProps<PathParamsType> & ProfileContainerType
         let userId = +this.props.match.params.userId;
         if(!userId) {
             this.props.isAuth
-                ? Number(this.props.authorizedUserId)
+                ? userId = Number(this.props.authorizedUserId)
                 : this.props.history.push('/login')
         }
+
         this.props.getProfile(userId)
         this.props.getStatus(userId)
     }

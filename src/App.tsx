@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
-import {Route} from "react-router-dom";
+import {Redirect, Route} from "react-router-dom";
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from "./components/Settings/Settings";
@@ -11,7 +11,6 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import {connect} from "react-redux";
-import {authUser} from "./redux/auth-reducer";
 import {initialize} from "./redux/app-reducer";
 import {ReduxStateType} from "./redux/redux-store";
 import {Preloader} from "./components/common/Preloader/Preloader";
@@ -25,6 +24,7 @@ type  MapStateToPropsType = {
 class App extends React.Component<HeaderContainerType, {}> {
     componentDidMount() {
         this.props.initialize()
+
     }
     render() {
         if(!this.props.initialized) {
@@ -35,13 +35,9 @@ class App extends React.Component<HeaderContainerType, {}> {
                 <HeaderContainer/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-
-                    {/*
-                    <Route path='/' render={() => <Redirect to={'profile'}/>}/>
-*/}
+                    <Route path='/' exact render={() => <Redirect to={'profile'}/>}/>
 
                     <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-
                     <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                     <Route path='/users' render={() => <UsersContainer/>}/>
                     <Route path='/login' render={() => <Login/>}/>
