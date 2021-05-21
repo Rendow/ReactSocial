@@ -1,5 +1,5 @@
 import s from "./ProfileInfo.module.css";
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 
  type PropsType = {
      status: string
@@ -8,6 +8,10 @@ import React, {ChangeEvent, useState} from "react";
 export const ProfileStatusWithHooks = (props: PropsType) => {
     const [editMode, setEditMode] = useState(true)
     const [status, setStatus] = useState(props.status)
+
+    useEffect(() => {
+        setStatus(props.status)
+    },[props.status])
 
     const deactivateEditMode = () => {
         props.updateStatus(status)
