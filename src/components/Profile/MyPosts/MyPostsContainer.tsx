@@ -11,7 +11,6 @@ export type MyPostsMapStateToPropsType = {
     newPostText:string
 }
 export  type MyPostsMapDispatchToPropsType = {
-
     onClick:(text:any) => void
 }
 const mapStateToProps = (state:ReduxStateType):MyPostsMapStateToPropsType => {

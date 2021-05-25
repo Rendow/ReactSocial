@@ -11,12 +11,14 @@ import SuperButton from "../../common/FormsControl/SuperButton";
 
 export type MyPostsPropsType = MyPostsMapStateToPropsType & MyPostsMapDispatchToPropsType
 
-function MyPosts(props: MyPostsPropsType) {
+const MyPosts = React.memo((props: MyPostsPropsType) => {
 
-     let PostsElements =
-        props.posts.map (post => <Post message={post.messages} like={post.likesCount} />)
+    let PostsElements =
+        props.posts.map(post => <Post message={post.messages} like={post.likesCount}/>)
 
-    let addPost = (text:any) => {props.onClick(text.newPostText)}
+    let addPost = (text: any) => {
+        props.onClick(text.newPostText)
+    }
 
     return (
         <div className={classes.content}>
@@ -34,7 +36,7 @@ function MyPosts(props: MyPostsPropsType) {
             </div>
         </div>
     )
-}
+});
 
 let maxLength = maxLenghtCreator(20)
 let minLength = minLenghtCreator(4)
