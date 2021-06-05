@@ -1,7 +1,7 @@
 import {authUser} from "./auth-reducer";
 import {AppThunkType} from "./redux-store";
 
-const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
+const INITIALIZED_SUCCESS = 'APP/INITIALIZED_SUCCESS';
 
 
 type InitializedSuccessType = ReturnType<typeof initializedSuccess>

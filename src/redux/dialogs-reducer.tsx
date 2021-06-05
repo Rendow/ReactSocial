@@ -1,5 +1,5 @@
 
-const SEND_MESSAGE = 'SEND_MESSAGE'
+const SEND_MESSAGE = 'DIALOGS/SEND_MESSAGE'
 
 
 export type MessagesType = {
