@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import s from "./Users.module.css";
 import logo from "./img/logo.png";
 import {UsersType} from "../../redux/users-reducer";
@@ -20,6 +20,10 @@ type UsersPropsType = {
 
 
 export const Users = (props:UsersPropsType) => {
+
+    useEffect(() => {
+        document.title = 'Users'
+    },[])
 
     let selectedPage = s.selectedPage + ' ' + s.pagination
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)

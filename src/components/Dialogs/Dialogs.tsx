@@ -2,7 +2,7 @@ import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from './Message/Message';
 import {DialogsMapDispatchToPropsType, DialogsMapStateToPropsType} from "./DialogsContainer";
-import React from "react";
+import React, {useEffect} from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {FormDataType} from "../Login/Login";
 import {Textarea} from "../common/FormsControl/FormsControls";
@@ -13,7 +13,9 @@ import SuperButton from "../common/FormsControl/SuperButton";
 export type DialogType = DialogsMapStateToPropsType & DialogsMapDispatchToPropsType
 
 function Dialogs(props: DialogType) {
-
+    useEffect(() => {
+        document.title = 'Messages'
+    },[])
     let dialogsElements = props.dialogsPage.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
     let messagesElements = props.dialogsPage.messages.map(message => <Message key={message.id} message={message.messages}/>)
 

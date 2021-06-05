@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import s from './Profile.module.css'
@@ -11,6 +11,10 @@ type PropsType = {
     updateStatus:(text:string) => void
 }
 function Profile(props:PropsType) {
+
+    useEffect(() => {
+        document.title = 'Profile'
+    },[])
     return (
         <div className={s.content}>
             <ProfileInfo profile={props.profile}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../common/FormsControl/FormsControls";
 import {maxLenghtCreator, minLenghtCreator, required} from "../../utils/validators/validators";
@@ -20,7 +20,9 @@ let maxLength = maxLenghtCreator(20)
 let minLength = minLenghtCreator(4)
 
 export const LoginForm = (props:InjectedFormProps<FormDataType>) => {
-
+    useEffect(() => {
+        document.title = 'Login'
+    },[])
     return <div>
         <form onSubmit={props.handleSubmit}>
             <div>
