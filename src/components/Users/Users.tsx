@@ -1,9 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import s from "./Users.module.css";
-import logo from "./img/logo.png";
 import {UsersType} from "../../redux/users-reducer";
-import {NavLink} from "react-router-dom";
-import SuperButton from "../common/FormsControl/SuperButton";
 import {Paginator} from "../common/Paginator/Paginator";
 import {User} from "./User";
 
@@ -22,6 +19,10 @@ type UsersPropsType = {
 export const Users : React.FC<UsersPropsType> = (
     {users,currentPage,pageSize,
         onPageChanged,totalUsersCount,...props}) => {
+
+    useEffect(() => {
+        document.title = 'Users'
+    },[])
 
     return (
         <div className={s.wrap}>

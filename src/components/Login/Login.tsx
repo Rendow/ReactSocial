@@ -20,9 +20,11 @@ let maxLength = maxLenghtCreator(20)
 let minLength = minLenghtCreator(4)
 
 export const LoginForm = (props:InjectedFormProps<FormDataType>) => {
+
     useEffect(() => {
         document.title = 'Login'
     },[])
+
     return <div>
         <form onSubmit={props.handleSubmit}>
             <div>
