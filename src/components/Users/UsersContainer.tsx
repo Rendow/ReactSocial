@@ -37,7 +37,6 @@ export type mapStateToPropsType = {
 export type dispatchToPropsType = {
     follow: (userId: number) => void
     unFollow: (userId: number) => void
-    toggleIsFollowingProgress:(followingInProgress: boolean, userId:number) => void
     getUsers:(pageSize: number, currentPage: number)  => void
     getPage:(pageNumber: number, currentPage: number)  => void
 }
@@ -65,7 +64,6 @@ class UsersContainer extends React.Component <UsersPropsType,{}>{
             users={this.props.users}
             follow={this.props.follow}
             unFollow={this.props.unFollow}
-            toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
             followingInProgress={this.props.followingInProgress}
         />
         </>
