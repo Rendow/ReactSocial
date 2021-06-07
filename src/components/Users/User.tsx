@@ -4,8 +4,6 @@ import logo from "./img/logo.png";
 import {UsersType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import SuperButton from "../common/FormsControl/SuperButton";
-import {Paginator} from "../common/Paginator/Paginator";
-
 
 type UserPropsType = {
     users: UsersType
@@ -14,7 +12,7 @@ type UserPropsType = {
     followingInProgress:number[]
 }
 
-export const User : React.FC<UserPropsType> = ({users,...props}) => {
+export const User: React.FC<UserPropsType> = ({users,...props}) => {
     return (
         <>
             <span>
@@ -51,8 +49,6 @@ export const User : React.FC<UserPropsType> = ({users,...props}) => {
                          <div>{'u.location.city'}</div>
                     </span>
                 </span>
-           )
-
         </>
 
 )}

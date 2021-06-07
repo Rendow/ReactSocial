@@ -1,5 +1,28 @@
 import axios from "axios";
+import {UsersType} from "../redux/users-reducer";
 
+
+enum ResultCode  {
+    Success = 0,
+    Error = 1
+}
+
+type CommonType<T = {}> = {
+    resultCode: ResultCode
+    messages: Array<string>
+    data: T
+}
+
+type UsersCommonType = {
+    items: UsersType[]
+    totalCount: number
+    error: null | string
+}
+type MeResponseType = {
+    id: number
+    email: string
+    login: string
+}
 
 const instance = axios.create({
     withCredentials:true,
@@ -8,24 +31,18 @@ const instance = axios.create({
         'API-KEY':'7e928b19-02e3-4839-a906-80cc9541b152'
     }})
 
-type CommonType<T = {}> = {
-    resultCode: 0 | 1
-    messages: Array<string>
-    data: T
-}
-
 export const userAPI = {
 
     getUsers (currentPage = 1, pageSize = 5) {
-        return instance.get( `users?page=${currentPage}&count=${pageSize}`)
+        return instance.get<UsersCommonType>( `users?page=${currentPage}&count=${pageSize}`)
             .then(response => response.data)},
 
     followUser(id:number)  {
-        return instance.post(`follow/${id}`)
+        return instance.post<CommonType>(`follow/${id}`)
             .then(response =>  response.data)},
 
     unFollowUser(id:number) {
-        return instance.delete(`follow/${id}`)
+        return instance.delete<CommonType>(`follow/${id}`)
             .then(response => response.data)},
 
     //without instance
@@ -39,14 +56,14 @@ export const userAPI = {
 
 export const authAPI = {
     me() {
-        return instance.get(`auth/me`, {})
+        return instance.get<CommonType<MeResponseType>>(`auth/me`, {})
             .then(response =>  response.data)},
 
     login(email:string, password:string,rememberMe:boolean = false) {
         return instance.post<CommonType<{userId: number}>>(`auth/login`, {email,password,rememberMe})
     },
     logout() {
-        return instance.delete(`auth/login`)
+        return instance.delete<CommonType>(`auth/login`)
     },
 }
 
@@ -61,7 +78,7 @@ export const profileAPI = {
         return instance.get(`profile/status/`+ userId)
           },
     updateStatus(status:string) {
-        return instance.put(`profile/status/`, {status})
+        return instance.put<CommonType>(`profile/status/`, {status})
            },
 
 }
