@@ -1,4 +1,4 @@
-import {authAPI} from "../api/api";
+import {authAPI, ResultCode} from "../api/api";
 import {AppThunkType, ReduxStateType} from "./redux-store";
 import {FormAction, stopSubmit} from "redux-form";
 import {ThunkDispatch} from "redux-thunk";
@@ -47,7 +47,7 @@ export const authUser = ():AppThunkType =>
     async (dispatch) => {
       let response = await  authAPI.me();
 
-                if (response.resultCode === 0) {
+                if (response.resultCode === ResultCode.Success) {
                     let {id, login, email} = response.data
                     dispatch(setAuthUserData(id, email, login, true))
                 }
@@ -57,7 +57,7 @@ export const login = (email:string, password:string, rememberMe:boolean) =>
     async (dispatch: ThunkDispatch<ReduxStateType, unknown, AuthActionType | FormAction>) => {
         let response = await  authAPI.login(email, password, rememberMe);
 
-                if (response.data.resultCode === 0) {
+                if (response.data.resultCode === ResultCode.Success) {
                     dispatch(authUser())
                 } else {
                  let message = response.data.messages.length> 0
@@ -72,7 +72,7 @@ export const logout = ():AppThunkType => {
     return (dispatch) => {
         authAPI.logout()
             .then(data => {
-                if (data.data.resultCode === 0) {
+                if (data.data.resultCode === ResultCode.Success) {
                     dispatch(setAuthUserData(null,null,null,false))
                 }
             })

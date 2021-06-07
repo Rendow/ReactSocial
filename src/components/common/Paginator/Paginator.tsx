@@ -21,7 +21,7 @@ export const Paginator = (props:PaginatorPropsType) => {
     }
 
     return (
-            <div>
+            <div className={s.wrap}>
                 {pages.map(p => {
                     return  p <15 && <span className={props.currentPage === p ? selectedPage : s.pagination}
                                            onClick={()=>{props.onPageChanged(p)}}>

@@ -2,7 +2,7 @@ import axios from "axios";
 import {UsersType} from "../redux/users-reducer";
 
 
-enum ResultCode  {
+export enum ResultCode  {
     Success = 0,
     Error = 1
 }

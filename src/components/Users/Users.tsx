@@ -27,6 +27,7 @@ export const Users : React.FC<UsersPropsType> = (
     return (
         <div className={s.wrap}>
             { users.map(u =>
+                
                 <User
                 users={u}
                 key={u.id}
@@ -36,7 +37,7 @@ export const Users : React.FC<UsersPropsType> = (
                 />)
             }
 
-            <Paginator
+                <Paginator
                 currentPage={currentPage}
                 onPageChanged={onPageChanged}
                 pageSize={pageSize}
