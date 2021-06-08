@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {ChangeEvent, useEffect, useState} from 'react'
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../common/FormsControl/FormsControls";
 import {maxLenghtCreator, minLenghtCreator, required} from "../../utils/validators/validators";
@@ -7,7 +7,8 @@ import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {ReduxStateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
-import s from "../common/FormsControl/FormsControls.module.css";
+import s from "./Login.module.css";
+import SuperCheckbox from "../common/Checkbox/SuperCheckbox";
 
 
 export type FormDataType = {
@@ -25,11 +26,14 @@ export const LoginForm = (props:InjectedFormProps<FormDataType>) => {
         document.title = 'Login'
     },[])
 
+    const [checked, setChecked] = useState<boolean>(true)
+
     return <div>
-        <form onSubmit={props.handleSubmit}>
+        <form  className={s.loginWrap} onSubmit={props.handleSubmit}>
+            <p className={s.login}>Login</p>
             <div>
                 <Field placeholder={'   Email'}
-                       style={{height: '35px'}}
+                       style={{height: '35px', width:'100%'}}
                        validate={[required]}
                        name={'email'}
                        component={Input}
@@ -37,16 +41,22 @@ export const LoginForm = (props:InjectedFormProps<FormDataType>) => {
             </div>
             <div>
                 <Field placeholder={'   Password'}
-                       style={{height: '35px'}}
+                       style={{height: '35px', width:'100%'}}
                        validate={[required, maxLength, minLength]}
                        type={'password'}
                        name={'password'}
                        component={Input}/>
             </div>
             <div>
-                <Field component={'input'}
+                <Field component={SuperCheckbox}
                        name={'rememberMe'}
-                       type={"checkbox"}/> Remember me</div>
+                       type={"checkbox"}
+                       checked={checked}
+                       onChangeChecked={setChecked}
+                >
+                    Remember me
+                    </Field>
+            </div>
             <div>
                 <SuperButton> Login</SuperButton>
             </div>
@@ -69,7 +79,6 @@ const Login = (props:LoginType) => {
     if(props.isAuth){ return <Redirect to={'/profile'}/> }
 
     return <div>
-         <div>Login</div>
         <LoginReduxForm onSubmit={onSubmit}/>
     </div>
 }

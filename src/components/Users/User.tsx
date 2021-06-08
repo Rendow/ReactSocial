@@ -14,8 +14,8 @@ type UserPropsType = {
 
 export const User: React.FC<UserPropsType> = ({users,...props}) => {
     return (
-        <>
-            <span>
+        <div className={s.user}>
+            <span >
                     <div>
                         <NavLink to={'/profile/' + users.id}>
                             <img src={users.photos.small != null ? users.photos.small : logo} className={s.photo}/>
@@ -49,6 +49,6 @@ export const User: React.FC<UserPropsType> = ({users,...props}) => {
                          <div>{'u.location.city'}</div>
                     </span>
                 </span>
-        </>
+        </div>
 
 )}
