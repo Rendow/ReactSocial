@@ -15,20 +15,27 @@
 .status{
     margin: 15px 0 0 30px;
     font-size: 18px;
-    cursor: pointer;
+    cursor: default;
     color: #28378d;
 }
+.statusWrap{
+    display: flex;
+}
 .name{
-    cursor: default;
     margin-bottom: 10px;
+    font-weight: 600;
+    color: #213089;
 }
 .statusInput{
     font-size: 18px;
     color: #28378d;
+    background-color: #F5F5F5;
 }
 .statusInputDiv{
     height: 25px;
     width: 200px;
+    cursor: pointer;
+    font-style: italic;
 }
 .wallpaper {
     width: 600px;

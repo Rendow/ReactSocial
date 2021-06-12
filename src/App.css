@@ -1,18 +1,26 @@
 
-
 .app-wrapper {
+  display: flex;
+  width: 1200px;
+  height: 100vh;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.8;
+  flex-direction: column;
   margin: 0 auto;
-  display: grid;
-  width: 900px;
-  grid-template-areas:
-"h h"
-'n c';
-  grid-template-rows: 60px 1fr;  /*две строки - одна 60пх, вторая - одна фракция*/
-  grid-template-columns: 3fr 11fr; /*две колонки - одна две фракиции, вторая - 10 фракций*/
+  padding: 0 20px;
+}
+.app-content-wrapper{
+  display: flex;
+  justify-content: space-between;
 }
 
-.app-wrapper-content {
-  grid-area: c;
+.nav-wrapper{
+  width: 20%;
+}
+.content-wrapper {
   background-color: #F5F5F5;
   border-radius: 7px;
+  width: 78%;
 }

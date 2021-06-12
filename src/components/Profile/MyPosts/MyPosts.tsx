@@ -22,14 +22,11 @@ const MyPosts = React.memo((props: MyPostsPropsType) => {
 
     return (
         <div className={classes.content}>
-
             <div className={classes.postBlock}>
                 <div className={classes.header}>
-                    <h4> My publications</h4>
+                    <h4> My publications.</h4>
                 </div>
-
                 <AddNewPostFormRedux onSubmit={addPost}/>
-
             </div>
             <div className={classes.posts}>
                 {PostsElements}

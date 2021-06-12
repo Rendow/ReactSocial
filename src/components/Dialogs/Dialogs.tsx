@@ -2,7 +2,7 @@ import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from './Message/Message';
 import {DialogsMapDispatchToPropsType, DialogsMapStateToPropsType} from "./DialogsContainer";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {FormDataType} from "../Login/Login";
 import {Textarea} from "../common/FormsControl/FormsControls";
@@ -16,6 +16,9 @@ function Dialogs(props: DialogType) {
     useEffect(() => {
         document.title = 'Messages'
     },[])
+
+
+
     let dialogsElements = props.dialogsPage.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
     let messagesElements = props.dialogsPage.messages.map(message => <Message key={message.id} message={message.messages}/>)
 
@@ -34,24 +37,6 @@ function Dialogs(props: DialogType) {
                 {messagesElements}
                 <div>
                     <AddMessageFormRedux onSubmit={sendMessage}/>
-                    {/*<div>*/}
-                    {/*    <TextField*/}
-                    {/*        variant={"outlined"}*/}
-                    {/*        color={"primary"}*/}
-                    {/*        style={{margin: '10px 0'}}*/}
-                    {/*        onChange={updateNewMessageBody}*/}
-                    {/*        value={newMessageBody}*/}
-                    {/*        ref={newPostElement}> </TextField>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                    {/*    <Button*/}
-                    {/*        color={"primary"}*/}
-                    {/*        variant={"contained"}*/}
-                    {/*        style={{margin:'5px 0'}}*/}
-                    {/*        disabled={newMessageBody === ''}*/}
-                    {/*        onClick={sendMessage}> Send message*/}
-                    {/*    </Button>*/}
-                    {/*</div>*/}
                 </div>
             </div>
 
@@ -61,16 +46,24 @@ function Dialogs(props: DialogType) {
 
 let maxLength = maxLenghtCreator(40)
 let minLength = minLenghtCreator(4)
+
 const AddMessageForm = (props: InjectedFormProps<FormDataType> ) => {
+    const [text,setText] = useState('asD12')
+
     return  <div>
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={'Enter your message'}
-                       style={{margin: '10px 0'}}
-                       validate={[required, maxLength, minLength]}
-                       name={'newMessageBody'} component={Textarea}/>
+                <Field
+                    value={text}
+                    onChange={(e: any) => {setText(e?.currentTarget.value)}}
+                    placeholder={'Enter your message'}
+                    style={{margin: '10px 0'}}
+                    validate={[required, maxLength, minLength]}
+                    name={'newMessageBody'} component={Textarea}/>
             </div>
-            <SuperButton style={{width:'120px'}}>
+            <SuperButton
+                onClick={()=>{setText('')}}
+                style={{width:'120px'}}>
                 Send message
             </SuperButton>
         </form>

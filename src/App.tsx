@@ -32,10 +32,12 @@ class App extends React.Component<HeaderContainerType, {}> {
         }
         return (
             <div className="app-wrapper">
-                <HeaderContainer/>
-                <div>
-                    <Navbar/>
-                    <div className='app-wrapper-content'>
+                    <HeaderContainer/>
+                <div className='app-content-wrapper'>
+                    <div className='nav-wrapper'>
+                        <Navbar/>
+                    </div>
+                    <div className='content-wrapper'>
                         <Route path='/' exact render={() => <Redirect to={'profile'}/>}/>
                         <Route path='/ReactSocial' exact render={() => <Redirect to={'profile'}/>}/>
 
