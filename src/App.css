@@ -8,7 +8,7 @@
 "h h"
 'n c';
   grid-template-rows: 60px 1fr;  /*две строки - одна 60пх, вторая - одна фракция*/
-  grid-template-columns: 3fr 9fr; /*две колонки - одна две фракиции, вторая - 10 фракций*/
+  grid-template-columns: 3fr 11fr; /*две колонки - одна две фракиции, вторая - 10 фракций*/
 }
 
 .app-wrapper-content {

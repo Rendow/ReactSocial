@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
-import {Redirect, Route} from "react-router-dom";
+import {BrowserRouter, Redirect, Route} from "react-router-dom";
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from "./components/Settings/Settings";
@@ -10,9 +10,9 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {initialize} from "./redux/app-reducer";
-import {ReduxStateType} from "./redux/redux-store";
+import store, {ReduxStateType} from "./redux/redux-store";
 import {Preloader} from "./components/common/Preloader/Preloader";
 
 type HeaderContainerType  =  MapStateToPropsType & {
@@ -54,6 +54,15 @@ class App extends React.Component<HeaderContainerType, {}> {
 const mapStateToProps = (state:ReduxStateType):MapStateToPropsType => ({
     initialized: state.app.initialized,
 })
-export default connect(mapStateToProps,{initialize}) (App);
+const AppConnect = connect(mapStateToProps,{initialize}) (App);
 
-
+ const AppContainer = () => {
+ return  <React.StrictMode>
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppConnect/>
+            </Provider>
+        </BrowserRouter>
+    </React.StrictMode>
+}
+export default AppContainer
