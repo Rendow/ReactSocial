@@ -1,0 +1,15 @@
+.loginWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    justify-content: space-around;
+    height: 250px;
+    margin: 50px;
+
+}
+.login{
+    color: #28378d;
+    font-weight: bold;
+    font-size: 18px;
+}

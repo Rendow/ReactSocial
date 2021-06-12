@@ -8,13 +8,13 @@
 
 .item {
     margin: 10px 0 0 10px;
-    color: white;
+    color: #303F9F;
 
 }
 
 .item a {
     text-decoration: none;
-    color: white;
+    color: #303F9F;
     /* а = NavLink */
 }
 
