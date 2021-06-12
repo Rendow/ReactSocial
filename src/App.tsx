@@ -33,18 +33,20 @@ class App extends React.Component<HeaderContainerType, {}> {
         return (
             <div className="app-wrapper">
                 <HeaderContainer/>
-                <Navbar/>
-                <div className='app-wrapper-content'>
-                    <Route path='/' exact render={() => <Redirect to={'profile'}/>}/>
-                    <Route path='/ReactSocial' exact render={() => <Redirect to={'profile'}/>}/>
+                <div>
+                    <Navbar/>
+                    <div className='app-wrapper-content'>
+                        <Route path='/' exact render={() => <Redirect to={'profile'}/>}/>
+                        <Route path='/ReactSocial' exact render={() => <Redirect to={'profile'}/>}/>
 
-                    <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                    <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                    <Route path='/users' render={() => <UsersContainer/>}/>
-                    <Route path='/login' render={() => <Login/>}/>
-                    <Route path='/news' render={() => <News/>}/>
-                    <Route path='/music' render={() => <Music/>}/>
-                    <Route path='/settings' render={() => <Settings/>}/>
+                        <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                        <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                        <Route path='/users' render={() => <UsersContainer/>}/>
+                        <Route path='/login' render={() => <Login/>}/>
+                        <Route path='/news' render={() => <News/>}/>
+                        <Route path='/music' render={() => <Music/>}/>
+                        <Route path='/settings' render={() => <Settings/>}/>
+                    </div>
                 </div>
             </div>
 

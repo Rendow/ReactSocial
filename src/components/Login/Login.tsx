@@ -30,7 +30,14 @@ export const LoginForm = (props:InjectedFormProps<FormDataType>) => {
 
     return <div>
         <form  className={s.loginWrap} onSubmit={props.handleSubmit}>
-            <p className={s.login}>Login</p>
+            <p className={s.login}>Sign in</p>
+            <div className={s.auth}>
+                <p> You can use this app with default authorization or register
+                    <a href="https://social-network.samuraijs.com/" target="_blank"> here</a>
+                </p>
+                <p> Email: free@samuraijs.com</p>
+                <p>Password: free</p>
+            </div>
             <div>
                 <Field placeholder={'   Email'}
                        style={{height: '35px', width:'100%'}}
