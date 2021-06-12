@@ -18,6 +18,10 @@
     cursor: pointer;
     color: #28378d;
 }
+.name{
+    cursor: default;
+    margin-bottom: 10px;
+}
 .statusInput{
     font-size: 18px;
     color: #28378d;
