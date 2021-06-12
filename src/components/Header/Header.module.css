@@ -14,11 +14,24 @@
     align-items: center;
 }
 .logo {
-    margin:3px 0 0 23px;
+    display: flex;
+    align-items :center;
+
+}
+.brand{
+    letter-spacing: 3px;
+    font-weight: 900;
+    font-family: Unispace;
+    font-size: 20px;
+
+    cursor: default;
+
+    margin:0 0 0 20px;
 }
 .logo img{
-    width: 80px;
-    height: 55px;
+    width: 60px;
+    height: 60px;
+    margin:0 0 0 10px;
 }
 a:visited {
     color: #28378d;
