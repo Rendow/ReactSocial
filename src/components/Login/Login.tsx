@@ -55,8 +55,8 @@ export const LoginForm = (props:InjectedFormProps<FormDataType>) => {
             </div>
             <div style={{display: 'flex',marginTop: '5px'}}>
                 <Field
-                    style={{marginRight: '8px'}}
-                    component={'input'}
+                      style={{marginRight: '8px'}}
+                      component={'input'}
                        name={'rememberMe'}
                        type={"checkbox"}
                 />

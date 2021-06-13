@@ -23,9 +23,8 @@ function Dialogs(props: DialogType) {
     let messagesElements = props.dialogsPage.messages.map(message => <Message key={message.id} message={message.messages}/>)
 
 
-    let sendMessage = (text:any) => {
+    let sendMessage = (text: any ) => {
         props.sendMessage(text.newMessageBody)
-        console.log(text)
     }
 
     return (

@@ -45,6 +45,7 @@ class App extends React.Component<HeaderContainerType, {}> {
                         <Suspense fallback={<Preloader/>}>
                             <Route path='/' exact render={() => <Redirect to={'profile'}/>}/>
                             <Route path='/ReactSocial' exact render={() => <Redirect to={'profile'}/>}/>
+                            <Route path='/ReactSocial/profile' exact render={() => <Redirect to={'profile'}/>}/>
                             <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                             <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                             <Route path='/users' render={() => <UsersContainer/>}/>

@@ -17,14 +17,14 @@ function Header(props:HeaderPropsType) {
                 <div className={classes.logo}> <img  src={logo} alt=""/> <div className={classes.brand}>SOCIAL NETWORK </div> </div>
                 <div className={classes.loginBlock}>
                     {props.isAuth
-                        ? <div><NavLink to={'./profile'}> {props.login} </NavLink>
+                        ? <div><NavLink to={'/profile'}> {props.login} </NavLink>
                             <SuperButton
                                 style={{fontSize: '12px', width: '60px', margin: '0 0 0 8px', padding: '4px'}}
                                 onClick={props.logout}>
                                 Log out
                             </SuperButton>
                         </div>
-                        : <NavLink to={'./Login'}> Login </NavLink>}
+                        : <NavLink to={'/login'}> Login </NavLink>}
                 </div>
             </div>
         </header>
