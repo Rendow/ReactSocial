@@ -1,11 +1,22 @@
 .pagination{
     cursor: pointer;
-    font-size: 16px;
-    margin-right: 5px;
+    font-size: 20px;
+    margin-right: 6px;
+    padding: 3px;
+}
+.pagination:hover{
+    box-shadow: 2px 2px  #303f9f;
+    border-radius: 50%;
 }
 .selectedPage{
-    font-weight: 900;
+    font-weight: 600;
+    color:  #303f9f;
 }
 .wrap{
-    margin: 10px 0 0 0;
+    margin: 10px 0 0 30px;
+}
+.button{
+    letter-spacing: 3px;
+    margin-right: 15px;
+    width: 75px
 }

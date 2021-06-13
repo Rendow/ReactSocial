@@ -23,8 +23,8 @@ export const getCurrentPage = (state: ReduxStateType) => {
 export const getIsFetching = (state: ReduxStateType) => {
     return  state.usersPage.isFetching
 }
-export const portionNumber = (state: ReduxStateType) => {
-    return  state.usersPage.portionNumber
+export const portionSize = (state: ReduxStateType) => {
+    return  state.usersPage.portionSize
 }
 export const getFollowingInProgress = (state: ReduxStateType) => {
     return state.usersPage.followingInProgress

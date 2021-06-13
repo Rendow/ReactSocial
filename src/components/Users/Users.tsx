@@ -14,12 +14,12 @@ type UsersPropsType = {
     follow: (userId: number) => void
     unFollow: (userId: number) => void
     followingInProgress:number[]
-    portionNumber:number
+    portionSize:number
 }
 
 export const Users : React.FC<UsersPropsType> = (
     {users,currentPage,pageSize: usersOnPage,
-        onPageChanged,totalUsersCount,portionNumber,...props}) => {
+        onPageChanged,totalUsersCount,portionSize,...props}) => {
 
     useEffect(() => {
         document.title = 'Users'
@@ -43,7 +43,7 @@ export const Users : React.FC<UsersPropsType> = (
                 onPageChanged={onPageChanged}
                 totalItemsCount={totalUsersCount}
                 pageSize={usersOnPage}
-                portionNumber={portionNumber}
+                portionSize={portionSize}
             />
         </div>
 

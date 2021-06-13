@@ -26,7 +26,6 @@ export const LoginForm = (props:InjectedFormProps<FormDataType>) => {
         document.title = 'Login'
     },[])
 
-    const [checked, setChecked] = useState<boolean>(true)
 
     return <div>
         <form  className={s.loginWrap} onSubmit={props.handleSubmit}>
@@ -54,15 +53,15 @@ export const LoginForm = (props:InjectedFormProps<FormDataType>) => {
                        name={'password'}
                        component={Input}/>
             </div>
-            <div>
-                <Field component={SuperCheckbox}
+            <div style={{display: 'flex',marginTop: '5px'}}>
+                <Field
+                    style={{marginRight: '8px'}}
+                    component={'input'}
                        name={'rememberMe'}
                        type={"checkbox"}
-                       checked={checked}
-                       onChangeChecked={setChecked}
-                >
-                    Remember me
-                    </Field>
+                />
+                <p style={{marginTop: '-6px'}}>Remember me</p>
+
             </div>
             <div>
                 <SuperButton> Login</SuperButton>

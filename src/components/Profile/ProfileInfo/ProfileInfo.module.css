@@ -35,7 +35,8 @@
     height: 25px;
     width: 200px;
     cursor: pointer;
-    font-style: italic;
+    color: black;
+
 }
 .wallpaper {
     width: 600px;
