@@ -11,7 +11,8 @@ type PaginatorPropsType = {
     portionSize:number
 }
 
-export const Paginator = (props:PaginatorPropsType) => {
+export const Paginator = React.memo((props:PaginatorPropsType) => {
+
     let selectedPage = s.selectedPage + ' ' + s.pagination
     const [portionNumber,setPortionNumber] = useState(1)
 
@@ -27,8 +28,6 @@ export const Paginator = (props:PaginatorPropsType) => {
     const leftPortionSize = (portionNumber - 1) * props.pageSize + 1
     const rightPortionSize = portionNumber * props.pageSize
 
-
-
     return (
             <div className={s.wrap}>
                 {portionNumber > 1 &&
@@ -37,7 +36,8 @@ export const Paginator = (props:PaginatorPropsType) => {
                     onClick={() => {setPortionNumber(portionNumber - 1)}}>
                     PREV </SuperButton>}
 
-                {pages.filter(p => p >= leftPortionSize && p <= rightPortionSize)
+                {pages
+                    .filter(p => p >= leftPortionSize && p <= rightPortionSize)
                     .map(p => {
                     return <span
                             className={props.currentPage === p ? selectedPage : s.pagination}
@@ -51,5 +51,4 @@ export const Paginator = (props:PaginatorPropsType) => {
                     onClick={() => {setPortionNumber(portionNumber + 1)}}>
                     NEXT </SuperButton>}
             </div>
-
-)}
+)})

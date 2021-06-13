@@ -2,18 +2,21 @@ import React from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
 import {BrowserRouter, Redirect, Route} from "react-router-dom";
-import News from './components/News/News';
-import Music from './components/Music/Music';
-import Settings from "./components/Settings/Settings";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import {connect, Provider} from "react-redux";
 import {initialize} from "./redux/app-reducer";
 import store, {ReduxStateType} from "./redux/redux-store";
 import {Preloader} from "./components/common/Preloader/Preloader";
+import { Suspense } from 'react';
+import { lazy } from 'react';
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import UsersContainer from "./components/Users/UsersContainer";
+
+const News = lazy(() => import('./components/News/News'));
+const Music = lazy(() => import('./components/Music/Music'));
+const Settings = lazy(() => import('./components/Settings/Settings'));
 
 type HeaderContainerType  =  MapStateToPropsType & {
     initialize:() => void
@@ -21,6 +24,7 @@ type HeaderContainerType  =  MapStateToPropsType & {
 type  MapStateToPropsType = {
     initialized:boolean
 }
+
 class App extends React.Component<HeaderContainerType, {}> {
     componentDidMount() {
         this.props.initialize()
@@ -38,16 +42,17 @@ class App extends React.Component<HeaderContainerType, {}> {
                         <Navbar/>
                     </div>
                     <div className='content-wrapper'>
-                        <Route path='/' exact render={() => <Redirect to={'profile'}/>}/>
-                        <Route path='/ReactSocial' exact render={() => <Redirect to={'profile'}/>}/>
-
-                        <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                        <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                        <Route path='/users' render={() => <UsersContainer/>}/>
-                        <Route path='/login' render={() => <Login/>}/>
-                        <Route path='/news' render={() => <News/>}/>
-                        <Route path='/music' render={() => <Music/>}/>
-                        <Route path='/settings' render={() => <Settings/>}/>
+                        <Suspense fallback={<Preloader/>}>
+                            <Route path='/' exact render={() => <Redirect to={'profile'}/>}/>
+                            <Route path='/ReactSocial' exact render={() => <Redirect to={'profile'}/>}/>
+                            <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                            <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                            <Route path='/users' render={() => <UsersContainer/>}/>
+                            <Route path='/login' render={() => <Login/>}/>
+                            <Route path='/news' render={() => <News/>}/>
+                            <Route path='/music' render={() => <Music/>}/>
+                            <Route path='/settings' render={() => <Settings/>}/>
+                        </Suspense>
                     </div>
                 </div>
             </div>

@@ -30,7 +30,7 @@ export const ProfileStatusWithHooks = (props: PropsType) => {
             </span>
         </div>}
         {!editMode &&
-        <div className={s.statusInputDiv}>
+        <div className={s.changeStatusDiv}>
             <input
                 onChange={onStatusChange}
                 autoFocus={true}
