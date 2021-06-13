@@ -14,11 +14,12 @@ type UsersPropsType = {
     follow: (userId: number) => void
     unFollow: (userId: number) => void
     followingInProgress:number[]
+    portionNumber:number
 }
 
 export const Users : React.FC<UsersPropsType> = (
-    {users,currentPage,pageSize,
-        onPageChanged,totalUsersCount,...props}) => {
+    {users,currentPage,pageSize: usersOnPage,
+        onPageChanged,totalUsersCount,portionNumber,...props}) => {
 
     useEffect(() => {
         document.title = 'Users'
@@ -40,8 +41,9 @@ export const Users : React.FC<UsersPropsType> = (
                 <Paginator
                 currentPage={currentPage}
                 onPageChanged={onPageChanged}
-                pageSize={pageSize}
-                totalUsersCount={totalUsersCount}
+                totalItemsCount={totalUsersCount}
+                pageSize={usersOnPage}
+                portionNumber={portionNumber}
             />
         </div>
 

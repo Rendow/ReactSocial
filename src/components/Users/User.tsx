@@ -13,23 +13,33 @@ type UserPropsType = {
 }
 
 export const User: React.FC<UserPropsType> = ({users,...props}) => {
+    let checkedStatus = users.status === null ? 'Hello!' : users.status
+
     return (
-        <div style={{marginBottom:'8px'}}>
+        <div className={s.userWrap}>
             <span>
                     <div>
                         <NavLink to={'/profile/' + users.id}>
                             <img src={users.photos.small != null ? users.photos.small : logo} className={s.photo}/>
                         </NavLink>
                 </div>
-                    <div>
+
+                </span>
+            <span className={s.userInfoWrap}>
+                    <span style={{cursor:'default'}}>
+                        <div> {users.name}</div>
+                        <div  style={{fontStyle:'italic', fontSize:'16px'}}> {checkedStatus}</div>
+                    </span>
+
+                         <div  style={{marginLeft:'-3px'}}>
 
                         {  users.followed
-                        ? <SuperButton
+                            ? <SuperButton
                                 style={{letterSpacing:'1px', fontSize:'14px'}}
-                                      disabled={props.followingInProgress.some(id => id === users.id)}
-                                      onClick={() => {props.unFollow(users.id)}}>
-                            UNFOLLOW
-                        </SuperButton>
+                                disabled={props.followingInProgress.some(id => id === users.id)}
+                                onClick={() => {props.unFollow(users.id)}}>
+                                UNFOLLOW
+                            </SuperButton>
                             : <SuperButton  style={{letterSpacing:'1px', fontSize:'14px'}}
                                             disabled={props.followingInProgress.some(id => id === users.id)}
                                             onClick={() => {props.follow(users.id)}}>
@@ -38,16 +48,6 @@ export const User: React.FC<UserPropsType> = ({users,...props}) => {
                         }
 
                     </div>
-                </span>
-                <span>
-                    <span>
-                        <div> {users.name}</div>
-                        <div> {users.status}</div>
-                    </span>
-                    <span>
-                         <div>{'u.location.country'}</div>
-                         <div>{'u.location.city'}</div>
-                    </span>
                 </span>
         </div>
 

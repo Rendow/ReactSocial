@@ -1,8 +1,33 @@
 
 .wrap {
     margin: 15px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
+.userWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    font-weight: 600;
+    font-size: 18px;
+
+    padding: 8px;
+    margin-bottom: 20px;
+    width: 280px;
+
+    border-radius: 7px;
+    border: 1px solid #e2e2e2;
+    box-shadow: 5px 5px #e2e2e2;
+}
+.userInfoWrap{
+    display: flex;
+    flex-direction: column;
+
+}
 .photo {
     width: 100px;
 }

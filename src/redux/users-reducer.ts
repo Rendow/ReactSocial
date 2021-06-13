@@ -40,20 +40,22 @@ type toggleIsFollowingProgressActionType = ReturnType<typeof toggleIsFollowingPr
 
 let initialState: InitialStateType = {
     users: [],
-    pageSize: 3,
+    usersOnPage: 12,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching:false,
     followingInProgress:[],
+    portionNumber:15
 }
 
 export type InitialStateType = {
     users: UsersType[]
-    pageSize: number
+    usersOnPage: number
     totalUsersCount: number
     currentPage: number
     isFetching:boolean
     followingInProgress:number[]
+    portionNumber:number
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: UsersActionType): InitialStateType => {

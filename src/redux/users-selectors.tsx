@@ -10,7 +10,7 @@ export const getUsersPage = createSelector([getUsersPageSelector],(users) => {
 })
 
 export const getPageSize = (state: ReduxStateType) => {
-    return state.usersPage.pageSize
+    return state.usersPage.usersOnPage
 }
 
 export const getTotalUsersCount = (state: ReduxStateType) => {
@@ -22,6 +22,9 @@ export const getCurrentPage = (state: ReduxStateType) => {
 }
 export const getIsFetching = (state: ReduxStateType) => {
     return  state.usersPage.isFetching
+}
+export const portionNumber = (state: ReduxStateType) => {
+    return  state.usersPage.portionNumber
 }
 export const getFollowingInProgress = (state: ReduxStateType) => {
     return state.usersPage.followingInProgress
