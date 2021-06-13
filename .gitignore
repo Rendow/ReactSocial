@@ -31,3 +31,5 @@ yarn-error.log*
 /doc/SPA.png
 /doc/
 
+.eslintcache
+
