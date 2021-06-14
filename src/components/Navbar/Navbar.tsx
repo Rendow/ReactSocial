@@ -6,7 +6,7 @@ function Navbar() {
     return (
         <nav className={classes.nav}>
             <div className={classes.item}>
-                <NavLink to='/profile'  activeClassName={classes.active}>Profile</NavLink>
+                <NavLink to='/profile' activeClassName={classes.active}>Profile</NavLink>
             </div>
             <div className={classes.item}>
                 <NavLink to='/dialogs' activeClassName={classes.active}> Messages</NavLink>

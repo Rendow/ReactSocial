@@ -38,8 +38,20 @@ type PropsType = RouteComponentProps<PathParamsType> & ProfileContainerType
         this.props.getProfile(userId)
         this.props.getStatus(userId)
     }
+componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
+        if(this.props.match.params.userId !== prevProps.match.params.userId){
+            let userId = +this.props.match.params.userId;
+            if(!userId) {
+                this.props.isAuth
+                    ? userId = Number(this.props.authorizedUserId)
+                    : this.props.history.push('/login')
+            }
+            this.props.getProfile(userId)
+            this.props.getStatus(userId)
+        }
+}
 
-    render(){
+     render(){
         return <Profile {...this.props}
                         profile={this.props.profile}
                         status={this.props.status}
