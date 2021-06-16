@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
-import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import {HashRouter, Redirect, Route, Switch} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
@@ -9,11 +9,8 @@ import {connect, Provider} from "react-redux";
 import {initialize} from "./redux/app-reducer";
 import store, {ReduxStateType} from "./redux/redux-store";
 import {Preloader} from "./components/common/Preloader/Preloader";
-import { Suspense } from 'react';
-import { lazy } from 'react';
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-
 
 
 const News = lazy(() => import('./components/News/News'));
@@ -46,7 +43,6 @@ class App extends React.Component<HeaderContainerType, {}> {
                         <Suspense fallback={<Preloader/>}>
                             <Switch>
                             <Route path='/' exact render={() => <Redirect to={'profile'}/>}/>
-                            <Route path='/ReactSocial' exact render={() => <Login/>}/>
                             <Route path='/profile/:userId?'  render={() => <ProfileContainer/>}/>
                             <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                             <Route path='/users' render={() => <UsersContainer/>}/>
@@ -70,11 +66,11 @@ const AppConnect = connect(mapStateToProps,{initialize}) (App);
 
  const AppContainer = () => {
  return  <React.StrictMode>
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
                 <AppConnect/>
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     </React.StrictMode>
 }
 export default AppContainer
