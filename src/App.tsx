@@ -30,7 +30,6 @@ type  MapStateToPropsType = {
 class App extends React.Component<HeaderContainerType, {}> {
     componentDidMount() {
         this.props.initialize()
-
     }
     render() {
         if(!this.props.initialized) {
@@ -47,8 +46,7 @@ class App extends React.Component<HeaderContainerType, {}> {
                         <Suspense fallback={<Preloader/>}>
                             <Switch>
                             <Route path='/' exact render={() => <Redirect to={'profile'}/>}/>
-                            <Route path='/ReactSocial' exact render={() => <Redirect to={'profile'}/>}/>
-                            <Route path='/ReactSocial/profile' exact render={() => <Redirect to={'profile'}/>}/>
+                            <Route path='/ReactSocial' exact render={() => <Login/>}/>
                             <Route path='/profile/:userId?'  render={() => <ProfileContainer/>}/>
                             <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                             <Route path='/users' render={() => <UsersContainer/>}/>
@@ -58,7 +56,6 @@ class App extends React.Component<HeaderContainerType, {}> {
                             <Route path='/settings' render={() => <Settings/>}/>
                         </Switch>
                         </Suspense>
-
                     </div>
                 </div>
             </div>

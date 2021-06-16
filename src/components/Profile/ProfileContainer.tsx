@@ -19,37 +19,32 @@ type ProfileContainerType = mapStateToPropsType & {
     updateStatus:(text:string) => void
 }
 
-type PathParamsType = {
-    userId: string
-}
+type PathParamsType = { userId: string }
 
 type PropsType = RouteComponentProps<PathParamsType> & ProfileContainerType
 
  class ProfileContainer extends React.Component<PropsType, {}>{
 
-    componentDidMount() {
-        let userId = +this.props.match.params.userId;
-        if(!userId) {
-            this.props.isAuth
-                ? userId = Number(this.props.authorizedUserId)
-                : this.props.history.push('/login')
-        }
+  setUserId (){
+      let userId = +this.props.match.params.userId;
+      if(!userId) {
+          this.props.isAuth
+              ? userId = Number(this.props.authorizedUserId)
+              : this.props.history.push('/login')
+      }
+      this.props.getProfile(userId)
+      this.props.getStatus(userId)
+ }
 
-        this.props.getProfile(userId)
-        this.props.getStatus(userId)
-    }
-componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
-        if(this.props.match.params.userId !== prevProps.match.params.userId){
-            let userId = +this.props.match.params.userId;
-            if(!userId) {
-                this.props.isAuth
-                    ? userId = Number(this.props.authorizedUserId)
-                    : this.props.history.push('/login')
-            }
-            this.props.getProfile(userId)
-            this.props.getStatus(userId)
-        }
-}
+     componentDidMount() {
+         this.setUserId()
+     }
+
+     componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
+         if (this.props.match.params.userId !== prevProps.match.params.userId) {
+             this.setUserId()
+         }
+     }
 
      render(){
         return <Profile {...this.props}
