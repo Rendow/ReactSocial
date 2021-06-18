@@ -9,7 +9,9 @@ type PropsType = {
     profile: ProfileType | null
     status: string
     updateStatus:(text:string) => void
+    setPhoto:(file:string | Blob) => void
     isAuth: boolean
+    isOwner:boolean
 }
 function Profile(props:PropsType) {
 
@@ -24,6 +26,8 @@ function Profile(props:PropsType) {
             <ProfileInfo profile={props.profile}
                          status={props.status}
                          updateStatus={props.updateStatus}
+                         isOwner={props.isOwner}
+                         setPhoto={props.setPhoto}
             />
 
             <MyPostsContainer/>

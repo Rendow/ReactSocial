@@ -2,6 +2,13 @@
     padding: 10px;
     display: flex;
 }
+
+.img {
+    border-radius: 50%;
+    height: 265px;
+    width: 265px;
+}
+
 .textBlock{
     display: flex;
     flex-direction: column;
@@ -19,6 +26,7 @@
 }
 .statusWrap{
     display: flex;
+    flex-wrap: wrap;
 }
 .name{
     margin-bottom: 10px;

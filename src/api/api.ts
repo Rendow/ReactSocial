@@ -77,6 +77,15 @@ export const profileAPI = {
     getStatus(userId:number) {
         return instance.get(`profile/status/`+ userId)
           },
+    setPhoto(file: string | Blob) {
+        const formData = new FormData()
+        formData.append('image',file)
+
+        return instance.put(`/profile/photo/`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }})
+          },
     updateStatus(status:string) {
         return instance.put<CommonType>(`profile/status/`, {status})
            },

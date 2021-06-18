@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./Post.module.css";
-import Logo from './img.webp';
+import Logo from './img/img.webp';
 
 type PostType = {
     message:string

@@ -1,7 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getProfile, getStatus, ProfileType, updateStatus} from "../../redux/propfile-reducer";
+import {getProfile, getStatus, ProfileType, setPhoto, updateStatus} from "../../redux/propfile-reducer";
 import {ReduxStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
@@ -11,12 +11,14 @@ type mapStateToPropsType = {
     status: string
     isAuth: boolean
     authorizedUserId: number | null
+    isOwner:boolean
 }
 
 type ProfileContainerType = mapStateToPropsType & {
     getProfile:(userId:number) => void
     getStatus:(userId:number) => void
     updateStatus:(text:string) => void
+    setPhoto:(file:string | Blob) => void
 }
 
 type PathParamsType = { userId: string }
@@ -51,7 +53,10 @@ type PropsType = RouteComponentProps<PathParamsType> & ProfileContainerType
         return <Profile {...this.props}
                         profile={this.props.profile}
                         status={this.props.status}
-                        updateStatus={this.props.updateStatus}/>
+                        updateStatus={this.props.updateStatus}
+                        isOwner={!this.props.match.params.userId}
+                        setPhoto={this.props.setPhoto}
+        />
 
     }
 }
@@ -60,9 +65,10 @@ let mapStateToProps = (state: ReduxStateType): mapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
+        isOwner: state.profilePage.isOwner,
         authorizedUserId: state.auth.userId,
         isAuth: state.auth.isAuth,
     }
 }
 
-export default  compose<React.ComponentType>(connect(mapStateToProps,{getStatus,updateStatus,getProfile}),withRouter)(ProfileContainer)
+export default  compose<React.ComponentType>(connect(mapStateToProps,{getStatus,updateStatus,setPhoto,getProfile}),withRouter)(ProfileContainer)

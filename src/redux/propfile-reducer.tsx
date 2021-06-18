@@ -25,8 +25,8 @@ export type ContactsType = {
     mainLink: string | null
 }
 export type PhotosType = {
-    small: string | null
-    large: string | null
+    small: string
+    large: string
 }
 export type ProfileType = {
     userId: number| null
@@ -39,10 +39,10 @@ export type ProfileType = {
     }
 export type ProfilePageType = {
     posts: PostsType[]
-    newPostText: string | null
+    newPostText: string
     profile: ProfileType | null
-    status: string | null
-
+    status: string
+    isOwner:boolean
 }
 
 export type ProfileActionType = AddPostActionType  | SetUsersProfileActionType | SetStatusActionType | DeletePostActionType | SetPhotoActionType
@@ -51,7 +51,7 @@ type AddPostActionType = ReturnType<typeof addPostCreator>
 type SetUsersProfileActionType = ReturnType<typeof setUsersProfile>
 type SetStatusActionType = ReturnType<typeof setStatus>
 type DeletePostActionType = ReturnType<typeof deletePost>
-type SetPhotoActionType = ReturnType<typeof setPhoto>
+type SetPhotoActionType = ReturnType<typeof setPhotoSuccess>
 
 
 let initialState = {
@@ -70,7 +70,8 @@ let initialState = {
     ],
     newPostText: '',
     profile: null,
-    status:'Hello!'
+    status:'Hello!',
+    isOwner:false
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionType): ProfilePageType => {
@@ -100,8 +101,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
         case DELETE_POST:
             return {...state,
                 posts: state.posts.filter((post) => post.id !== action.id) }
-        // case SET_PHOTO:
-        //     return {...state, profile: {...state.profile, photos: action.photos}}
+        case SET_PHOTO:
+            return {...state, profile: {...state.profile, photos: action.photos} as ProfileType}
 
 
         default:
@@ -131,7 +132,8 @@ export const deletePost = (id: number) => {
         type: DELETE_POST, id
     } as const
 }
-export const setPhoto = (photos: { small: string, large: string }) => {
+
+export const setPhotoSuccess = (photos: PhotosType) => {
     return {
         type: SET_PHOTO, photos
     } as const
@@ -151,6 +153,16 @@ export const getStatus = (id:number)  => {
             .then(data => {
                     dispatch(setStatus(data.data))
                 }
+            )}
+}
+export const setPhoto = (file:string | Blob)  => {
+    return (dispatch: Dispatch<ProfileActionType>) => {
+
+        profileAPI.setPhoto(file)
+            .then(data => {
+                if (data.data.resultCode === 0) {
+                    dispatch(setPhotoSuccess(data.data.data.photos))
+                }}
             )}
 }
 export const updateStatus = (text: string) => {
