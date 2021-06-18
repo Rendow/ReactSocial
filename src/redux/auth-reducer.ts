@@ -10,7 +10,7 @@ export type AuthActionType = SetUserDataActionType
 type SetUserDataActionType = ReturnType<typeof setAuthUserData>
 
 let initialState: InitialStateType = {
-    userId: 16107,
+    userId: null,
     email: null,
     login: null,
     isAuth:false,

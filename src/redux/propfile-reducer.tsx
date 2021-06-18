@@ -5,6 +5,7 @@ const ADD_POST = 'PROFILE/ADD-POST';
 const SET_USER_PROFILE = 'PROFILE/SET_USER_PROFILE';
 const SET_STATUS = 'PROFILE/SET_STATUS';
 const DELETE_POST = 'PROFILE/DELETE_POST';
+const SET_PHOTO = 'PROFILE/SET_PHOTO';
 
 
 export type PostsType = {
@@ -24,32 +25,33 @@ export type ContactsType = {
     mainLink: string | null
 }
 export type PhotosType = {
-    small: string
-    large: string
+    small: string | null
+    large: string | null
 }
 export type ProfileType = {
-    userId: number
-    lookingForAJob: boolean
+    userId: number| null
+    lookingForAJob: boolean | null
     lookingForAJobDescription: string | null
-    fullName: string
+    fullName: string | null
     aboutMe: string | null
     contacts: ContactsType
     photos: PhotosType
     }
 export type ProfilePageType = {
     posts: PostsType[]
-    newPostText: string
+    newPostText: string | null
     profile: ProfileType | null
-    status: string
+    status: string | null
 
 }
 
-export type ProfileActionType = AddPostActionType  | SetUsersProfileActionType | SetStatusActionType | DeletePostActionType
+export type ProfileActionType = AddPostActionType  | SetUsersProfileActionType | SetStatusActionType | DeletePostActionType | SetPhotoActionType
 
 type AddPostActionType = ReturnType<typeof addPostCreator>
 type SetUsersProfileActionType = ReturnType<typeof setUsersProfile>
 type SetStatusActionType = ReturnType<typeof setStatus>
 type DeletePostActionType = ReturnType<typeof deletePost>
+type SetPhotoActionType = ReturnType<typeof setPhoto>
 
 
 let initialState = {
@@ -98,6 +100,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
         case DELETE_POST:
             return {...state,
                 posts: state.posts.filter((post) => post.id !== action.id) }
+        // case SET_PHOTO:
+        //     return {...state, profile: {...state.profile, photos: action.photos}}
 
 
         default:
@@ -125,6 +129,11 @@ export const setUsersProfile = (profile: ProfileType) => {
 export const deletePost = (id: number) => {
     return {
         type: DELETE_POST, id
+    } as const
+}
+export const setPhoto = (photos: { small: string, large: string }) => {
+    return {
+        type: SET_PHOTO, photos
     } as const
 }
 

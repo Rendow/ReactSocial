@@ -18,13 +18,14 @@ function Profile(props:PropsType) {
     },[props.profile?.fullName])
 
         if(!props.isAuth){ return <Redirect to={'/login'}/> }
-    console.log(props.profile)
+
     return (
         <div className={s.content}>
             <ProfileInfo profile={props.profile}
                          status={props.status}
                          updateStatus={props.updateStatus}
             />
+
             <MyPostsContainer/>
         </div>
 

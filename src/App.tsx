@@ -49,7 +49,7 @@ class App extends React.Component<HeaderContainerType, {}> {
                             <Route path='/login' render={() => <Login/>}/>
                             <Route path='/news' render={() => <News/>}/>
                             <Route path='/music' render={() => <Music/>}/>
-                            <Route path='/settings' render={() => <Settings/>}/>
+                            <Route path='/settings' render={() => <Settings />}/>
                         </Switch>
                         </Suspense>
                     </div>
