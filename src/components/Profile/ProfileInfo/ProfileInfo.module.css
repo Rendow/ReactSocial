@@ -4,11 +4,15 @@
 }
 
 .img {
+    margin: 25px 0 0 20px;
     border-radius: 50%;
     height: 265px;
     width: 265px;
+    cursor: pointer;
 }
-
+.img:hover{
+    box-shadow: 0 0 10px rgba(40, 55, 141, 0.3);
+}
 .textBlock{
     display: flex;
     flex-direction: column;
@@ -18,20 +22,30 @@
     font-size: 18px;
     line-height: 1.5;
 }
-.status{
+.contentWrap{
     margin: 15px 0 0 30px;
     font-size: 18px;
     cursor: default;
     color: #28378d;
 }
-.statusWrap{
+.fragmentWrap{
     display: flex;
     flex-wrap: wrap;
+}
+.fragmentWrap p{
+  margin-right: 10px;
+}
+.fragmentWrap p:nth-child(2){
+    color: black;
 }
 .name{
     margin-bottom: 10px;
     font-weight: 600;
     color: #213089;
+}
+.name span {
+    font: 14px italic;
+    display: block;
 }
 .statusInput{
     font-size: 18px;
@@ -40,7 +54,6 @@
 }
 
 .statusInputDiv{
-    height: 25px;
     width: 200px;
     cursor: pointer;
     color: black;
@@ -50,14 +63,12 @@
     width: 200px;
     cursor: pointer;
     color: black;
+    background-color: rgba(227, 227, 227, 0.4);
+    border-radius: 10px;
 }
 .statusInputDiv:hover{
-    background-color: rgba(227, 227, 227, 0.2);
+    background-color: rgba(227, 227, 227, 0.4);
+    border-radius: 20px;
+    padding:10px 0 10px 10px;
 }
 
-.wallpaper {
-    width: 600px;
-    height: 350px;
-    margin: 10px;
-    padding-left: 20px;
-}

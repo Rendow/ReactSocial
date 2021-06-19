@@ -44,6 +44,7 @@ export const Paginator = React.memo((props:PaginatorPropsType) => {
                             onClick={()=>{props.onPageChanged(p)}}>
                        {p < 10 ? `${' '}${p}${' '}`: p} </span>  })}
 
+
                 {portionCount > portionNumber &&
                 <SuperButton
                     className={s.button}

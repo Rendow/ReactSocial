@@ -1,9 +1,11 @@
-import React, {ChangeEvent} from "react";
-import classes from "./ProfileInfo.module.css";
+import React, {ChangeEvent, MouseEventHandler, useState} from "react";
+import s from "./ProfileInfo.module.css";
 import Logo from './../../Users/img/logo2.png';
 import {ProfileType} from "../../../redux/propfile-reducer";
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
+import {useDispatch} from "react-redux";
+import {DragAndDrop} from "../../common/DragAndDrop/DragAndDrop";
 
 type PropsType = {
     profile: ProfileType | null
@@ -14,38 +16,59 @@ type PropsType = {
 }
 
 function ProfileInfo(props: PropsType) {
+
+    const [editPhotoMode, setEditPhotoMode] = useState(false)
+    const [editMode, setEditMode] = useState(false)
+
     if (!props.profile) return <Preloader/>;
 
     let photoSmall = props.profile.photos.small ? props.profile.photos.small  : Logo
     let photoLarge = props.profile.photos.large ? props.profile.photos.large : Logo
-    let img = <img className={classes.img} src={photoLarge || photoSmall}/>
 
+    let img = <img onDoubleClick={()=>{setEditPhotoMode(!editPhotoMode)}} className={s.img} src={photoLarge || photoSmall}/>
 
-    const photoHandler = (e:ChangeEvent<HTMLInputElement>) => {
-        if(e.target.files && e.target.files.length){
-            props.setPhoto(e.target.files[0])
-        }
-    }
     return (
         <div>
-            <div className={classes.descriptionBlock}>
-                <div >{img}</div>
+            <div className={s.descriptionBlock}>
+                <div>
+                    {img}
+                    <div>
+                        {props.isOwner
+                        && editPhotoMode
+                        && <div style={{margin:'15px 0 0 30px'}}>
+                            <DragAndDrop
+                            setEditPhotoMode={setEditPhotoMode}
+                            isOwner={props.isOwner}
+                            setPhoto={props.setPhoto}/>
+                        </div>
+                        }
+                    </div>
+                </div>
 
-                <div className={classes.textBlock}>
-                    <div className={classes.status}>
+                <div>
+                    { editMode
+                        ? <ContentForm
 
-                        <div className={classes.name}>{props.profile.fullName} </div>
-                        { props.isOwner && <input type="file" onChange={photoHandler}/>}
-                        <div  className={classes.statusWrap}>
-                            <p style={{ marginRight:'10px'}} > Status: </p>
-                                <ProfileStatusWithHooks  updateStatus={props.updateStatus} status={props.status}/>
-
+                            status={props.status}
+                            updateStatus={props.updateStatus}
+                            setPhoto={props.setPhoto}
+                            isOwner={props.isOwner}
+                            profile={props.profile}
+                            setEditMode={setEditMode}/>
+                       : <Content
+                        setEditMode={setEditMode}
+                        status={props.status}
+                        updateStatus={props.updateStatus}
+                        setPhoto={props.setPhoto}
+                        isOwner={props.isOwner}
+                        profile={props.profile}/>
+                    }
+                    <div className={s.textBlock}>
+                        <div className={s.description}>Do you know that Falcon 9 is a reusable, two-stage rocket
+                            manufactured by SpaceX for the reliable and safe transport of people and
+                            payloads into Earth orbit and beyond? Now you know.
                         </div>
                     </div>
-                    <div className={classes.description}>Do you know that Falcon 9 is a reusable, two-stage rocket manufactured by SpaceX for the reliable and safe transport of people and
-                        payloads into Earth orbit and beyond? Now you know.
-                    </div>
-
                 </div>
 
             </div>
@@ -53,5 +76,38 @@ function ProfileInfo(props: PropsType) {
 
     )
 }
+type ContentType = PropsType & {setEditMode: (value:boolean) => any}
+const Content = (props:ContentType) => {
+    return   <div className={s.contentWrap}>
+
+        {props.isOwner && <button onClick={()=> {props.setEditMode(true)}}> edit</button>}
+
+        <div className={s.name}>{props.profile && props.profile.fullName}
+            <span>Double click on highlighted objects to edit your profile</span>
+        </div>
+
+        <div  className={s.fragmentWrap}>
+            <p> Status: </p> <ProfileStatusWithHooks  updateStatus={props.updateStatus} status={props.status}/>
+        </div>
+        <div  className={s.fragmentWrap}>
+            <p> aboutMe: </p> <p>{props.profile?.aboutMe}</p>
+        </div>
+
+        <div  className={s.fragmentWrap}>
+            {props.profile?.lookingForAJob &&
+            <>
+                <p> lookingForAJobDescription: </p>
+                <p>{props.profile?.lookingForAJobDescription || 'lookingForAJobDescription'}</p>
+            </>}
+        </div>
+    </div>
+}
+const ContentForm = (props:ContentType) => {
+    return   <div className={s.contentWrap}>
+        <button onClick={()=> {props.setEditMode(false)}}> edit</button>
+        {props.isOwner && 'owner'}
+    </div>
+}
+
 
 export default ProfileInfo;

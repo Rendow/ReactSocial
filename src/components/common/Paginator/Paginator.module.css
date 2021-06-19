@@ -6,14 +6,24 @@
     white-space: pre-wrap;
 }
 .pagination:hover{
-    box-shadow: 2px 2px  #303f9f;
+    background-color: rgba(19 ,30 ,95 ,0.12);
+    box-shadow: 0 0 20px rgba(40 ,55, 141, 0.42);
+
     border-radius: 50%;
 }
 .selectedPage{
     font-weight: 600;
-    color:  #303f9f;
     white-space: pre-wrap;
+    border-radius: 50%;
+    box-shadow: 2px 2px  #28378d;
+    background-color: #F5F5F5;
 }
+.selectedPage:hover{
+    background-color: rgba(19 ,30 ,95 ,0.12);
+    box-shadow: 0 0 20px rgba(40 ,55, 141, 0.42);
+    border-radius: 50%;
+}
+
 .wrap{
     margin: 10px 0 0 30px;
 }

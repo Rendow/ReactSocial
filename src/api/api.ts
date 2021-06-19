@@ -77,7 +77,7 @@ export const profileAPI = {
     getStatus(userId:number) {
         return instance.get(`profile/status/`+ userId)
           },
-    setPhoto(file: string | Blob) {
+    setPhoto(file:string | Blob) {
         const formData = new FormData()
         formData.append('image',file)
 

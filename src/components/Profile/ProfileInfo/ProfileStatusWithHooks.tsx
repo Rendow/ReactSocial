@@ -17,12 +17,15 @@ export const ProfileStatusWithHooks = (props: PropsType) => {
         props.updateStatus(status)
         setEditMode(true)
     }
+    const onKeyPressInput = (e:React.KeyboardEvent<HTMLInputElement>) => {
+        if(e.key === 'Enter')  deactivateEditMode()
+    }
     const onStatusChange = (e:ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value)
     }
     let checkedStatus = props.status === null ? 'Hello!' : props.status
 
-    return <div>
+    return <div style={{flexWrap: 'wrap'}}>
         {editMode &&
         <div className={s.statusInputDiv}>
             <span onDoubleClick={(() => {setEditMode(false)})}>
@@ -37,7 +40,9 @@ export const ProfileStatusWithHooks = (props: PropsType) => {
                 onBlur={deactivateEditMode}
                 className={s.statusInput}
                 type="text"
-                value={status}/>
+                value={status}
+                onKeyPress={onKeyPressInput}
+            />
         </div>}
     </div>
 }
