@@ -1,4 +1,4 @@
-import s from "./ProfileInfo.module.css";
+import s from "./ProfileStatus.module.css";
 import React, {ChangeEvent, useEffect, useState} from "react";
 
  type PropsType = {

@@ -1,4 +1,4 @@
-import s from "./ProfileInfo.module.css";
+import s from "./ProfileStatus.module.css";
 import React, {ChangeEvent} from "react";
 
  type PropsType = {

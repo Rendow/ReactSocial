@@ -1,7 +1,7 @@
 import React from "react";
 import {ProfileStatus} from "./ProfileStatus";
 import {create} from "react-test-renderer";
-import {updateStatus} from "../../../redux/propfile-reducer";
+import {updateStatus} from "../../../../redux/propfile-reducer";
 
 
 

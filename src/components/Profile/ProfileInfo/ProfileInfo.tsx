@@ -3,7 +3,7 @@ import s from "./ProfileInfo.module.css";
 import Logo from './../../Users/img/logo2.png';
 import {ProfileType} from "../../../redux/propfile-reducer";
 import {Preloader} from "../../common/Preloader/Preloader";
-import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
+import {ProfileStatusWithHooks} from "./ProfileStatus/ProfileStatusWithHooks";
 import {useDispatch} from "react-redux";
 import {DragAndDrop} from "../../common/DragAndDrop/DragAndDrop";
 
@@ -77,7 +77,10 @@ function ProfileInfo(props: PropsType) {
     )
 }
 type ContentType = PropsType & {setEditMode: (value:boolean) => any}
+
+
 const Content = (props:ContentType) => {
+
     return   <div className={s.contentWrap}>
 
         {props.isOwner && <button onClick={()=> {props.setEditMode(true)}}> edit</button>}
@@ -100,8 +103,20 @@ const Content = (props:ContentType) => {
                 <p>{props.profile?.lookingForAJobDescription || 'lookingForAJobDescription'}</p>
             </>}
         </div>
+        <div  className={s.fragmentWrap} >
+            <p> Contacts:  {
+                Object.entries(props.profile?.contacts ? props.profile?.contacts : {})
+                    .map((key,value) => {
+                        return   <div key={value} className={s.fragmentWrap} style={{flexFlow:"column",marginLeft:'20px'}}>
+                            <p> {key[0]}: </p> <p>{key[1]}</p>
+                        </div>
+                    })}</p>
+        </div>
+
     </div>
 }
+
+
 const ContentForm = (props:ContentType) => {
     return   <div className={s.contentWrap}>
         <button onClick={()=> {props.setEditMode(false)}}> edit</button>

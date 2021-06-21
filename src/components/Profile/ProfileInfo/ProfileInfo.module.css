@@ -47,28 +47,3 @@
     font: 14px italic;
     display: block;
 }
-.statusInput{
-    font-size: 18px;
-    color: #28378d;
-    background-color: #F5F5F5;
-}
-
-.statusInputDiv{
-    width: 200px;
-    cursor: pointer;
-    color: black;
-}
-.changeStatusDiv{
-    height: 25px;
-    width: 200px;
-    cursor: pointer;
-    color: black;
-    background-color: rgba(227, 227, 227, 0.4);
-    border-radius: 10px;
-}
-.statusInputDiv:hover{
-    background-color: rgba(227, 227, 227, 0.4);
-    border-radius: 20px;
-    padding:10px 0 10px 10px;
-}
-
