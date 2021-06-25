@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
 import s from "./Users.module.css";
-import {UsersType} from "../../redux/users-reducer";
+import {FilterType, UsersType} from "../../redux/users-reducer";
 import {Paginator} from "../common/Paginator/Paginator";
 import {User} from "./User";
+import {ErrorMessage, Field, Form, Formik} from "formik";
+import {UsersSearch} from "./UsersSearch";
 
 
 type UsersPropsType = {
@@ -15,10 +17,11 @@ type UsersPropsType = {
     unFollow: (userId: number) => void
     followingInProgress:number[]
     portionSize:number
+    onFilterChanged:(filter:FilterType) => void
 }
 
 export const Users : React.FC<UsersPropsType> = (
-    {users,currentPage,pageSize: usersOnPage,
+    {onFilterChanged,users,currentPage,pageSize: usersOnPage,
         onPageChanged,totalUsersCount,portionSize,...props}) => {
 
     useEffect(() => {
@@ -27,8 +30,8 @@ export const Users : React.FC<UsersPropsType> = (
 
     return (
         <div className={s.wrap}>
+            <UsersSearch onFilterChanged={onFilterChanged}/>
             { users.map(u =>
-                
                 <User
                 users={u}
                 key={u.id}
@@ -48,3 +51,5 @@ export const Users : React.FC<UsersPropsType> = (
         </div>
 
 )}
+
+

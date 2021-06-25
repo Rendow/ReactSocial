@@ -34,8 +34,10 @@ const instance = axios.create({
 
 export const userAPI = {
 
-    getUsers (currentPage = 1, pageSize = 5) {
-        return instance.get<UsersCommonType>( `users?page=${currentPage}&count=${pageSize}`)
+    getUsers (currentPage = 1, pageSize = 5, term:string = '', friend:null | boolean = null) {
+        const isFriend = friend === null ? '' : `&friend=${friend}`
+
+        return instance.get<UsersCommonType>( `users?page=${currentPage}&count=${pageSize}&term=${term}`+ isFriend)
             .then(response => response.data)},
 
     followUser(id:number)  {
