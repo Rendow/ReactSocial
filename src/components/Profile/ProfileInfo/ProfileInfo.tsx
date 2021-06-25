@@ -1,11 +1,11 @@
-import React, {ChangeEvent, MouseEventHandler, useState} from "react";
+import React, {useState} from "react";
 import s from "./ProfileInfo.module.css";
 import Logo from './../../Users/img/logo2.png';
 import {ProfileType} from "../../../redux/propfile-reducer";
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileStatusWithHooks} from "./ProfileStatus/ProfileStatusWithHooks";
-import {useDispatch} from "react-redux";
 import {DragAndDrop} from "../../common/DragAndDrop/DragAndDrop";
+import {ContentForm} from "./ContentForm/ContentForm";
 
 type PropsType = {
     profile: ProfileType | null
@@ -45,23 +45,25 @@ function ProfileInfo(props: PropsType) {
                     </div>
                 </div>
 
-                <div>
+                <div className={s.contentWrap}>
+                    <div className={s.name}>{props.profile && props.profile.fullName}
+                        <span>Double click on highlighted objects to edit your profile</span>
+                    </div>
+
+                    <div  className={s.fragmentWrap}>
+                        <p> Status: </p> <ProfileStatusWithHooks  updateStatus={props.updateStatus} status={props.status}/>
+                    </div>
                     { editMode
                         ? <ContentForm
-
-                            status={props.status}
-                            updateStatus={props.updateStatus}
                             setPhoto={props.setPhoto}
                             isOwner={props.isOwner}
                             profile={props.profile}
                             setEditMode={setEditMode}/>
-                       : <Content
-                        setEditMode={setEditMode}
-                        status={props.status}
-                        updateStatus={props.updateStatus}
-                        setPhoto={props.setPhoto}
-                        isOwner={props.isOwner}
-                        profile={props.profile}/>
+                        : <Content
+                            setEditMode={setEditMode}
+                            setPhoto={props.setPhoto}
+                            isOwner={props.isOwner}
+                            profile={props.profile}/>
                     }
                     <div className={s.textBlock}>
                         <div className={s.description}>Do you know that Falcon 9 is a reusable, two-stage rocket
@@ -76,22 +78,21 @@ function ProfileInfo(props: PropsType) {
 
     )
 }
-type ContentType = PropsType & {setEditMode: (value:boolean) => any}
 
 
+export type ContentType = {
+    profile: ProfileType | null
+    setPhoto:(file:string | Blob) => void
+    isOwner:boolean
+    setEditMode: (value:boolean) => any
+}
 const Content = (props:ContentType) => {
 
-    return   <div className={s.contentWrap}>
+    return   <div>
 
         {props.isOwner && <button onClick={()=> {props.setEditMode(true)}}> edit</button>}
 
-        <div className={s.name}>{props.profile && props.profile.fullName}
-            <span>Double click on highlighted objects to edit your profile</span>
-        </div>
 
-        <div  className={s.fragmentWrap}>
-            <p> Status: </p> <ProfileStatusWithHooks  updateStatus={props.updateStatus} status={props.status}/>
-        </div>
         <div  className={s.fragmentWrap}>
             <p> aboutMe: </p> <p>{props.profile?.aboutMe}</p>
         </div>
@@ -117,12 +118,7 @@ const Content = (props:ContentType) => {
 }
 
 
-const ContentForm = (props:ContentType) => {
-    return   <div className={s.contentWrap}>
-        <button onClick={()=> {props.setEditMode(false)}}> edit</button>
-        {props.isOwner && 'owner'}
-    </div>
-}
+
 
 
 export default ProfileInfo;

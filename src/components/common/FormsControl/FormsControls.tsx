@@ -21,6 +21,5 @@ export const Input: React.FC<WrappedFieldsProps> = ({input,meta, ...restProps}) 
         <div>
             {meta.touched && meta.error && <span className={s.errorSpan}> {meta.error}</span>}
         </div>
-
     </div>
 }

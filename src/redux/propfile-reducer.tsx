@@ -1,5 +1,7 @@
 import {Dispatch} from "redux";
 import {profileAPI} from "../api/api";
+import {InitialStateType} from "./auth-reducer";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'PROFILE/ADD-POST';
 const SET_USER_PROFILE = 'PROFILE/SET_USER_PROFILE';
@@ -52,6 +54,7 @@ type SetUsersProfileActionType = ReturnType<typeof setUsersProfile>
 type SetStatusActionType = ReturnType<typeof setStatus>
 type DeletePostActionType = ReturnType<typeof deletePost>
 type SetPhotoActionType = ReturnType<typeof setPhotoSuccess>
+type GetProfileType = ReturnType<typeof getProfile>
 
 
 let initialState = {
@@ -139,7 +142,7 @@ export const setPhotoSuccess = (photos: PhotosType) => {
     } as const
 }
 
-export const getProfile = (id:number) => {
+export const getProfile = (id:number | null) => {
     return (dispatch: Dispatch<ProfileActionType>) => {
         profileAPI.getProfile(id)
             .then(data => {
@@ -162,6 +165,19 @@ export const setPhoto = (file:string | Blob)  => {
             .then(data => {
                 if (data.data.resultCode === 0) {
                     dispatch(setPhotoSuccess(data.data.data.photos))
+                }}
+            )}
+}
+export const setProfile = (file:ProfileType)  => {
+    return (dispatch: any, getState:InitialStateType) => {
+        const userId = getState.userId
+
+        profileAPI.setProfile(file)
+            .then(data => {
+                if (data.data.resultCode === 0) {
+                    dispatch(getProfile(userId))
+                }else{
+                    dispatch(stopSubmit('profile', {_error:data.data.messages[0]}))
                 }}
             )}
 }

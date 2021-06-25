@@ -1,5 +1,6 @@
 import axios from "axios";
 import {UsersType} from "../redux/users-reducer";
+import {ProfileType} from "../redux/propfile-reducer";
 
 
 export enum ResultCode  {
@@ -69,7 +70,7 @@ export const authAPI = {
 
 export const profileAPI = {
 
-    getProfile(userId:number) {
+    getProfile(userId:number | null) {
         return instance.get(`profile/`+ userId)
             .then(response => {
                 return response
@@ -86,6 +87,10 @@ export const profileAPI = {
                     'Content-Type': 'multipart/form-data'
                 }})
           },
+    setProfile(profile:any) {
+        return instance.put(`profile`,profile)
+    },
+
     updateStatus(status:string) {
         return instance.put<CommonType>(`profile/status/`, {status})
            },
