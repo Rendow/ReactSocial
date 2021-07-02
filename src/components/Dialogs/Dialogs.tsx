@@ -6,7 +6,7 @@ import React, {useEffect, useState} from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {FormDataType} from "../Login/Login";
 import {Textarea} from "../common/FormsControl/FormsControls";
-import {maxLenghtCreator, minLenghtCreator, required} from "../../utils/validators/validators";
+import {maxLengthCreator, minLengthCreator, required} from "../../utils/validators/validators";
 import SuperButton from "../common/FormsControl/SuperButton";
 
 
@@ -43,8 +43,8 @@ function Dialogs(props: DialogType) {
     )
 }
 
-let maxLength = maxLenghtCreator(40)
-let minLength = minLenghtCreator(4)
+let maxLength = maxLengthCreator(40)
+let minLength = minLengthCreator(4)
 
 const AddMessageForm = (props: InjectedFormProps<FormDataType> ) => {
     const [text,setText] = useState('asD12')

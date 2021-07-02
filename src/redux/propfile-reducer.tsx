@@ -162,7 +162,7 @@ export const setProfile = (file: FormType):AppThunkType  =>
                         dispatch(profileUpdateMode(false))
                     }
         } catch (e) {
-            console.log(e)
+          return Promise.reject(e.data.messages[0])
         }
     }
 

@@ -6,6 +6,7 @@ import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileStatusWithHooks} from "./ProfileStatus/ProfileStatusWithHooks";
 import {DragAndDrop} from "../../common/DragAndDrop/DragAndDrop";
 import {ContentForm, FormType} from "./ContentForm/ContentForm";
+import SuperButton from "../../common/FormsControl/SuperButton";
 
 type PropsType = {
     profile: ProfileType | null
@@ -16,12 +17,12 @@ type PropsType = {
     profileUpdateMode:(value:boolean) => void
     updateMode:boolean
     setProfile:(file:FormType)  => void
-
 }
 
 function ProfileInfo(props: PropsType) {
 
     const [editPhotoMode, setEditPhotoMode] = useState(false)
+    const [editMode, setEditMode] = useState(false)
 
     if (!props.profile) return <Preloader/>;
 
@@ -54,24 +55,37 @@ function ProfileInfo(props: PropsType) {
                     </div>
 
                     <div  className={s.fragmentWrap}>
-                        <p> Status: </p> <ProfileStatusWithHooks  updateStatus={props.updateStatus} status={props.status}/>
+                        <p> Status: </p> <ProfileStatusWithHooks isOwner={props.isOwner} updateStatus={props.updateStatus} status={props.status}/>
                     </div>
-                    { props.updateMode
-                        ? <ContentForm
-                            setPhoto={props.setPhoto}
-                            isOwner={props.isOwner}
-                            profile={props.profile}
-                            setProfile={props.setProfile}
-                            profileUpdateMode={props.profileUpdateMode}
-                            updateMode={props.updateMode}/>
-                        : <Content
-                            setPhoto={props.setPhoto}
-                            isOwner={props.isOwner}
-                            profile={props.profile}
-                            setProfile={props.setProfile}
-                            profileUpdateMode={props.profileUpdateMode}
-                            updateMode={props.updateMode}/>
+
+                    {!editMode
+                        ? <div className={s.fragmentWrap} style={{cursor:' pointer'}} onClick={()=>{setEditMode(true)}}>
+                            <div > Show details</div>
+                            <div className={s.details}/>
+                        </div>
+                        : <>
+                            {props.updateMode
+                                ? <ContentForm
+                                    setEditMode={setEditMode}
+                                    setPhoto={props.setPhoto}
+                                    isOwner={props.isOwner}
+                                    profile={props.profile}
+                                    setProfile={props.setProfile}
+                                    profileUpdateMode={props.profileUpdateMode}
+                                    updateMode={props.updateMode}/>
+                                : <Content
+                                    setEditMode={setEditMode}
+                                    setPhoto={props.setPhoto}
+                                    isOwner={props.isOwner}
+                                    profile={props.profile}
+                                    setProfile={props.setProfile}
+                                    profileUpdateMode={props.profileUpdateMode}
+                                    updateMode={props.updateMode}/>
+                            }
+                        </>
                     }
+
+
                     <div className={s.textBlock}>
                         <div className={s.description}>Do you know that Falcon 9 is a reusable, two-stage rocket
                             manufactured by SpaceX for the reliable and safe transport of people and
@@ -79,7 +93,6 @@ function ProfileInfo(props: PropsType) {
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -92,6 +105,7 @@ export type ContentType = {
     setPhoto:(file:string | Blob) => void
     isOwner:boolean
     profileUpdateMode:(value:boolean) => void
+    setEditMode:(value:boolean) => void
     updateMode:boolean
     setProfile:(file:FormType)  => void
 }
@@ -99,31 +113,47 @@ const Content = (props:ContentType) => {
     const submitHandler = () => {
         props.profileUpdateMode(true)
     }
+
     return <div>
-
-        {props.isOwner && <button onClick={submitHandler}> edit</button>}
-
-        <div  className={s.fragmentWrap}>
-            <p> aboutMe: </p> <p>{props.profile?.aboutMe}</p>
+        <div className={s.fragmentWrap} style={{cursor:' pointer'}}  onClick={()=>{props.setEditMode(false)}}>
+            <div> Hide details</div>
+            <div className={s.details}/>
         </div>
 
         <div  className={s.fragmentWrap}>
+            <p> Full name: </p> <p>{props.profile?.fullName}</p>
+        </div>
+
+        <div  className={s.fragmentWrap}>
+            <p> Description: </p> <p>{props.profile?.aboutMe}</p>
+        </div>
+        <div  className={s.fragmentWrap}>
             {props.profile?.lookingForAJob &&
             <>
-                <p> lookingForAJobDescription: </p>
+           <p> Looking for a job: </p>
+            <p>yes</p>
+           </>}
+        </div>
+        <div  className={s.fragmentWrap}>
+            {props.profile?.lookingForAJob &&
+            <>
+                <p> My skills: </p>
                 <p>{props.profile?.lookingForAJobDescription || 'lookingForAJobDescription'}</p>
             </>}
         </div>
         <div  className={s.fragmentWrap} >
             <p> Contacts:  {
-                Object.entries(props.profile?.contacts ? props.profile?.contacts : {})
+                Object
+                    .entries(props.profile?.contacts ? props.profile?.contacts : {})
                     .map((key,value) => {
-                        return   <div key={value} className={s.fragmentWrap} style={{flexFlow:"column",marginLeft:'20px'}}>
+                        return   <div key={value} className={s.fragmentWrap} style={{marginLeft:'20px'}}>
                             <p> {key[0]}: </p> <p>{key[1]}</p>
                         </div>
                     })}</p>
         </div>
-
+        {props.isOwner && <SuperButton
+            style={{width: '20%'}}
+            onClick={submitHandler}> edit</SuperButton>}
     </div>
 }
 

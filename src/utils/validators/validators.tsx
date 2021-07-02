@@ -4,12 +4,12 @@ export const required = (value: any) => {
 }
 
 
-export const maxLenghtCreator = (maxLenght: any) => (value: any) => {
-    if (value && value.length > maxLenght)  return `Max length is ${maxLenght} symbols`
+export const maxLengthCreator = (maxLength: any) => (value: any) => {
+    if (value && value.length > maxLength)  return `Max length is ${maxLength} symbols`
     return undefined
 }
-export const minLenghtCreator = (minLenght: any) => (value: any) => {
-    if (value && value.length < minLenght)  return `Min length is ${minLenght} symbols`
+export const minLengthCreator = (minLength: any) => (value: any) => {
+    if (value && value.length < minLength)  return `Min length is ${minLength} symbols`
     return undefined
 }
 

@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useEffect, useState} from 'react'
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../common/FormsControl/FormsControls";
-import {maxLenghtCreator, minLenghtCreator, required} from "../../utils/validators/validators";
+import {maxLengthCreator, minLengthCreator, required} from "../../utils/validators/validators";
 import SuperButton from "../common/FormsControl/SuperButton";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
@@ -17,8 +17,8 @@ export type FormDataType = {
     rememberMe:boolean
 }
 
-let maxLength = maxLenghtCreator(20)
-let minLength = minLenghtCreator(4)
+let maxLength = maxLengthCreator(20)
+let minLength = minLengthCreator(4)
 
 export const LoginForm = (props:InjectedFormProps<FormDataType>) => {
 

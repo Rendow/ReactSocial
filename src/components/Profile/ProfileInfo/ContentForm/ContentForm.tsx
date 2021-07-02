@@ -4,6 +4,7 @@ import s from "../ProfileInfo.module.css";
 import {Field, Form, Formik} from "formik";
 import SuperButton from "../../../common/FormsControl/SuperButton";
 import {FormInput} from "../../../common/FormsControl/FormsControls";
+import SuperCheckbox from "../../../common/Checkbox/SuperCheckbox";
 
 
 export type FormType = {
@@ -19,7 +20,6 @@ const contentFormValidate = (values: any) => {
 }
 
 export const ContentForm:React.FC<ContentType> = (props ) => {
-
 
     const submit = (values: FormType, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }) => {
         setSubmitting(false)
@@ -40,39 +40,35 @@ export const ContentForm:React.FC<ContentType> = (props ) => {
     >
         {({isSubmitting}) => (
             <Form>
-
-                {/*{props.error && <div className={s.errorTextarea}>{props.error}</div>}*/}
-                <div className={s.fragmentWrap}>
+                <div className={s.fragmentWrap + ' ' + s.contentForm}>
                     <p> Full name: </p>
                     <Field component={FormInput} placeholder={'Full name'} type="text" name="fullName"/>
                 </div>
 
-                <div className={s.fragmentWrap}>
-                    <p> Information about me: </p>
+                <div className={s.fragmentWrap  + ' ' + s.contentForm}>
+                    <p> Description: </p>
                     <Field component={FormInput} placeholder={'About me'} type="text" name="aboutMe"/>
                 </div>
-
                 <div className={s.fragmentWrap}>
                     <p> Looking for a job: </p>
-                    <Field type="checkbox" name="lookingForAJob"/>
-
-                    <>
-                        <p> Description: </p>
-                        <Field component={FormInput} placeholder={'Description'} type="text" name="lookingForAJobDescription"/>
-                    </>
+                    <Field component={SuperCheckbox} type="checkbox" name="lookingForAJob"/>
+                </div>
+                <div className={s.fragmentWrap  + ' ' + s.contentForm} style={{margin:'0'}}>
+                        <p> My skills: </p>
+                        <Field component={FormInput} placeholder={'My skills'} type="text" name="lookingForAJobDescription"/>
                 </div>
                 <div className={s.fragmentWrap}>
                     <p> Contacts: {
-                        Object.entries(props.profile?.contacts ? props.profile?.contacts : {})
+                        Object
+                            .entries(props.profile?.contacts ? props.profile?.contacts : {})
                             .map((key, value) => {
-                                return <div key={value} className={s.fragmentWrap}
-                                            style={{flexFlow: "column", marginLeft: '20px'}}>
-                                    <p> {key[0]}: </p> <p>{key[1]}</p>
+                                return <div key={value} className={s.fragmentWrap} style={{justifyContent: 'space-between',marginLeft: '20px'}}>
+                                    <p> {key[0]}: </p>
+                                    <Field style={{marginBottom:'5px'}} component={FormInput} placeholder={key[0]} type="text" name={'contacts.' + key[0]}/>
                                 </div>})}
                     </p>
                 </div>
                 <SuperButton
-
                     style={{width: '20%'}}
                     type="submit"
                     disabled={isSubmitting}>

@@ -4,7 +4,7 @@ import Post from "./Post/Post";
 import {MyPostsMapDispatchToPropsType, MyPostsMapStateToPropsType} from "./MyPostsContainer";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {FormDataType} from "../../Login/Login";
-import {maxLenghtCreator, minLenghtCreator, required} from "../../../utils/validators/validators";
+import {maxLengthCreator, minLengthCreator, required} from "../../../utils/validators/validators";
 import {Textarea} from "../../common/FormsControl/FormsControls";
 import SuperButton from "../../common/FormsControl/SuperButton";
 
@@ -35,8 +35,8 @@ const MyPosts = React.memo((props: MyPostsPropsType) => {
     )
 });
 
-let maxLength = maxLenghtCreator(20)
-let minLength = minLenghtCreator(4)
+let maxLength = maxLengthCreator(20)
+let minLength = minLengthCreator(4)
 
 const AddNewPostForm = (props:InjectedFormProps<FormDataType> ) => {
     return  <div>

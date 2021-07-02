@@ -3,10 +3,11 @@ import React, {ChangeEvent, useEffect, useState} from "react";
 
  type PropsType = {
      status: string
+     isOwner:boolean
      updateStatus:(text:string) => void
  }
 export const ProfileStatusWithHooks = (props: PropsType) => {
-    const [editMode, setEditMode] = useState(true)
+    const [editMode, setEditMode] = useState(false)
     const [status, setStatus] = useState(props.status)
 
     useEffect(() => {
@@ -15,7 +16,10 @@ export const ProfileStatusWithHooks = (props: PropsType) => {
 
     const deactivateEditMode = () => {
         props.updateStatus(status)
-        setEditMode(true)
+        setEditMode(false)
+    }
+    const activateEditMode = () => {
+       if(props.isOwner)  setEditMode(true)
     }
     const onKeyPressInput = (e:React.KeyboardEvent<HTMLInputElement>) => {
         if(e.key === 'Enter')  deactivateEditMode()
@@ -26,13 +30,13 @@ export const ProfileStatusWithHooks = (props: PropsType) => {
     let checkedStatus = props.status === null ? 'Hello!' : props.status
 
     return <div style={{flexWrap: 'wrap'}}>
-        {editMode &&
+        {!editMode &&
         <div className={s.statusInputDiv}>
-            <span onDoubleClick={(() => {setEditMode(false)})}>
+            <span onDoubleClick={activateEditMode}>
                 {checkedStatus}
             </span>
         </div>}
-        {!editMode &&
+        {editMode && props.isOwner &&
         <div className={s.changeStatusDiv}>
             <input
                 onChange={onStatusChange}
