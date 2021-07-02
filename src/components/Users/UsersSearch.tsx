@@ -1,6 +1,9 @@
 import {Field, Form, Formik} from "formik";
 import React from "react";
 import {FilterType} from "../../redux/users-reducer";
+import SuperButton from "../common/FormsControl/SuperButton";
+import {FormInput, FormSelect, Input} from "../common/FormsControl/FormsControls";
+import s from "./Users.module.css";
 
 const usersSearchValidate = (values: any) => {
     const errors = {};
@@ -31,16 +34,16 @@ export const UsersSearch:React.FC<PropsType> = React.memo((props) => {
         onSubmit={submit}
     >
         {({ isSubmitting }) => (
-            <Form>
-                <Field name="friend" as="select" >
+            <Form className={s.form} >
+                <Field component={FormSelect}  name="friend" type="select" >
                     <option value="null">All</option>
                     <option value="true">Only followed</option>
                     <option value="false">Only unfollowed</option>
                 </Field>
-                <Field type="text" name="term" />
-                <button type="submit" disabled={isSubmitting}>
+                <Field component={FormInput}  type="text" name="term" />
+                <SuperButton style={{width:'20%'}} type="submit" disabled={isSubmitting}>
                     Find
-                </button>
+                </SuperButton>
             </Form>
         )}
     </Formik>
