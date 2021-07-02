@@ -40,7 +40,7 @@ export const UsersSearch:React.FC<PropsType> = React.memo((props) => {
                     <option value="true">Only followed</option>
                     <option value="false">Only unfollowed</option>
                 </Field>
-                <Field component={FormInput}  type="text" name="term" />
+                <Field  component={FormInput}  type="text" name="term" />
                 <SuperButton style={{width:'20%'}} type="submit" disabled={isSubmitting}>
                     Find
                 </SuperButton>

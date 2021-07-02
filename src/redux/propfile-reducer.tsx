@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
 import {profileAPI} from "../api/api";
-import {InitialStateType} from "./auth-reducer";
-import {stopSubmit} from "redux-form";
+import {FormType} from "../components/Profile/ProfileInfo/ContentForm/ContentForm";
+import {AppThunkType} from "./redux-store";
 
 const ADD_POST = 'PROFILE/ADD-POST';
 const SET_USER_PROFILE = 'PROFILE/SET_USER_PROFILE';
@@ -45,16 +45,17 @@ export type ProfilePageType = {
     profile: ProfileType | null
     status: string
     isOwner:boolean
+    updateMode:boolean
 }
 
-export type ProfileActionType = AddPostActionType  | SetUsersProfileActionType | SetStatusActionType | DeletePostActionType | SetPhotoActionType
+export type ProfileActionType = AddPostActionType | ProfileUpdateModeType | SetUsersProfileActionType | SetStatusActionType | DeletePostActionType | SetPhotoActionType
 
 type AddPostActionType = ReturnType<typeof addPostCreator>
 type SetUsersProfileActionType = ReturnType<typeof setUsersProfile>
 type SetStatusActionType = ReturnType<typeof setStatus>
 type DeletePostActionType = ReturnType<typeof deletePost>
 type SetPhotoActionType = ReturnType<typeof setPhotoSuccess>
-type GetProfileType = ReturnType<typeof getProfile>
+type ProfileUpdateModeType = ReturnType<typeof profileUpdateMode>
 
 
 let initialState = {
@@ -74,7 +75,8 @@ let initialState = {
     newPostText: '',
     profile: null,
     status:'Hello!',
-    isOwner:false
+    isOwner:false,
+    updateMode:false
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionType): ProfilePageType => {
@@ -106,6 +108,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
                 posts: state.posts.filter((post) => post.id !== action.id) }
         case SET_PHOTO:
             return {...state, profile: {...state.profile, photos: action.photos} as ProfileType}
+      case 'PROFILE_UPDATE_MODE':
+            return {...state, updateMode:action.mode }
 
 
         default:
@@ -114,33 +118,12 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
 }
 
 
-export const addPostCreator = (newPostText:string) => {
-    return {
-        type: ADD_POST, newPostText
-    } as const
-}
-
-export const setStatus = (text: string) => {
-    return {
-        type: SET_STATUS, text
-    } as const
-}
-export const setUsersProfile = (profile: ProfileType) => {
-    return {
-        type: SET_USER_PROFILE, profile
-    } as const
-}
-export const deletePost = (id: number) => {
-    return {
-        type: DELETE_POST, id
-    } as const
-}
-
-export const setPhotoSuccess = (photos: PhotosType) => {
-    return {
-        type: SET_PHOTO, photos
-    } as const
-}
+export const addPostCreator = (newPostText:string) => ({type: ADD_POST, newPostText} as const)
+export const setStatus = (text: string) => ({type: SET_STATUS, text} as const)
+export const setUsersProfile = (profile: ProfileType) => ( {type: SET_USER_PROFILE, profile} as const)
+export const deletePost = (id: number) => ({type: DELETE_POST, id} as const)
+export const setPhotoSuccess = (photos: PhotosType) => ({type: SET_PHOTO, photos} as const )
+export const profileUpdateMode = (mode: boolean) => ({type: "PROFILE_UPDATE_MODE", mode} as const)
 
 export const getProfile = (id:number | null) => {
     return (dispatch: Dispatch<ProfileActionType>) => {
@@ -168,19 +151,22 @@ export const setPhoto = (file:string | Blob)  => {
                 }}
             )}
 }
-export const setProfile = (file:ProfileType)  => {
-    return (dispatch: any, getState:InitialStateType) => {
-        const userId = getState.userId
 
-        profileAPI.setProfile(file)
-            .then(data => {
-                if (data.data.resultCode === 0) {
-                    dispatch(getProfile(userId))
-                }else{
-                    dispatch(stopSubmit('profile', {_error:data.data.messages[0]}))
-                }}
-            )}
-}
+export const setProfile = (file: FormType):AppThunkType  =>
+    async (dispatch, getState) => {
+        let userId = getState().auth.userId
+        try {
+            const data = await profileAPI.setProfile(file)
+                    if (data.data.resultCode === 0) {
+                        dispatch(getProfile(userId))
+                        dispatch(profileUpdateMode(false))
+                    }
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+
 export const updateStatus = (text: string) => {
     return (dispatch: Dispatch<ProfileActionType>) => {
         profileAPI.updateStatus(text)

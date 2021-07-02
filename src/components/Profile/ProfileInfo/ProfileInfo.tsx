@@ -5,7 +5,7 @@ import {ProfileType} from "../../../redux/propfile-reducer";
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileStatusWithHooks} from "./ProfileStatus/ProfileStatusWithHooks";
 import {DragAndDrop} from "../../common/DragAndDrop/DragAndDrop";
-import {ContentForm} from "./ContentForm/ContentForm";
+import {ContentForm, FormType} from "./ContentForm/ContentForm";
 
 type PropsType = {
     profile: ProfileType | null
@@ -13,12 +13,15 @@ type PropsType = {
     updateStatus:(text:string) => void
     setPhoto:(file:string | Blob) => void
     isOwner:boolean
+    profileUpdateMode:(value:boolean) => void
+    updateMode:boolean
+    setProfile:(file:FormType)  => void
+
 }
 
 function ProfileInfo(props: PropsType) {
 
     const [editPhotoMode, setEditPhotoMode] = useState(false)
-    const [editMode, setEditMode] = useState(false)
 
     if (!props.profile) return <Preloader/>;
 
@@ -53,17 +56,21 @@ function ProfileInfo(props: PropsType) {
                     <div  className={s.fragmentWrap}>
                         <p> Status: </p> <ProfileStatusWithHooks  updateStatus={props.updateStatus} status={props.status}/>
                     </div>
-                    { editMode
+                    { props.updateMode
                         ? <ContentForm
                             setPhoto={props.setPhoto}
                             isOwner={props.isOwner}
                             profile={props.profile}
-                            setEditMode={setEditMode}/>
+                            setProfile={props.setProfile}
+                            profileUpdateMode={props.profileUpdateMode}
+                            updateMode={props.updateMode}/>
                         : <Content
-                            setEditMode={setEditMode}
                             setPhoto={props.setPhoto}
                             isOwner={props.isOwner}
-                            profile={props.profile}/>
+                            profile={props.profile}
+                            setProfile={props.setProfile}
+                            profileUpdateMode={props.profileUpdateMode}
+                            updateMode={props.updateMode}/>
                     }
                     <div className={s.textBlock}>
                         <div className={s.description}>Do you know that Falcon 9 is a reusable, two-stage rocket
@@ -84,14 +91,17 @@ export type ContentType = {
     profile: ProfileType | null
     setPhoto:(file:string | Blob) => void
     isOwner:boolean
-    setEditMode: (value:boolean) => any
+    profileUpdateMode:(value:boolean) => void
+    updateMode:boolean
+    setProfile:(file:FormType)  => void
 }
 const Content = (props:ContentType) => {
+    const submitHandler = () => {
+        props.profileUpdateMode(true)
+    }
+    return <div>
 
-    return   <div>
-
-        {props.isOwner && <button onClick={()=> {props.setEditMode(true)}}> edit</button>}
-
+        {props.isOwner && <button onClick={submitHandler}> edit</button>}
 
         <div  className={s.fragmentWrap}>
             <p> aboutMe: </p> <p>{props.profile?.aboutMe}</p>

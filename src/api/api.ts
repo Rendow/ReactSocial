@@ -1,6 +1,7 @@
 import axios from "axios";
 import {UsersType} from "../redux/users-reducer";
 import {ProfileType} from "../redux/propfile-reducer";
+import {FormType} from "../components/Profile/ProfileInfo/ContentForm/ContentForm";
 
 
 export enum ResultCode  {
@@ -89,7 +90,7 @@ export const profileAPI = {
                     'Content-Type': 'multipart/form-data'
                 }})
           },
-    setProfile(profile:any) {
+    setProfile(profile:FormType) {
         return instance.put(`profile`,profile)
     },
 

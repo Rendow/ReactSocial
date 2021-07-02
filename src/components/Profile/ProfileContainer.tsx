@@ -1,10 +1,18 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getProfile, getStatus, ProfileType, setPhoto, updateStatus} from "../../redux/propfile-reducer";
+import {
+    getProfile,
+    getStatus,
+    ProfileType,
+    profileUpdateMode,
+    setPhoto, setProfile,
+    updateStatus
+} from "../../redux/propfile-reducer";
 import {ReduxStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
+import {FormType} from "./ProfileInfo/ContentForm/ContentForm";
 
 type mapStateToPropsType = {
     profile: ProfileType | null
@@ -12,6 +20,7 @@ type mapStateToPropsType = {
     isAuth: boolean
     authorizedUserId: number | null
     isOwner:boolean
+    updateMode:boolean
 }
 
 type ProfileContainerType = mapStateToPropsType & {
@@ -19,6 +28,8 @@ type ProfileContainerType = mapStateToPropsType & {
     getStatus:(userId:number) => void
     updateStatus:(text:string) => void
     setPhoto:(file:string | Blob) => void
+    profileUpdateMode:(value:boolean) => void
+    setProfile:(file:FormType)  => void
 }
 
 type PathParamsType = { userId: string }
@@ -56,6 +67,9 @@ type PropsType = RouteComponentProps<PathParamsType> & ProfileContainerType
                         updateStatus={this.props.updateStatus}
                         isOwner={!this.props.match.params.userId}
                         setPhoto={this.props.setPhoto}
+                        profileUpdateMode={this.props.profileUpdateMode}
+                        updateMode={this.props.updateMode}
+                        setProfile={this.props.setProfile}
         />
 
     }
@@ -66,9 +80,10 @@ let mapStateToProps = (state: ReduxStateType): mapStateToPropsType => {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
         isOwner: state.profilePage.isOwner,
+        updateMode: state.profilePage.updateMode,
         authorizedUserId: state.auth.userId,
         isAuth: state.auth.isAuth,
     }
 }
 
-export default  compose<React.ComponentType>(connect(mapStateToProps,{getStatus,updateStatus,setPhoto,getProfile}),withRouter)(ProfileContainer)
+export default  compose<React.ComponentType>(connect(mapStateToProps,{setProfile,profileUpdateMode,getStatus,updateStatus,setPhoto,getProfile}),withRouter)(ProfileContainer)
