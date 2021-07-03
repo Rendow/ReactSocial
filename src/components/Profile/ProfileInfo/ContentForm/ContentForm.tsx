@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent, useState} from "react";
 import {ContentType} from "../ProfileInfo";
 import s from "../ProfileInfo.module.css";
 import {Field, Form, Formik} from "formik";
@@ -20,6 +20,9 @@ const contentFormValidate = (values: any) => {
 }
 
 export const ContentForm:React.FC<ContentType> = (props ) => {
+    const [checked, setChecked] = useState<boolean>(false)
+    const checkedOnChange = (e: ChangeEvent<HTMLInputElement>) => setChecked(e.currentTarget.checked)
+
 
     const submit = (values: FormType, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }) => {
         setSubmitting(false)

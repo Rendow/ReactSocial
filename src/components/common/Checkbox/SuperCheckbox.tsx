@@ -1,8 +1,8 @@
 import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes} from 'react'
 import s from './SuperCheckbox.module.css'
 import {WrappedFieldsProps} from "redux-form/lib/Fields";
+import {FieldProps} from "formik";
 
-// тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
 type SuperCheckboxPropsType = DefaultInputPropsType & {
@@ -10,19 +10,17 @@ type SuperCheckboxPropsType = DefaultInputPropsType & {
     spanClassName?: string
 }
 
-export const SuperCheckbox: React.FC<SuperCheckboxPropsType & WrappedFieldsProps> = (
-    {input,meta,type,
+export const SuperCheckbox: React.FC<SuperCheckboxPropsType & WrappedFieldsProps & FieldProps> = (
+    {input,meta,type,checked,field,
         onChange, onChangeChecked,
-        className, spanClassName,
-        children,
+        className, spanClassName,form,
+        children,name,
 
-        ...restProps// все остальные пропсы попадут в объект restProps
+        ...restProps
     }
 ) => {
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-        onChange
-        && onChange(e)
-
+        onChange && onChange(e);
         onChangeChecked && onChangeChecked(e.currentTarget.checked)
     }
 
@@ -32,9 +30,10 @@ export const SuperCheckbox: React.FC<SuperCheckboxPropsType & WrappedFieldsProps
         <label className={s.label}>
             <input
                 type={'checkbox'}
-                onChange={onChangeCallback}
                 className={finalInputClassName}
+                checked={checked}
                 {...input}
+                {...field}
                 {...meta}
                 {...restProps}
             />

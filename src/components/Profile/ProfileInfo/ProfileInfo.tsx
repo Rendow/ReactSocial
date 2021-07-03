@@ -59,7 +59,7 @@ function ProfileInfo(props: PropsType) {
                     </div>
 
                     {!editMode
-                        ? <div className={s.fragmentWrap} style={{cursor:' pointer'}} onClick={()=>{setEditMode(true)}}>
+                        ? <div className={s.detailsWrap}  onClick={()=>{setEditMode(true)}}>
                             <div > Show details</div>
                             <div className={s.details}/>
                         </div>
@@ -115,7 +115,7 @@ const Content = (props:ContentType) => {
     }
 
     return <div>
-        <div className={s.fragmentWrap} style={{cursor:' pointer'}}  onClick={()=>{props.setEditMode(false)}}>
+        <div className={s.detailsWrap}  onClick={()=>{props.setEditMode(false)}}>
             <div> Hide details</div>
             <div className={s.details}/>
         </div>

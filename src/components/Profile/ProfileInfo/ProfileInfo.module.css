@@ -2,13 +2,22 @@
     padding: 10px;
     display: flex;
 }
+.detailsWrap{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    margin: 15px 0;
+}
+.detailsWrap:hover{
+    background-color: rgba(227, 227, 227, 0.4);
+}
 .details{
     width: 0;
     height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 16px solid rgba(33, 48, 137, 0.66);
-    margin: 7px 0 0 13px;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 16px solid rgba(33, 48, 137, 0.05);
+    margin: 9px 0 0 15px;
 }
 .img {
     margin: 25px 0 0 20px;
