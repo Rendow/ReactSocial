@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React from "react";
 import {ContentType} from "../ProfileInfo";
 import s from "../ProfileInfo.module.css";
 import {Field, Form, Formik} from "formik";
@@ -20,15 +20,11 @@ const contentFormValidate = (values: any) => {
 }
 
 export const ContentForm:React.FC<ContentType> = (props ) => {
-    const [checked, setChecked] = useState<boolean>(false)
-    const checkedOnChange = (e: ChangeEvent<HTMLInputElement>) => setChecked(e.currentTarget.checked)
-
 
     const submit = (values: FormType, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }) => {
         setSubmitting(false)
         props.profileUpdateMode(false)
         props.setProfile(values)
-        console.log(values)
     }
 
     let fullName = props.profile?.fullName && props.profile?.fullName
@@ -36,6 +32,7 @@ export const ContentForm:React.FC<ContentType> = (props ) => {
     let lookingForAJob = props.profile?.lookingForAJob && props.profile?.lookingForAJob
     let lookingForAJobDescription = props.profile?.lookingForAJobDescription && props.profile?.lookingForAJobDescription
 
+    const formClass = s.fragmentWrap + ' ' + s.contentForm
     return <Formik
         initialValues={{fullName: fullName, aboutMe: aboutMe,lookingForAJob:lookingForAJob,lookingForAJobDescription:lookingForAJobDescription}}
         validate={contentFormValidate}
@@ -43,12 +40,12 @@ export const ContentForm:React.FC<ContentType> = (props ) => {
     >
         {({isSubmitting}) => (
             <Form>
-                <div className={s.fragmentWrap + ' ' + s.contentForm}>
+                <div className={formClass}  style={{marginTop: '13px'}}>
                     <p> Full name: </p>
                     <Field component={FormInput} placeholder={'Full name'} type="text" name="fullName"/>
                 </div>
 
-                <div className={s.fragmentWrap  + ' ' + s.contentForm}>
+                <div className={formClass}>
                     <p> Description: </p>
                     <Field component={FormInput} placeholder={'About me'} type="text" name="aboutMe"/>
                 </div>
@@ -56,26 +53,26 @@ export const ContentForm:React.FC<ContentType> = (props ) => {
                     <p> Looking for a job: </p>
                     <Field component={SuperCheckbox} type="checkbox" name="lookingForAJob"/>
                 </div>
-                <div className={s.fragmentWrap  + ' ' + s.contentForm} style={{margin:'0'}}>
+                <div className={s.fragmentWrap  + ' ' + s.contentForm} style={{marginTop:'7px'}}>
                         <p> My skills: </p>
                         <Field component={FormInput} placeholder={'My skills'} type="text" name="lookingForAJobDescription"/>
                 </div>
                 <div className={s.fragmentWrap}>
-                    <p> Contacts: {
-                        Object
-                            .entries(props.profile?.contacts ? props.profile?.contacts : {})
-                            .map((key, value) => {
-                                return <div key={value} className={s.fragmentWrap} style={{justifyContent: 'space-between',marginLeft: '20px'}}>
-                                    <p> {key[0]}: </p>
-                                    <Field style={{marginBottom:'5px'}} component={FormInput} placeholder={key[0]} type="text" name={'contacts.' + key[0]}/>
-                                </div>})}
-                    </p>
+                         <p> Contacts: {
+                            Object
+                                .entries(props.profile?.contacts ? props.profile?.contacts : {})
+                                .map((key, value) => {
+                                    return <div key={value} className={s.fragmentWrap} style={{justifyContent: 'space-between',marginLeft: '20px'}}>
+                                        <p> {key[0]}: </p>
+                                        <Field style={{marginBottom:'5px'}} component={FormInput} placeholder={key[0]} type="text" name={'contacts.' + key[0]}/>
+                                    </div>})}
+                        </p>
                 </div>
                 <SuperButton
-                    style={{width: '20%'}}
+                    style={{width: '50%', opacity:'0.7'}}
                     type="submit"
                     disabled={isSubmitting}>
-                    submit
+                    submit changes
                 </SuperButton>
 
             </Form>

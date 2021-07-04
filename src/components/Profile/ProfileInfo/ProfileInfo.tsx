@@ -22,7 +22,6 @@ type PropsType = {
 function ProfileInfo(props: PropsType) {
 
     const [editPhotoMode, setEditPhotoMode] = useState(false)
-    const [editMode, setEditMode] = useState(false)
 
     if (!props.profile) return <Preloader/>;
 
@@ -58,15 +57,8 @@ function ProfileInfo(props: PropsType) {
                         <p> Status: </p> <ProfileStatusWithHooks isOwner={props.isOwner} updateStatus={props.updateStatus} status={props.status}/>
                     </div>
 
-                    {!editMode
-                        ? <div className={s.detailsWrap}  onClick={()=>{setEditMode(true)}}>
-                            <div > Show details</div>
-                            <div className={s.details}/>
-                        </div>
-                        : <>
                             {props.updateMode
                                 ? <ContentForm
-                                    setEditMode={setEditMode}
                                     setPhoto={props.setPhoto}
                                     isOwner={props.isOwner}
                                     profile={props.profile}
@@ -74,7 +66,6 @@ function ProfileInfo(props: PropsType) {
                                     profileUpdateMode={props.profileUpdateMode}
                                     updateMode={props.updateMode}/>
                                 : <Content
-                                    setEditMode={setEditMode}
                                     setPhoto={props.setPhoto}
                                     isOwner={props.isOwner}
                                     profile={props.profile}
@@ -82,9 +73,6 @@ function ProfileInfo(props: PropsType) {
                                     profileUpdateMode={props.profileUpdateMode}
                                     updateMode={props.updateMode}/>
                             }
-                        </>
-                    }
-
 
                     <div className={s.textBlock}>
                         <div className={s.description}>Do you know that Falcon 9 is a reusable, two-stage rocket
@@ -105,20 +93,15 @@ export type ContentType = {
     setPhoto:(file:string | Blob) => void
     isOwner:boolean
     profileUpdateMode:(value:boolean) => void
-    setEditMode:(value:boolean) => void
     updateMode:boolean
     setProfile:(file:FormType)  => void
 }
 const Content = (props:ContentType) => {
-    const submitHandler = () => {
-        props.profileUpdateMode(true)
-    }
+    const [editMode, setEditMode] = useState(false)
+
+    const submitHandler = () => {props.profileUpdateMode(true)}
 
     return <div>
-        <div className={s.detailsWrap}  onClick={()=>{props.setEditMode(false)}}>
-            <div> Hide details</div>
-            <div className={s.details}/>
-        </div>
 
         <div  className={s.fragmentWrap}>
             <p> Full name: </p> <p>{props.profile?.fullName}</p>
@@ -141,19 +124,31 @@ const Content = (props:ContentType) => {
                 <p>{props.profile?.lookingForAJobDescription || 'lookingForAJobDescription'}</p>
             </>}
         </div>
-        <div  className={s.fragmentWrap} >
-            <p> Contacts:  {
-                Object
-                    .entries(props.profile?.contacts ? props.profile?.contacts : {})
-                    .map((key,value) => {
-                        return   <div key={value} className={s.fragmentWrap} style={{marginLeft:'20px'}}>
-                            <p> {key[0]}: </p> <p>{key[1]}</p>
-                        </div>
-                    })}</p>
+        <div  className={s.fragmentWrap}>
+            {!editMode
+                ? <div className={s.detailsWrap}  onClick={()=>{setEditMode(true)}}>
+                    <div > Show contacts</div>
+                    <div className={s.details}/>
+                </div>
+                : <div style={{flexDirection: 'column'}}>
+                    <div className={s.detailsWrap} onClick={() => {setEditMode(false)}}>
+                        <div> Hide contacts</div>
+                        <div className={s.details}/>
+                    </div>
+                    <p> Contacts: {
+                        Object
+                            .entries(props.profile?.contacts ? props.profile?.contacts : {})
+                            .map((key, value) => {
+                                return <div key={value} className={s.fragmentWrap} style={{marginLeft: '20px'}}>
+                                    <p> {key[0]}: </p> <p>{key[1]}</p>
+                                </div>
+                            })}</p>
+                </div>}
+
         </div>
         {props.isOwner && <SuperButton
-            style={{width: '20%'}}
-            onClick={submitHandler}> edit</SuperButton>}
+            style={{width: '50%', opacity:'0.5'}}
+            onClick={submitHandler}> edit profile</SuperButton>}
     </div>
 }
 
