@@ -6,7 +6,8 @@ import {FormType} from "../components/Profile/ProfileInfo/ContentForm/ContentFor
 
 export enum ResultCode  {
     Success = 0,
-    Error = 1
+    Error = 1,
+    Captcha = 10,
 }
 
 type CommonType<T = {}> = {
@@ -63,8 +64,8 @@ export const authAPI = {
         return instance.get<CommonType<MeResponseType>>(`auth/me`, {})
             .then(response =>  response.data)},
 
-    login(email:string, password:string,rememberMe:boolean = false) {
-        return instance.post<CommonType<{userId: number}>>(`auth/login`, {email,password,rememberMe})
+    login(email:string, password:string,rememberMe:boolean = false,captchaURL:string | null = null) {
+        return instance.post<CommonType<{userId: number}>>(`auth/login`, {email,password,rememberMe,captchaURL})
     },
     logout() {
         return instance.delete<CommonType>(`auth/login`)
@@ -98,4 +99,10 @@ export const profileAPI = {
         return instance.put<CommonType>(`profile/status/`, {status})
            },
 
+}
+
+export const securityAPI = {
+    getCaptchaURL() {
+        return instance.get<CommonType<{url: string}>>(` /security/get-captcha-url/`)
+    },
 }
