@@ -11,6 +11,7 @@ import store, {ReduxStateType} from "./redux/redux-store";
 import {Preloader} from "./components/common/Preloader/Preloader";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import Error404 from './components/common/404/Error404';
 
 
 const News = lazy(() => import('./components/News/News'));
@@ -42,15 +43,16 @@ class App extends React.Component<HeaderContainerType, {}> {
                     <div className='content-wrapper'>
                         <Suspense fallback={<Preloader/>}>
                             <Switch>
-                            <Route path='/' exact render={() => <Redirect to={'profile'}/>}/>
-                            <Route path='/profile/:userId?'  render={() => <ProfileContainer/>}/>
-                            <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                            <Route path='/users' render={() => <UsersContainer/>}/>
-                            <Route path='/login' render={() => <Login/>}/>
-                            <Route path='/news' render={() => <News/>}/>
-                            <Route path='/music' render={() => <Music/>}/>
-                            <Route path='/settings' render={() => <Settings />}/>
-                        </Switch>
+                                <Route path='/' exact render={() => <Redirect to={'profile'}/>}/>
+                                <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                                <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                                <Route path='/users' render={() => <UsersContainer/>}/>
+                                <Route path='/login' render={() => <Login/>}/>
+                                <Route path='/news' render={() => <News/>}/>
+                                <Route path='/music' render={() => <Music/>}/>
+                                <Route path='/settings' render={() => <Settings/>}/>
+                                <Route render={() => <Error404/>}/>
+                            </Switch>
                         </Suspense>
                     </div>
                 </div>

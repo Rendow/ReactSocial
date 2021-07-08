@@ -1,0 +1,32 @@
+
+.errorWrap {
+    background-color: #95c2de;
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+}
+
+.errorBox {
+    background-color: #95c2de;
+    display: flex;
+    justify-content: center;
+    border-radius: 7px;
+
+}
+
+.err {
+    color: #ffffff;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 11rem;
+   margin-left: 15px;
+}
+
+.msg {
+    padding: 0 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1.6rem;
+
+}
+
