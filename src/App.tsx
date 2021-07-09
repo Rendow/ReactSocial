@@ -26,9 +26,18 @@ type  MapStateToPropsType = {
 }
 
 class App extends React.Component<HeaderContainerType, {}> {
+    catchAllUnHandledErrors = () => {
+        console.log('Some errors')
+}
+
     componentDidMount() {
         this.props.initialize()
+        window.addEventListener('unhandledrejection', this.catchAllUnHandledErrors)
     }
+    componentWillUnmount() {
+        window.removeEventListener('unhandledrejection', this.catchAllUnHandledErrors)
+    }
+
     render() {
         if(!this.props.initialized) {
             return  <Preloader/>

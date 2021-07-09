@@ -4,9 +4,11 @@
 }
 .detailsWrap{
     display: flex;
+    flex-direction: row;
     justify-content: center;
     cursor: pointer;
-    margin: 15px 0;
+    margin: 0 auto;
+    padding: 10px 0;
 }
 .detailsWrap:hover{
     background-color: rgba(227, 227, 227, 0.4);
@@ -39,10 +41,11 @@
     line-height: 1.5;
 }
 .contentWrap{
-    margin: 15px 0 0 30px;
+    margin: 15px 0 0 50px;
     font-size: 18px;
     cursor: default;
     color: #28378d;
+    text-align: center;
 }
 .fragmentWrap{
     display: flex;
@@ -67,4 +70,10 @@
 .name span {
     font: 14px italic;
     display: block;
+}
+.content{
+    margin-top: 10px;
+    border-radius: 7px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(40, 55, 141, 0.1);
 }

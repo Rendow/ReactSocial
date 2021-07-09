@@ -37,7 +37,9 @@ function Profile(props:PropsType) {
                          setProfile={props.setProfile}
             />
 
-            <MyPostsContainer/>
+            <div className={s.myPostWrap}>
+                <MyPostsContainer/>
+            </div>
         </div>
 
     )

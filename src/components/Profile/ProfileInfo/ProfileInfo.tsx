@@ -32,54 +32,63 @@ function ProfileInfo(props: PropsType) {
 
     return (
         <div>
-            <div className={s.descriptionBlock}>
-                <div>
-                    {img}
-                    <div>
-                        {props.isOwner
-                        && editPhotoMode
-                        && <div style={{margin:'15px 0 0 30px'}}>
-                            <DragAndDrop
-                            setEditPhotoMode={setEditPhotoMode}
-                            isOwner={props.isOwner}
-                            setPhoto={props.setPhoto}/>
+
+                <div className={s.descriptionBlock}>
+                    <div className={s.content} style={{ margin: '15px 0 0 15px', padding:' 0 20px 0 0'}}>
+                        {img}
+                        <div>
+                            {props.isOwner
+                            && editPhotoMode
+                            && <div style={{margin: '15px 0 0 30px'}}>
+                                <DragAndDrop
+                                    setEditPhotoMode={setEditPhotoMode}
+                                    isOwner={props.isOwner}
+                                    setPhoto={props.setPhoto}/>
+                            </div>
+                            }
                         </div>
-                        }
-                    </div>
-                </div>
-
-                <div className={s.contentWrap}>
-                    <div className={s.name}>{props.profile && props.profile.fullName}
-                        <span>Double click on highlighted objects to edit your profile</span>
                     </div>
 
-                    <div  className={s.fragmentWrap}>
-                        <p> Status: </p> <ProfileStatusWithHooks isOwner={props.isOwner} updateStatus={props.updateStatus} status={props.status}/>
-                    </div>
+                    <div className={s.contentWrap}>
+                        <div className={s.content} style={{margin:' 0 0 20px 0'}}>
+                        <div className={s.name}>{props.profile && props.profile.fullName}
+                            <span>Double click on highlighted objects to edit your profile</span>
+                        </div>
+
+                        <div className={s.fragmentWrap} style={{textAlign: 'initial'}}>
+                            <p> Status: </p> <ProfileStatusWithHooks isOwner={props.isOwner}
+                                                                     updateStatus={props.updateStatus}
+                                                                     status={props.status}/>
+                        </div>
+            </div>
 
                             {props.updateMode
-                                ? <ContentForm
+                                ? <div className={s.content}>
+                                    <ContentForm
                                     setPhoto={props.setPhoto}
                                     isOwner={props.isOwner}
                                     profile={props.profile}
                                     setProfile={props.setProfile}
                                     profileUpdateMode={props.profileUpdateMode}
                                     updateMode={props.updateMode}/>
-                                : <Content
+                            </div>
+                                : <div className={s.content}>
+                                    <Content
                                     setPhoto={props.setPhoto}
                                     isOwner={props.isOwner}
                                     profile={props.profile}
                                     setProfile={props.setProfile}
                                     profileUpdateMode={props.profileUpdateMode}
                                     updateMode={props.updateMode}/>
+                                </div>
                             }
 
-                    <div className={s.textBlock}>
-                        <div className={s.description}>Do you know that Falcon 9 is a reusable, two-stage rocket
-                            manufactured by SpaceX for the reliable and safe transport of people and
-                            payloads into Earth orbit and beyond? Now you know.
-                        </div>
-                    </div>
+                    {/*<div className={s.textBlock}>*/}
+                    {/*    <div className={s.description}>Do you know that Falcon 9 is a reusable, two-stage rocket*/}
+                    {/*        manufactured by SpaceX for the reliable and safe transport of people and*/}
+                    {/*        payloads into Earth orbit and beyond? Now you know.*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
             </div>
         </div>
@@ -135,7 +144,7 @@ const Content = (props:ContentType) => {
                         <div> Hide contacts</div>
                         <div className={s.details}/>
                     </div>
-                    <p> Contacts: {
+                    <p style={{textAlign:'initial'}}> Contacts: {
                         Object
                             .entries(props.profile?.contacts ? props.profile?.contacts : {})
                             .map((key, value) => {

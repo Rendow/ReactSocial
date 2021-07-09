@@ -39,7 +39,7 @@ export const ContentForm:React.FC<ContentType> = (props ) => {
         onSubmit={submit}
     >
         {({isSubmitting}) => (
-            <Form>
+            <Form style={{paddingRight: '10px'}}>
                 <div className={formClass}  style={{marginTop: '13px'}}>
                     <p> Full name: </p>
                     <Field component={FormInput} placeholder={'Full name'} type="text" name="fullName"/>

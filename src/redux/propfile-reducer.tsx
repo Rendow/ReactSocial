@@ -125,39 +125,48 @@ export const deletePost = (id: number) => ({type: DELETE_POST, id} as const)
 export const setPhotoSuccess = (photos: PhotosType) => ({type: SET_PHOTO, photos} as const )
 export const profileUpdateMode = (mode: boolean) => ({type: "PROFILE_UPDATE_MODE", mode} as const)
 
-export const getProfile = (id:number | null) => {
-    return (dispatch: Dispatch<ProfileActionType>) => {
-        profileAPI.getProfile(id)
-            .then(data => {
-                    dispatch(setUsersProfile(data.data))
-                }
-            )}
+export const getProfile = (id:number | null) =>
+    async (dispatch: Dispatch<ProfileActionType>) => {
+         try {
+             const res = await profileAPI.getProfile(id)
+             dispatch(setUsersProfile(res.data))
+         }catch (e){
+             console.log(e)
+         }
 }
-export const getStatus = (id:number)  => {
-    return (dispatch: Dispatch<ProfileActionType>) => {
-        profileAPI.getStatus(id)
-            .then(data => {
-                    dispatch(setStatus(data.data))
-                }
-            )}
-}
-export const setPhoto = (file:string | Blob)  => {
-    return (dispatch: Dispatch<ProfileActionType>) => {
 
-        profileAPI.setPhoto(file)
-            .then(data => {
-                if (data.data.resultCode === 0) {
-                    dispatch(setPhotoSuccess(data.data.data.photos))
-                }}
-            )}
-}
+
+export const getStatus = (id: number) =>
+    async (dispatch: Dispatch<ProfileActionType>) => {
+        try {
+            const res = await profileAPI.getStatus(id)
+            dispatch(setStatus(res.data))
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+
+
+export const setPhoto = (file: string | Blob) =>
+    async (dispatch: Dispatch<ProfileActionType>) => {
+        try {
+            const res = await profileAPI.setPhoto(file)
+            if (res.data.resultCode === 0) {
+                dispatch(setPhotoSuccess(res.data.data.photos))
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
 
 export const setProfile = (file: FormType):AppThunkType  =>
     async (dispatch, getState) => {
         let userId = getState().auth.userId
         try {
-            const data = await profileAPI.setProfile(file)
-                    if (data.data.resultCode === 0) {
+            const res = await profileAPI.setProfile(file)
+                    if (res.data.resultCode === 0) {
                         dispatch(getProfile(userId))
                         dispatch(profileUpdateMode(false))
                     }
@@ -167,14 +176,14 @@ export const setProfile = (file: FormType):AppThunkType  =>
     }
 
 
-export const updateStatus = (text: string) => {
-    return (dispatch: Dispatch<ProfileActionType>) => {
-        profileAPI.updateStatus(text)
-            .then(data => {
-                    if (data.data.resultCode === 0) {
-                        dispatch(setStatus(text))
-                    }
-                }
-            )
+export const updateStatus = (text: string) =>
+    async (dispatch: Dispatch<ProfileActionType>) => {
+        try {
+            const res = await profileAPI.updateStatus(text)
+            if (res.data.resultCode === 0) {
+                dispatch(setStatus(text))
+            }
+        } catch (e) {
+            console.log(e)
+        }
     }
-}
