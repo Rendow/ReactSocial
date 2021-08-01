@@ -38,8 +38,9 @@ export const Paginator = React.memo((props:PaginatorPropsType) => {
 
                 {pages
                     .filter(p => p >= leftPortionSize && p <= rightPortionSize)
-                    .map(p => {
+                    .map((p ,index) => {
                     return <span
+                            key={index}
                             className={props.currentPage === p ? selectedPage : s.pagination}
                             onClick={()=>{props.onPageChanged(p)}}>
                        {p < 10 ? `${' '}${p}${' '}`: p} </span>  })}

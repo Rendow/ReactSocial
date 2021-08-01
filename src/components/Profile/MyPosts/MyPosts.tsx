@@ -14,7 +14,7 @@ export type MyPostsPropsType = MyPostsMapStateToPropsType & MyPostsMapDispatchTo
 const MyPosts = React.memo((props: MyPostsPropsType) => {
 
     let PostsElements =
-        props.posts.map(post => <Post message={post.messages} like={post.likesCount}/>)
+        props.posts.map(post => <Post key={post.id} message={post.messages} like={post.likesCount}/>)
 
     let addPost = (text: any) => {
         props.onClick(text.newPostText)

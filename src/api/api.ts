@@ -10,10 +10,11 @@ export enum ResultCode  {
     Captcha = 10,
 }
 
-type CommonType<T = {}> = {
-    resultCode: ResultCode
-    messages: Array<string>
+export type CommonType<T = {}> = {
     data: T
+    fieldsErrors: string[]
+    messages: string[]
+    resultCode: ResultCode
 }
 
 type UsersCommonType = {

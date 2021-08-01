@@ -9,9 +9,11 @@ beforeEach(() => {
             {id: 2, messages: 'Yuri Gagarin was the first person to fly in space.', likesCount: 41,
             },
         ],
-        newPostText: '',
-        profile: null,
-        status:'Hello!'
+      newPostText: '',
+      profile: null,
+      status: 'Hello!',
+      isOwner: false,
+      updateMode: false
     }
 })
 

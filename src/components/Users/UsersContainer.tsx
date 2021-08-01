@@ -1,31 +1,21 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {ReduxStateType} from "../../redux/redux-store";
-import {
-    FilterType,
-    follow,
-    getPage,
-    getUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    setUsers,
-    toggleIsFetching,
-    toggleIsFollowingProgress, unFollow,
-    UsersType
-} from "../../redux/users-reducer";
-
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
 import {Preloader} from "../common/Preloader/Preloader";
 import {Users} from "./Users";
 import {
-    getCurrentPage, getFollowingInProgress,
+    getCurrentPage,
+    getFollowingInProgress,
     getIsFetching,
     getPageSize,
     getTotalUsersCount,
     getUsersFilter,
-    getUsersPage, portionSize
+    getUsersPage,
+    portionSize
 } from "../../redux/users-selectors";
+import {actions, FilterType, follow, getPage, getUsers, unFollow, UsersType} from "../../redux/users-reducer";
 
 
 export type mapStateToPropsType = {
@@ -95,6 +85,6 @@ let mapStateToProps = (state: ReduxStateType):mapStateToPropsType => {
 }
 
 export default compose<React.ComponentType>(connect(mapStateToProps,
-    {follow, unFollow, setUsers,
-        setCurrentPage, setTotalUsersCount, toggleIsFetching,
-        toggleIsFollowingProgress,getUsers, getPage}), WithAuthRedirect)(UsersContainer)
+    {follow, unFollow, setUsers:actions.setUsers,
+        setCurrentPage:actions.setCurrentPage, setTotalUsersCount:actions.setTotalUsersCount, toggleIsFetching:actions.toggleIsFetching,
+        toggleIsFollowingProgress:actions.toggleIsFollowingProgress,getUsers, getPage}), WithAuthRedirect)(UsersContainer)
