@@ -23,8 +23,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export type ReduxStateType = ReturnType<typeof rootReducer>
 
-// аналог ReturnType для типизации обьекта экшенов; если переданное значение соотвествует ключ-массив аргументов - выведется тип
-//infer — выведение типов в typescript
+// аналог ReturnType, но для типизации обьекта;
+// если переданное значение(Т) соотвествует ключ-массив аргументов, infer запишет этот тип в U и вернет его
 //https://habr.com/ru/company/alfa/blog/452620/
 export type InferActionTypes<T> = T extends { [keys: string]: (...args: any[]) => infer U } ? U : never
 
