@@ -1,7 +1,7 @@
 import {Field, Form, Formik} from "formik";
 import React from "react";
 import {FilterType} from "../../redux/users-reducer";
-import SuperButton from "../common/FormsControl/SuperButton";
+import SuperButton from "../common/Button/SuperButton";
 import {FormInput, FormSelect, Input} from "../common/FormsControl/FormsControls";
 import s from "./Users.module.css";
 

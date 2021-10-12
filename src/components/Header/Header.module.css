@@ -14,7 +14,9 @@
     justify-content: space-between;
     align-items: center;
 }
-
+.opacity{
+    background-color: rgba(160, 160, 160, 0);
+}
 .logo {
     display: flex;
     align-items: center;

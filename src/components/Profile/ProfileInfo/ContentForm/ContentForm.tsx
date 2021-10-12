@@ -2,7 +2,7 @@ import React from "react";
 import {ContentType} from "../ProfileInfo";
 import s from "../ProfileInfo.module.css";
 import {Field, Form, Formik} from "formik";
-import SuperButton from "../../../common/FormsControl/SuperButton";
+import SuperButton from "../../../common/Button/SuperButton";
 import {FormInput} from "../../../common/FormsControl/FormsControls";
 import SuperCheckbox from "../../../common/Checkbox/SuperCheckbox";
 

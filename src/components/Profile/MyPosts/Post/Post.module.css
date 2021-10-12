@@ -1,28 +1,27 @@
 
 .content {
-    grid-area: c;
+    box-shadow:0 0 10px rgba(40, 55, 141 , 0.1);
+    border-radius: 7px;
     background-color: #F5F5F5;
     color: #212121;
     font-size: 16px;
-    padding: 10px 0px;
+    padding: 10px;
+    margin: 10px 0;
 
     display: flex;
     flex-wrap:wrap;
-    width: 300px;
 }
 .img{
-    flex: 0 1 30%;
+    flex: 0.2;
 }
 .message{
-    margin-top: 20px;
-    flex: 0 1 70%;
+    margin: 15px 0 0 15px;
+    flex: 0.5;
     text-align: left;
 }
 .like{
-    flex: 0 1 100%;
-    margin-left: 5px;
+    margin: 8px 0 0 8px;
 }
-
 .content img {
     width: 70px;
     height: 60px;

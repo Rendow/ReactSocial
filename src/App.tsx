@@ -49,7 +49,7 @@ class App extends React.Component<HeaderContainerType, {}> {
                     <div className='nav-wrapper'>
                         <Navbar/>
                     </div>
-                    <div className='content-wrapper'>
+                    <div id={'container'} className='content-wrapper'>
                         <Suspense fallback={<Preloader/>}>
                             <Switch>
                                 <Route path='/' exact render={() => <Redirect to={'profile'}/>}/>

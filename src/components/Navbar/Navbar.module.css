@@ -23,3 +23,6 @@
 .item a:hover{
     padding: 5px;
 }
+.opacity{
+    background-color: rgba(191, 191, 191, 0);
+}

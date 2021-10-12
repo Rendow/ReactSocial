@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import s from "./Paginator.module.css";
-import SuperButton from "../FormsControl/SuperButton";
+import SuperButton from "../Button/SuperButton";
 
 
 type PaginatorPropsType = {

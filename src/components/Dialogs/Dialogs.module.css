@@ -1,15 +1,22 @@
 .dialogs {
-    display: grid;
+    display: flex;
     font-size: 16px;
-    grid-template-columns: 2fr 10fr;
 }
 
 .dialogsItems {
-    padding: 10px;
+    flex: 0.2;
+    padding: 20px;
     font-size: 18px;
-    margin: 5px 0;
+    margin: 15px ;
+    box-shadow:0 0 10px rgba(40, 55, 141 , 0.1);
+    border-radius: 7px;
 }
 
 .messages {
-    padding: 10px;
+    flex: 1;
+    padding: 20px;
+    margin: 15px ;
+
+    box-shadow:0 0 10px rgba(40, 55, 141 , 0.1);
+    border-radius: 7px;
 }

@@ -1,8 +1,10 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-import classes from './Header.module.css';
+import s from './Header.module.css';
 import logo from './logo/rocket33.png';
-import SuperButton from "../common/FormsControl/SuperButton";
+import SuperButton from "../common/Button/SuperButton";
+import {useSelector} from "react-redux";
+import {ReduxStateType} from "../../redux/redux-store";
 
 type HeaderPropsType = {
     login: string | null
@@ -11,12 +13,14 @@ type HeaderPropsType = {
 }
 
 function Header(props:HeaderPropsType) {
+    const theme = useSelector<ReduxStateType,string>((state) => state.app.theme)
+    let wrapClass = theme === 'dark'? s.header  : s.header +' '+ s.opacity
 
     return (
-        <header className={classes.header}>
-            <div className={classes.wrap}>
-                <div className={classes.logo}> <img  src={logo} alt=""/> <div className={classes.brand}>SOCIAL NETWORK </div> </div>
-                <div className={classes.loginBlock}>
+        <header className={wrapClass}>
+            <div className={s.wrap}>
+                <div className={s.logo}> <img src={logo} alt=""/> <div className={s.brand}>SOCIAL NETWORK </div> </div>
+                <div className={s.loginBlock}>
                     {props.isAuth
                         ? <div>
                             <NavLink  to={'/profile'}> {props.login} </NavLink>

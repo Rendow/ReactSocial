@@ -1,27 +1,32 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import classes from './Navbar.module.css';
+import s from './Navbar.module.css';
+import {useSelector} from "react-redux";
+import {ReduxStateType} from "../../redux/redux-store";
 
 function Navbar() {
+    const theme = useSelector<ReduxStateType,string>((state) => state.app.theme)
+
+    let navClass = theme === 'dark'? s.nav  : s.nav +' '+ s.opacity
     return (
-        <nav className={classes.nav}>
-            <div className={classes.item}>
-                <NavLink to='/profile' activeClassName={classes.active}>Profile</NavLink>
+        <nav className={navClass}>
+            <div className={s.item}>
+                <NavLink to='/profile' activeClassName={s.active}>Profile</NavLink>
             </div>
-            <div className={classes.item}>
-                <NavLink to='/dialogs' activeClassName={classes.active}> Messages</NavLink>
+            <div className={s.item}>
+                <NavLink to='/dialogs' activeClassName={s.active}> Messages</NavLink>
             </div>
-            <div className={classes.item}>
-                <NavLink to='/users' activeClassName={classes.active}> Users</NavLink>
+            <div className={s.item}>
+                <NavLink to='/users' activeClassName={s.active}> Users</NavLink>
             </div>
-            <div className={classes.item}>
-                <NavLink to='/news' activeClassName={classes.active}>News</NavLink>
+            <div className={s.item}>
+                <NavLink to='/news' activeClassName={s.active}>News</NavLink>
             </div>
-            <div className={classes.item}>
-                <NavLink to='/music' activeClassName={classes.active}>Music</NavLink>
+            <div className={s.item}>
+                <NavLink to='/music' activeClassName={s.active}>Music</NavLink>
             </div>
-            <div className={classes.item}>
-                <NavLink to='/settings' activeClassName={classes.active}>Settings</NavLink>
+            <div className={s.item}>
+                <NavLink to='/settings' activeClassName={s.active}>Settings</NavLink>
             </div>
         </nav>
 

@@ -7,7 +7,7 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {FormDataType} from "../Login/Login";
 import {Textarea} from "../common/FormsControl/FormsControls";
 import {maxLengthCreator, minLengthCreator, required} from "../../utils/validators/validators";
-import SuperButton from "../common/FormsControl/SuperButton";
+import SuperButton from "../common/Button/SuperButton";
 
 
 export type DialogType = DialogsMapStateToPropsType & DialogsMapDispatchToPropsType

@@ -1,0 +1,9 @@
+.container{
+    width: 50%;
+    box-shadow:0 0 10px rgba(40, 55, 141 , 0.1);
+    border-radius: 7px;
+    margin: 60px auto;
+     display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

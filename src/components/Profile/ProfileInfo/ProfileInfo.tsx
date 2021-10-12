@@ -6,7 +6,7 @@ import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileStatusWithHooks} from "./ProfileStatus/ProfileStatusWithHooks";
 import {DragAndDrop} from "../../common/DragAndDrop/DragAndDrop";
 import {ContentForm, FormType} from "./ContentForm/ContentForm";
-import SuperButton from "../../common/FormsControl/SuperButton";
+import SuperButton from "../../common/Button/SuperButton";
 
 type PropsType = {
     profile: ProfileType | null
@@ -123,7 +123,7 @@ const Content = (props:ContentType) => {
             {props.profile?.lookingForAJob &&
             <>
            <p> Looking for a job: </p>
-            <p>yes</p>
+            <p>Yes!</p>
            </>}
         </div>
         <div  className={s.fragmentWrap}>
