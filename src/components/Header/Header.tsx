@@ -14,7 +14,7 @@ type HeaderPropsType = {
 
 function Header(props:HeaderPropsType) {
     const theme = useSelector<ReduxStateType,string>((state) => state.app.theme)
-    let wrapClass = theme === 'dark'? s.header  : s.header +' '+ s.opacity
+    let wrapClass = theme === 'light'? s.header  : s.header +' '+ s.opacity
 
     return (
         <header className={wrapClass}>

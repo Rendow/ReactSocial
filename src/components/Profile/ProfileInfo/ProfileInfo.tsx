@@ -83,12 +83,6 @@ function ProfileInfo(props: PropsType) {
                                 </div>
                             }
 
-                    {/*<div className={s.textBlock}>*/}
-                    {/*    <div className={s.description}>Do you know that Falcon 9 is a reusable, two-stage rocket*/}
-                    {/*        manufactured by SpaceX for the reliable and safe transport of people and*/}
-                    {/*        payloads into Earth orbit and beyond? Now you know.*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
                 </div>
             </div>
         </div>
@@ -136,13 +130,18 @@ const Content = (props:ContentType) => {
         <div  className={s.fragmentWrap}>
             {!editMode
                 ? <div className={s.detailsWrap}  onClick={()=>{setEditMode(true)}}>
-                    <div > Show contacts</div>
-                    <div className={s.details}/>
+
+                    <div className={s.highlight}>
+                        <span>Show contacts</span>
+                    </div>
                 </div>
-                : <div style={{flexDirection: 'column'}}>
-                    <div className={s.detailsWrap} onClick={() => {setEditMode(false)}}>
-                        <div> Hide contacts</div>
-                        <div className={s.details}/>
+                : <div >
+                    <div className={s.detailsWrap}  onClick={() => {setEditMode(false)}}>
+
+                        <div className={s.highlight}>
+                            <span> Hide contacts</span>
+                        </div>
+
                     </div>
                     <p style={{textAlign:'initial'}}> Contacts: {
                         Object

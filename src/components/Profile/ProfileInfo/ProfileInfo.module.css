@@ -20,7 +20,29 @@
     border-right: 12px solid transparent;
     border-top: 16px solid rgba(33, 48, 137, 0.05);
     margin: 9px 0 0 15px;
+    opacity: 0;
 }
+.highlight{
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+    flex:1;
+}
+
+.highlight span {
+    position: relative;
+}
+.highlight span:before {
+    display: block;
+    width:1000px;
+    content: '';
+    position: absolute;
+    border-bottom: 1px solid #000;
+    top:110%;
+}
+
+
 .img {
     margin: 25px 0 0 20px;
     border-radius: 50%;

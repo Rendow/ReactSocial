@@ -13,12 +13,10 @@ code {
     monospace;
 }
 body {
-  transition: .5s all ease-in;
 }
 
 body.dark {
-  /*background: rgba(52, 58, 64, 0.69);*/
+  transition: .5s all ease-in;
   background: rgba(52, 58, 64, 0.69) url("https://storge.pic2.me/c/1360x800/727/5286d9de23e4c.jpg")  no-repeat center center fixed;
   background-size:cover;
-  /*background: linear-gradient(75deg, rgba(0,83,255,0.5) 0%, rgba(247,247,247,0.5) 50%, rgba(246,9,9,0.5) 100%);*/
 }

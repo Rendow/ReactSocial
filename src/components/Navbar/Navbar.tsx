@@ -7,7 +7,7 @@ import {ReduxStateType} from "../../redux/redux-store";
 function Navbar() {
     const theme = useSelector<ReduxStateType,string>((state) => state.app.theme)
 
-    let navClass = theme === 'dark'? s.nav  : s.nav +' '+ s.opacity
+    let navClass = theme === 'light'? s.nav  : s.nav +' '+ s.opacity
     return (
         <nav className={navClass}>
             <div className={s.item}>

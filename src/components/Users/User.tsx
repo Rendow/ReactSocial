@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from "./Users.module.css";
 import logo from "./img/logo2.png";
 import {FilterType, UsersType} from "../../redux/users-reducer";
@@ -13,8 +13,19 @@ type UserPropsType = {
 }
 
 export const User: React.FC<UserPropsType> = ({users,...props}) => {
+
     let checkedStatus = users.status === null ? 'Hello!' : users.status
 
+    let strOne,  strTwo
+    const array = checkedStatus.split('')
+    if (checkedStatus.length > 20) {
+        const array = checkedStatus.split('')
+        const result = [], length = Math.floor(array.length / 2);
+        while(array.length) result.push(array.splice(0,length));
+
+        strOne = result[0].join('')
+        strTwo = result[1].join('')
+    }
     return (
         <div className={s.userWrap}>
             <span>
@@ -28,7 +39,11 @@ export const User: React.FC<UserPropsType> = ({users,...props}) => {
             <span className={s.userInfoWrap}>
                     <span style={{cursor:'default'}}>
                         <div> {users.name}</div>
-                        <div  style={{fontStyle:'italic', fontSize:'16px'}}> {checkedStatus}</div>
+                        {!!array && array.length < 20
+                            ?  <div  style={{fontStyle:'italic', fontSize:'16px'}}> {checkedStatus}</div>
+                            : <div  style={{fontStyle:'italic', fontSize:'16px'}}>
+                                {strOne} <br/> {strTwo}
+                            </div>}
                     </span>
 
                          <div  style={{marginLeft:'-3px'}}>

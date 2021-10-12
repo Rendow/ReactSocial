@@ -7,11 +7,8 @@ import {ReduxStateType} from "../../redux/redux-store";
 import SuperButton from "../common/Button/SuperButton";
 import s from "./Settings.module.css";
 
-type PathParamsType = { userId: string }
 
-type PropsType = RouteComponentProps<PathParamsType>
-
- function Settings  (props:PropsType) {
+ function Settings  () {
     useEffect(() => {
         document.title = 'Settings'
     },[])
@@ -20,12 +17,13 @@ type PropsType = RouteComponentProps<PathParamsType>
      const theme = useSelector<ReduxStateType,string>((state) => state.app.theme)
 
      const thisTheme = theme === 'light' ? 'dark' : 'light'
+     const title = theme === 'light'? 'Set rocket as wallpaper' : 'Remove rocket from wallpaper'
 
      const changeThemeHandler = () => {
          dispatch(changeTheme(thisTheme))
-         document.body.className = theme
+         document.body.className = thisTheme
      }
-let title = theme === 'light'? 'Remove rocket' :'Add rocket ?'
+
     return (
         <div className={s.container}>
             <div>{title}</div>
@@ -36,6 +34,3 @@ let title = theme === 'light'? 'Remove rocket' :'Add rocket ?'
 
 export default  compose<React.ComponentType> (withRouter)(Settings)
 
-//todo add set photo
-//todo add set backgrounds
-//todo add classname library
