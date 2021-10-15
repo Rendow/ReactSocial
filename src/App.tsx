@@ -56,7 +56,7 @@ class App extends React.Component<HeaderContainerType, {}> {
                                 <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                                 <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                                 <Route path='/users' render={() => <UsersContainer/>}/>
-                                <Route path='/login' render={() => <Login/>}/>
+                                <Route path='/login' render={() => <Login />}/>
                                 <Route path='/news' render={() => <News/>}/>
                                 <Route path='/music' render={() => <Music/>}/>
                                 <Route path='/settings' render={() => <Settings/>}/>

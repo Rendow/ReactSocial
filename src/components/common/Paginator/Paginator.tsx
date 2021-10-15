@@ -6,7 +6,7 @@ import SuperButton from "../Button/SuperButton";
 type PaginatorPropsType = {
     onPageChanged: (pageNumber: number) => void
     totalItemsCount: number
-    pageSize:number
+    usersOnPage:number
     currentPage: number
     portionSize:number
 }
@@ -17,7 +17,7 @@ export const Paginator = React.memo((props:PaginatorPropsType) => {
     const [portionNumber,setPortionNumber] = useState(1)
 
      //всего юзеров / кол-во юзеров на странице = кол-во страниц
-    const pagesCount = Math.ceil( props.totalItemsCount / props.pageSize)
+    const pagesCount = Math.ceil( props.totalItemsCount / props.usersOnPage)
     const pages:number[] = []
 
     for (let i = 1;i <= pagesCount ;i++){ pages.push(i) }
@@ -25,8 +25,8 @@ export const Paginator = React.memo((props:PaginatorPropsType) => {
     // кол-во страниц / "порцию страниц"  = кол-во "порций" страниц
     const portionCount = Math.ceil(pagesCount  / props.portionSize)
 
-    const leftPortionSize = (portionNumber - 1) * props.pageSize + 1
-    const rightPortionSize = portionNumber * props.pageSize
+    const leftPortionSize = (portionNumber - 1) * props.usersOnPage + 1
+    const rightPortionSize = portionNumber * props.usersOnPage
 
     return (
             <div className={s.wrap}>

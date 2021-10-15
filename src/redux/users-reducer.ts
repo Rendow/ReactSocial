@@ -133,15 +133,15 @@ export const getPage = (pageNumber: number, currentPage: number) =>
                 dispatch(actions.setUsers(res.items))
     }
 
- const followUnFollowFlow = async (userId:number, dispatch: Dispatch<UsersActionType>,apiMethod: (userId: number) => Promise<CommonType>,
-                                   actionCreator:(id:number) => FollowActionType | UnFollowActionType) => {
-        dispatch(actions.toggleIsFollowingProgress(true, userId))
-     const res = await apiMethod(userId)
-                if (res.resultCode === 0) {
-                    dispatch(actionCreator(userId))
-                }
-                dispatch(actions.toggleIsFollowingProgress(false, userId))
+const followUnFollowFlow = async (userId: number, dispatch: Dispatch<UsersActionType>, apiMethod: (userId: number) => Promise<CommonType>,
+                                  actionCreator: (id: number) => FollowActionType | UnFollowActionType) => {
+    dispatch(actions.toggleIsFollowingProgress(true, userId))
+    const res = await apiMethod(userId)
+    if (res.resultCode === 0) {
+        dispatch(actionCreator(userId))
     }
+    dispatch(actions.toggleIsFollowingProgress(false, userId))
+}
 
 export const follow = (userId:number) =>
     async (dispatch: Dispatch<UsersActionType>) => {

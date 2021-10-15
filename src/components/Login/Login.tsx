@@ -1,9 +1,9 @@
-import React, {ComponentType, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../common/FormsControl/FormsControls";
 import {maxLengthCreator, minLengthCreator, required} from "../../utils/validators/validators";
 import SuperButton from "../common/Button/SuperButton";
-import {connect, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {ReduxStateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
@@ -20,7 +20,7 @@ export type FormDataType = {
 let maxLength = maxLengthCreator(20)
 let minLength = minLengthCreator(4)
 
-export const LoginForm:React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit,...props}) => {
+ const LoginForm:React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit,...props}) => {
 
     const captchaURL = useSelector<ReduxStateType,string | null>(state => state.auth.captchaURL)
 
@@ -30,7 +30,7 @@ export const LoginForm:React.FC<InjectedFormProps<FormDataType>> = ({handleSubmi
 
 
     return <div>
-        <form  className={s.loginWrap} onSubmit={handleSubmit}>
+        <form className={s.loginWrap} onSubmit={handleSubmit}>
             <p className={s.login}>Sign in</p>
             <div className={s.auth}>
                 <p> You can use this app with default authorization or register
@@ -41,7 +41,7 @@ export const LoginForm:React.FC<InjectedFormProps<FormDataType>> = ({handleSubmi
             </div>
             <div>
                 <Field placeholder={'   Email'}
-                       style={{height: '35px', width:'100%'}}
+                       style={{height: '35px', width: '100%'}}
                        validate={[required]}
                        name={'email'}
                        component={Input}
@@ -49,25 +49,25 @@ export const LoginForm:React.FC<InjectedFormProps<FormDataType>> = ({handleSubmi
             </div>
             <div>
                 <Field placeholder={'   Password'}
-                       style={{height: '35px', width:'100%'}}
+                       style={{height: '35px', width: '100%'}}
                        validate={[required, maxLength, minLength]}
                        type={'password'}
                        name={'password'}
                        component={Input}/>
             </div>
-            <div style={{display: 'flex',marginTop: '5px'}}>
+            <div style={{display: 'flex', marginTop: '5px'}}>
                 <Field
-                      style={{marginRight: '8px'}}
-                      component={'input'}
-                       name={'rememberMe'}
-                       type={"checkbox"}
+                    style={{marginRight: '8px'}}
+                    component={'input'}
+                    name={'rememberMe'}
+                    type={"checkbox"}
                 />
                 <p style={{marginTop: '-6px'}}>Remember me</p>
             </div>
-            <div style={{display: 'flex',marginTop: '5px'}}>
-                {captchaURL &&  <img src={captchaURL}/> }
+            <div style={{display: 'flex', marginTop: '5px'}}>
+                {captchaURL && <img src={captchaURL}/>}
 
-                {captchaURL &&   <Field
+                {captchaURL && <Field
                     style={{marginRight: '8px'}}
                     component={Input}
                     placeholder={'Symbols from image'}
@@ -83,30 +83,23 @@ export const LoginForm:React.FC<InjectedFormProps<FormDataType>> = ({handleSubmi
     </div>
 }
 
-export const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
+const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
-type LoginType = mapStateToPropsType & {
-    login:(email:string, password:string, rememberMe:boolean,captchaURL:string | null) => void
-}
 
-const Login = (props:LoginType) => {
+const Login = () => {
+    const isAuth = useSelector<ReduxStateType,boolean >(state => state.auth.isAuth)
+    const dispatch = useDispatch()
+
     const onSubmit = (formData: FormDataType) => {
-        props.login(formData.email,formData.password,formData.rememberMe,formData.captchaURL)
+        dispatch(login(formData.email,formData.password,formData.rememberMe,formData.captchaURL))
     }
 
-    if(props.isAuth){ return <Redirect to={'/profile'}/> }
+    if(isAuth){ return <Redirect to={'/profile'}/> }
 
     return <div>
         <LoginReduxForm  onSubmit={onSubmit}/>
     </div>
 }
 
-type mapStateToPropsType = {
-    isAuth:boolean
-}
-let mapStateToProps = (state: ReduxStateType):mapStateToPropsType => {
-    return {
-        isAuth: state.auth.isAuth,
-   }
-}
-export default connect (mapStateToProps,{login})(Login)
+
+export default Login

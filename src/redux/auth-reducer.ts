@@ -49,7 +49,9 @@ export const setAuthUserData = (userId:number| null, email:string| null, login:s
         type: SET_USER_DATA, payload:{userId,email,login,isAuth}
     } as const
 }
-export const getCaptchaURLSuccess = (captchaURL: string) => ({type: GET_CAPTCHA_URL_SUCCESS, payload:captchaURL } as const)
+export const getCaptchaURLSuccess = (captchaURL: string) => {
+    return {type: GET_CAPTCHA_URL_SUCCESS, payload: captchaURL} as const
+}
 
 
 //with async
@@ -71,6 +73,7 @@ export const getCaptchaURL = ():AppThunkType =>
     }
 export const login = (email:string, password:string, rememberMe:boolean, captchaURL:string | null) =>
     async (dispatch: ThunkDispatch<ReduxStateType, unknown, AuthActionType | FormAction>) => {
+
         let response = await  authAPI.login(email, password, rememberMe,captchaURL);
 
                 if (response.data.resultCode === ResultCode.Success) {
