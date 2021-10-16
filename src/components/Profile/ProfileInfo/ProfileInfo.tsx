@@ -159,7 +159,7 @@ const Content = (props:ContentType) => {
 
         </div>
         {props.isOwner && <SuperButton
-            style={{width: '50%', opacity:'0.5'}}
+            style={{width: '50%', opacity: '0.7'}}
             onClick={submitHandler}> edit profile</SuperButton>}
     </div>
 }

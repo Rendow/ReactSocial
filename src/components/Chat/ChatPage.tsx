@@ -50,6 +50,7 @@ function ChatPage() {
 
 
     return (
+
         <div className={s.chatWrap}>
             <Messages wsChannel={wsChannel}/>
             <AddMessageForm wsChannel={wsChannel}/>
@@ -62,9 +63,14 @@ function Messages({wsChannel}: WsChannelType) {
     const [messages, setMessages] = useState<ChatMessageType[]>([])
 
     useEffect(() => {
+
         const messageHandler = (e: MessageEvent) => {
             let newMessage = JSON.parse(e.data)
             setMessages((prevMessages) => [...prevMessages, ...newMessage])
+
+            //авто скролл вниз
+            let element = document.getElementById('chatlogs');
+            if (element) element.scrollTop = element.scrollHeight;
         }
         wsChannel?.addEventListener('message', messageHandler)
 
@@ -76,11 +82,11 @@ function Messages({wsChannel}: WsChannelType) {
 
 
     return (
-        <div className={s.messages}>
-             {messages.map((m, index) => <Message
-                 key={index} message={m.message} userId={m.userId}
-                 userName={m.userName} photo={m.photo}/>)}
-         </div>
+        <div id={'chatlogs'} className={s.messages}>
+            {messages.map((m, index) => <Message
+                key={index} message={m.message} userId={m.userId}
+                userName={m.userName} photo={m.photo}/>)}
+        </div>
      )
  }
 
@@ -138,7 +144,6 @@ function AddMessageForm({wsChannel}: WsChannelType) {
             wsChannel?.send(message)
             setMessage('')
         }
-
     }
 
     return <div className={s.formGroup}>

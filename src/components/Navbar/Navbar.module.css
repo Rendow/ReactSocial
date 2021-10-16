@@ -1,5 +1,6 @@
 .nav {
-    background-color: rgba(191, 191, 191, 0.5);
+    background: linear-gradient(
+            117deg, rgba(247, 247, 247, 1), rgba(9, 39, 246, 0.3) 100%);
     padding: 20px;
     font-size: 18px;
     border-radius: 7px
@@ -23,6 +24,6 @@
 .item a:hover{
     padding: 5px;
 }
-.opacity{
-    background-color: rgba(191, 191, 191, 0);
+.opacity {
+    background: rgba(191, 191, 191, 0);
 }

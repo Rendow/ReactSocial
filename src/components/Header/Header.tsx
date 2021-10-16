@@ -25,7 +25,7 @@ function Header(props:HeaderPropsType) {
                         ? <div>
                             <NavLink  to={'/profile'}> {props.login} </NavLink>
                             <SuperButton
-                                style={{fontSize: '12px', width: '60px', margin: '0 0 0 8px', padding: '4px'}}
+                                className={s.logoutButton}
                                 onClick={props.logout}>
                                 Log out
                             </SuperButton>

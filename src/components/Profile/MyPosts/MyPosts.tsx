@@ -30,9 +30,6 @@ const MyPosts = React.memo(() => {
     return (
         <div className={classes.content}>
             <div className={classes.postBlock}>
-                <div className={classes.header}>
-                    <h4> My publications.</h4>
-                </div>
                 <AddNewPostFormRedux onSubmit={addPost}/>
             </div>
             <div className={classes.posts}>
@@ -50,7 +47,7 @@ const AddNewPostForm = (props:InjectedFormProps<FormDataType> ) => {
         <form onSubmit={props.handleSubmit}>
             <div>
                 <Field
-                    placeholder={'  Enter your message'}
+                    placeholder={'Create new post'}
                     style={{margin: '10px 0'}}
                     name={'newPostText'}
                     component={Textarea}

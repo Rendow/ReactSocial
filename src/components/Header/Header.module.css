@@ -1,6 +1,7 @@
 .header {
     margin: 15px 0 20px;
-    background-color: rgba(160, 160, 160, 0.5);
+    background: linear-gradient(
+            17deg, rgba(247, 247, 247, 1), rgba(9, 39, 246, 0.2) 100%);
     font-size: 15px;
     border-radius: 7px;
     height: 67px;
@@ -14,8 +15,8 @@
     justify-content: space-between;
     align-items: center;
 }
-.opacity{
-    background-color: rgba(160, 160, 160, 0);
+.opacity {
+    background: rgba(160, 160, 160, 0);
 }
 .logo {
     display: flex;
@@ -41,9 +42,19 @@
 a:visited {
     color: #28378d;
 }
+
 .loginBlock {
     cursor: pointer;
     margin: 4px 30px 0 0;
     color: #28378d;
     font-weight: bold;
+}
+
+.logoutButton {
+    font-size: 12px;
+    width: 60px;
+    margin: 0 0 0 8px;
+    padding: 4px;
+    background: #303f9f;
+    color: white;
 }

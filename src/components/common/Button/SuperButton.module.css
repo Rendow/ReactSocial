@@ -1,13 +1,13 @@
 .default {
-    background-color: #303f9f;
+    background: linear-gradient(17deg, rgba(247, 247, 247, 1), rgba(9, 39, 246, 0.39) 100%);
     border-radius: 13px;
     width: 100px;
     outline: none;
     box-shadow: 1px 1px 10px #C0C0C0;
     padding: 8px;
     margin: 10px 0px;
-    color: white;
-    font-size:15px;
+    color: black;
+    font-size: 15px;
 }
 
 .red {

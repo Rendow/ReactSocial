@@ -52,7 +52,7 @@
 
 .textarea {
     background: #F5F5F5;
-    border: #303f9f solid 2px;
+    border: rgba(48, 63, 159, 0.49) solid 1px;
     font-size: 14px;
     border-radius: 13px;
     padding: 7px 5px 5px 10px;
