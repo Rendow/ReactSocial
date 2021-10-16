@@ -37,7 +37,7 @@ export const User: React.FC<UserPropsType> = ({users,...props}) => {
                 </span>
             <span className={s.userInfoWrap}>
                     <span style={{cursor: 'default'}}>
-                        <div> {users.name}</div>
+                        <div style={{wordWrap: 'break-word'}}> {users.name}</div>
 
                         {!!array && array.length < 16
                             ? <div className={s.status}> {checkedStatus}</div>

@@ -14,7 +14,6 @@ import UsersContainer from "./components/Users/UsersContainer";
 import Error404 from './components/common/404/Error404';
 
 
-const News = lazy(() => import('./components/News/News'));
 const ChatPage = lazy(() => import('./components/Chat/ChatPage'));
 const Settings = lazy(() => import('./components/Settings/Settings'));
 
@@ -57,7 +56,6 @@ class App extends React.Component<HeaderContainerType, {}> {
                                 <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                                 <Route path='/users' render={() => <UsersContainer/>}/>
                                 <Route path='/login' render={() => <Login />}/>
-                                <Route path='/news' render={() => <News/>}/>
                                 <Route path='/chat' render={() => <ChatPage/>}/>
                                 <Route path='/settings' render={() => <Settings/>}/>
                                 <Route render={() => <Error404/>}/>

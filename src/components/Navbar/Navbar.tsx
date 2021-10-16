@@ -23,9 +23,6 @@ function Navbar() {
                 <NavLink to='/chat' activeClassName={s.active}>Chat</NavLink>
             </div>
             <div className={s.item}>
-                <NavLink to='/news' activeClassName={s.active}>News</NavLink>
-            </div>
-            <div className={s.item}>
                 <NavLink to='/settings' activeClassName={s.active}>Settings</NavLink>
             </div>
         </nav>
