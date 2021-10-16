@@ -5,12 +5,13 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    flex-direction: column;
 }
 
 .userWrap {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    /*justify-content: space-around;*/
     flex-wrap: wrap;
 
     font-weight: 600;
@@ -24,31 +25,54 @@
     border: 1px solid #e2e2e2;
     box-shadow: 5px 5px #e2e2e2;
 }
-.userInfoWrap{
+.userInfoWrap {
     display: flex;
     flex-direction: column;
-
+    text-align: center;
+    margin-left: 10px;
+    flex: 1 0;
 }
+
 .photo {
     width: 100px;
+    border-radius: 50%;
 }
-.pagination{
+
+.status {
+    font-size: 14px;
+    justify-content: center;
+    display: flex;
+    font-style: italic;
+}
+
+.button {
+
+}
+
+.pagination {
     cursor: pointer;
     font-size: 16px;
     margin: 0 0 5px 5px;
 }
-.selectedPage{
+
+.selectedPage {
     font-weight: 900;
 }
 
-.user{
+.user {
     margin-bottom: 5px;
 }
 
-.form{
+.form {
     display: flex;
     margin: 10px 0px 10px 30px;
     align-items: center;
     justify-content: space-around;
     width: 550px;
+}
+
+.users {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }

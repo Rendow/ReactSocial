@@ -19,10 +19,10 @@ export const User: React.FC<UserPropsType> = ({users,...props}) => {
 
     let strOne,  strTwo
     const array = checkedStatus.split('')
-    if (checkedStatus.length > 20) {
+    if (checkedStatus.length >= 16) {
         const array = checkedStatus.split('')
         const result = [], length = Math.floor(array.length / 2);
-        while(array.length) result.push(array.splice(0,length));
+        while (array.length) result.push(array.splice(0, length));
 
         strOne = result[0].join('')
         strTwo = result[1].join('')
@@ -31,40 +31,38 @@ export const User: React.FC<UserPropsType> = ({users,...props}) => {
     return (
         <div className={s.userWrap}>
             <span>
-                    <div>
                         <NavLink to={'/profile/' + users.id}>
                             <img src={users.photos.small != null ? users.photos.small : logo} className={s.photo}/>
                         </NavLink>
-                </div>
-
                 </span>
             <span className={s.userInfoWrap}>
-                    <span style={{cursor:'default'}}>
+                    <span style={{cursor: 'default'}}>
                         <div> {users.name}</div>
 
-                        {!!array && array.length < 20
-                            ?  <div  style={{fontStyle:'italic', fontSize:'16px'}}> {checkedStatus}</div>
-                            : <div  style={{fontStyle:'italic', fontSize:'16px'}}>
+                        {!!array && array.length < 16
+                            ? <div className={s.status}> {checkedStatus}</div>
+                            : <div className={s.status}>
                                 {strOne} <br/> {strTwo}
                             </div>}
                     </span>
 
-                         <div  style={{marginLeft:'-3px'}}>
+                         <div className={s.button}>
 
-                        {  users.followed
+                        {users.followed
                             ? <SuperButton
-                                style={{letterSpacing:'1px', fontSize:'14px'}}
+                                style={{letterSpacing: '1px', fontSize: '14px'}}
                                 disabled={followingInProgress.some(id => id === users.id)}
-                                onClick={() => {dispatch(unFollow(users.id))}}>
+                                onClick={() => {
+                                    dispatch(unFollow(users.id))
+                                }}>
                                 UNFOLLOW
                             </SuperButton>
-                            : <SuperButton  style={{letterSpacing:'1px', fontSize:'14px'}}
-                                            disabled={followingInProgress.some(id => id === users.id)}
+                            : <SuperButton style={{letterSpacing: '1px', fontSize: '14px'}}
+                                           disabled={followingInProgress.some(id => id === users.id)}
                                             onClick={() => {dispatch(follow(users.id))}}>
                                 FOLLOW
                             </SuperButton>
                         }
-
                     </div>
                 </span>
         </div>

@@ -62,7 +62,6 @@
     margin: 6px 40px 0 0;
     overflow: hidden;
 }
-
 .textarea:focus {
     box-shadow: 1px 1px 10px #C0C0C0;
 }

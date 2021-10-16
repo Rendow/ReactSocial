@@ -9,21 +9,23 @@
     margin: 10px 0;
 
     display: flex;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
 }
+
 .img {
     flex: 0.2;
 }
 
-.messageWrap {
+.message {
     margin: 15px 0 0 15px;
-    flex: 0.5;
+    flex: 0.8;
     text-align: left;
 }
 
 .like {
     margin: 8px 0 0 8px;
 }
+
 .content img {
     width: 70px;
     height: 60px;

@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import s from './Chat.module.css'
 import SuperButton from "../common/Button/SuperButton";
 import {Avatar} from "@material-ui/core";
+import {NavLink} from "react-router-dom";
+import logo from "../Users/img/logo2.png";
 
 
 type ChatMessageType = {
@@ -18,7 +20,6 @@ function ChatPage() {
     const [wsChannel, setWsChannel] = useState<WebSocket | null>(null)
 
     useEffect(() => {
-        console.log('chat page')
         let ws: WebSocket
 
         const closeHandler = () => {
@@ -61,7 +62,6 @@ function Messages({wsChannel}: WsChannelType) {
     const [messages, setMessages] = useState<ChatMessageType[]>([])
 
     useEffect(() => {
-        console.log('Messages ')
         const messageHandler = (e: MessageEvent) => {
             let newMessage = JSON.parse(e.data)
             setMessages((prevMessages) => [...prevMessages, ...newMessage])
@@ -75,8 +75,8 @@ function Messages({wsChannel}: WsChannelType) {
     }, [wsChannel])
 
 
-     return (
-         <div className={s.messages}>
+    return (
+        <div className={s.messages}>
              {messages.map((m, index) => <Message
                  key={index} message={m.message} userId={m.userId}
                  userName={m.userName} photo={m.photo}/>)}
@@ -97,9 +97,9 @@ function Messages({wsChannel}: WsChannelType) {
              </div>
 
              <div className={s.message}>
-                 <div>
+                 <NavLink to={'/profile/' + props.userId}>
                      <Avatar src={props.photo}/>
-                 </div>
+                 </NavLink>
                  <p> {message}</p>
              </div>
 
@@ -112,8 +112,6 @@ function AddMessageForm({wsChannel}: WsChannelType) {
     const [readyStatus, setReadyStatus] = useState<'pending' | 'ready'>('pending')
 
     useEffect(() => {
-        console.log('AddMessageForm ')
-
         const openHandler = () => {
             setReadyStatus('ready')
         }

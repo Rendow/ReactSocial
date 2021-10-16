@@ -79,10 +79,9 @@ export const Users : React.FC<UsersPropsType> = (
         <div className={s.wrap}>
 
             <UsersSearch onFilterChanged={onFilterChanged}/>
+            <div className={s.users}>{users.map(u => <User users={u} key={u.id}/>)}</div>
 
-            {users.map(u => <User users={u} key={u.id} />)}
-
-                <Paginator
+            <Paginator
                 currentPage={currentPage}
                 onPageChanged={onPageChanged}
                 totalItemsCount={totalUsersCount}
