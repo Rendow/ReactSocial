@@ -1,23 +1,30 @@
 import React from "react";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {MyPostsMapDispatchToPropsType, MyPostsMapStateToPropsType} from "./MyPostsContainer";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {FormDataType} from "../../Login/Login";
 import {maxLengthCreator, minLengthCreator, required} from "../../../utils/validators/validators";
 import {Textarea} from "../../common/FormsControl/FormsControls";
 import SuperButton from "../../common/Button/SuperButton";
+import {useDispatch, useSelector} from "react-redux";
+import {ReduxStateType} from "../../../redux/redux-store";
+import {addPostCreator} from "../../../redux/propfile-reducer";
 
 
-export type MyPostsPropsType = MyPostsMapStateToPropsType & MyPostsMapDispatchToPropsType
 
-const MyPosts = React.memo((props: MyPostsPropsType) => {
+
+type FormDataType = {
+    newPostText: string
+}
+
+const MyPosts = React.memo(() => {
+    const {posts,newPostText} = useSelector((state:ReduxStateType) => state.profilePage)
+    const dispatch = useDispatch()
 
     let PostsElements =
-        props.posts.map(post => <Post key={post.id} message={post.messages} like={post.likesCount}/>)
+        posts.map(post => <Post key={post.id} message={post.messages} like={post.likesCount}/>)
 
-    let addPost = (text: any) => {
-        props.onClick(text.newPostText)
+    let addPost = (text:FormDataType) => {
+        dispatch(addPostCreator(text.newPostText))
     }
 
     return (
@@ -48,6 +55,7 @@ const AddNewPostForm = (props:InjectedFormProps<FormDataType> ) => {
                     name={'newPostText'}
                     component={Textarea}
                     validate={[required, maxLength, minLength]}
+
                 />
             </div>
             <SuperButton>

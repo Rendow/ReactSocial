@@ -9,8 +9,7 @@ import {ReduxStateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
 import s from "./Login.module.css";
 
-
-export type FormDataType = {
+ type FormDataType = {
     email:string
     password:string
     captchaURL:string | null

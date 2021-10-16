@@ -1,10 +1,10 @@
 import React, {useEffect} from "react";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import s from './Profile.module.css'
 import {ProfileType} from "../../redux/propfile-reducer";
 import {Redirect} from "react-router-dom";
 import {FormType} from "./ProfileInfo/ContentForm/ContentForm";
+import MyPosts from "./MyPosts/MyPosts";
 
 type PropsType = {
     profile: ProfileType | null
@@ -38,7 +38,7 @@ function Profile(props:PropsType) {
             />
 
             <div className={s.myPostWrap}>
-                <MyPostsContainer/>
+                <MyPosts/>
             </div>
         </div>
 

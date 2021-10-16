@@ -90,9 +90,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
             }
             return {
                 ...state,
-                newPostText: '',
                 posts: [newPost,...state.posts],
-
+                newPostText: '',
             }
 
         case SET_STATUS:

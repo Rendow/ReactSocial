@@ -15,7 +15,7 @@ import Error404 from './components/common/404/Error404';
 
 
 const News = lazy(() => import('./components/News/News'));
-const Music = lazy(() => import('./components/Music/Music'));
+const ChatPage = lazy(() => import('./components/Chat/ChatPage'));
 const Settings = lazy(() => import('./components/Settings/Settings'));
 
 type HeaderContainerType  =  MapStateToPropsType & {
@@ -58,7 +58,7 @@ class App extends React.Component<HeaderContainerType, {}> {
                                 <Route path='/users' render={() => <UsersContainer/>}/>
                                 <Route path='/login' render={() => <Login />}/>
                                 <Route path='/news' render={() => <News/>}/>
-                                <Route path='/music' render={() => <Music/>}/>
+                                <Route path='/chat' render={() => <ChatPage/>}/>
                                 <Route path='/settings' render={() => <Settings/>}/>
                                 <Route render={() => <Error404/>}/>
                             </Switch>

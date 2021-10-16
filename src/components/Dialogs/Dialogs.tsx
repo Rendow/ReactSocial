@@ -4,7 +4,6 @@ import Message from './Message/Message';
 import {DialogsMapDispatchToPropsType, DialogsMapStateToPropsType} from "./DialogsContainer";
 import React, {useEffect, useState} from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {FormDataType} from "../Login/Login";
 import {Textarea} from "../common/FormsControl/FormsControls";
 import {maxLengthCreator, minLengthCreator, required} from "../../utils/validators/validators";
 import SuperButton from "../common/Button/SuperButton";
@@ -13,10 +12,10 @@ import SuperButton from "../common/Button/SuperButton";
 export type DialogType = DialogsMapStateToPropsType & DialogsMapDispatchToPropsType
 
 function Dialogs(props: DialogType) {
+
     useEffect(() => {
         document.title = 'Messages'
     },[])
-
 
 
     let dialogsElements = props.dialogsPage.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
@@ -46,7 +45,7 @@ function Dialogs(props: DialogType) {
 let maxLength = maxLengthCreator(40)
 let minLength = minLengthCreator(4)
 
-const AddMessageForm = (props: InjectedFormProps<FormDataType> ) => {
+const AddMessageForm = (props: InjectedFormProps ) => {
     const [text,setText] = useState('asD12')
 
     return  <div>
@@ -68,7 +67,7 @@ const AddMessageForm = (props: InjectedFormProps<FormDataType> ) => {
         </form>
     </div>
 }
-export const AddMessageFormRedux = reduxForm<FormDataType>({form: 'dialogAddMessageForm'})(AddMessageForm)
+export const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'})(AddMessageForm)
 
 export default Dialogs
 
