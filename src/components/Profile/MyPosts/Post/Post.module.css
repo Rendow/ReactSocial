@@ -11,15 +11,17 @@
     display: flex;
     flex-wrap:wrap;
 }
-.img{
+.img {
     flex: 0.2;
 }
-.message{
+
+.messageWrap {
     margin: 15px 0 0 15px;
     flex: 0.5;
     text-align: left;
 }
-.like{
+
+.like {
     margin: 8px 0 0 8px;
 }
 .content img {

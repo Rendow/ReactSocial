@@ -46,7 +46,7 @@ let maxLength = maxLengthCreator(40)
 let minLength = minLengthCreator(4)
 
 const AddMessageForm = (props: InjectedFormProps ) => {
-    const [text,setText] = useState('asD12')
+    const [text, setText] = useState('')
 
     return  <div>
         <form onSubmit={props.handleSubmit}>

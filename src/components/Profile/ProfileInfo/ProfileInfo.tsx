@@ -129,21 +129,25 @@ const Content = (props:ContentType) => {
         </div>
         <div  className={s.fragmentWrap}>
             {!editMode
-                ? <div className={s.detailsWrap}  onClick={()=>{setEditMode(true)}}>
+                ? <div className={s.detailsWrap} onClick={() => {
+                    setEditMode(true)
+                }}>
 
                     <div className={s.highlight}>
                         <span>Show contacts</span>
                     </div>
                 </div>
-                : <div >
-                    <div className={s.detailsWrap}  onClick={() => {setEditMode(false)}}>
+                : <div>
+                    <div className={s.detailsWrap} onClick={() => {
+                        setEditMode(false)
+                    }}>
 
-                        <div className={s.highlight}>
+                        <div style={{paddingLeft: '94px'}} className={s.highlight}>
                             <span> Hide contacts</span>
                         </div>
 
                     </div>
-                    <p style={{textAlign:'initial'}}> Contacts: {
+                    <p style={{textAlign: 'initial'}}> Contacts: {
                         Object
                             .entries(props.profile?.contacts ? props.profile?.contacts : {})
                             .map((key, value) => {
