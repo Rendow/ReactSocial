@@ -13,9 +13,14 @@
     box-shadow:0 0 10px rgba(40, 55, 141 , 0.1);
     border-radius: 7px;
 }
-.header{
+.header {
     color: #440c0c;
     font-size: 16px;
     margin-left: 2px;
     margin-bottom: 8px;
+}
+
+.my-post-input {
+    width: inherit;
+    margin: 8px 0 0 0;
 }

@@ -165,7 +165,4 @@ const Content = (props:ContentType) => {
 }
 
 
-
-
-
 export default ProfileInfo;

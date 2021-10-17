@@ -50,7 +50,7 @@ export type ProfilePageType = {
 
 export type ProfileActionType = AddPostActionType | ProfileUpdateModeType | SetUsersProfileActionType | SetStatusActionType | DeletePostActionType | SetPhotoActionType
 
-type AddPostActionType = ReturnType<typeof addPostCreator>
+export type AddPostActionType = ReturnType<typeof addPostCreator>
 type SetUsersProfileActionType = ReturnType<typeof setUsersProfile>
 type SetStatusActionType = ReturnType<typeof setStatus>
 type DeletePostActionType = ReturnType<typeof deletePost>

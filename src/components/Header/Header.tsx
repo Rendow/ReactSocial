@@ -14,6 +14,7 @@ type HeaderPropsType = {
 
 function Header(props:HeaderPropsType) {
     const theme = useSelector<ReduxStateType,string>((state) => state.app.theme)
+
     let wrapClass = theme === 'light'? s.header  : s.header +' '+ s.opacity
 
     return (
@@ -23,9 +24,17 @@ function Header(props:HeaderPropsType) {
                 <div className={s.loginBlock}>
                     {props.isAuth
                         ? <div>
-                            <NavLink  to={'/profile'}> {props.login} </NavLink>
+                            <NavLink to={'/profile'}> {props.login} </NavLink>
                             <SuperButton
-                                className={s.logoutButton}
+                                style={{
+                                    fontSize: '12px',
+                                    width: '60px',
+                                    margin: '0 0 0 8px',
+                                    padding: '4px',
+                                    background: '#303f9f',
+                                    color: 'white',
+                                }}
+                                className={s.outButton}
                                 onClick={props.logout}>
                                 Log out
                             </SuperButton>

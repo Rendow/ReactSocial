@@ -12,7 +12,7 @@ export type DialogsType = {
     name: string
 }
 export type DialogActionType = SendMessageActionType
-type SendMessageActionType = ReturnType<typeof sendMessageCreator>
+export type SendMessageActionType = ReturnType<typeof sendMessageCreator>
 
 
 let initialState = {
@@ -45,8 +45,8 @@ export const dialogsReducer = (state: InitialStateType = initialState, action: D
     }
 }
 
-export const sendMessageCreator = (newMessageBody:any) => {
-   return {
+export const sendMessageCreator = (newMessageBody: string) => {
+    return {
         type: SEND_MESSAGE, newMessageBody
     } as const
 }
