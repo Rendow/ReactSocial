@@ -1,30 +1,28 @@
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from './Message/Message';
-import {DialogsMapDispatchToPropsType, DialogsMapStateToPropsType} from "./DialogsContainer";
-import React, {useEffect, useState} from "react";
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {Textarea} from "../common/FormsControl/FormsControls";
-import {maxLengthCreator, minLengthCreator, required} from "../../utils/validators/validators";
+import React, {useEffect} from "react";
 import SuperButton from "../common/Button/SuperButton";
+import {FormControl, FormGroup} from "@material-ui/core";
+import {useFormik} from "formik";
+import {useDispatch, useSelector} from "react-redux";
+import {ReduxStateType} from "../../redux/redux-store";
+import {sendMessageCreator} from "../../redux/dialogs-reducer";
+import {compose} from "redux";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 
-export type DialogType = DialogsMapStateToPropsType & DialogsMapDispatchToPropsType
-
-function Dialogs(props: DialogType) {
+function Dialogs() {
 
     useEffect(() => {
         document.title = 'Messages'
-    },[])
+    }, [])
 
+    const dialogsPage = useSelector((state: ReduxStateType) => state.dialogsPage)
 
-    let dialogsElements = props.dialogsPage.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
-    let messagesElements = props.dialogsPage.messages.map(message => <Message key={message.id} message={message.messages}/>)
-
-
-    let sendMessage = (text: any ) => {
-        props.sendMessage(text.newMessageBody)
-    }
+    let dialogsElements = dialogsPage.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name}
+                                                                        id={dialog.id}/>)
+    let messagesElements = dialogsPage.messages.map(message => <Message key={message.id} message={message.messages}/>)
 
     return (
         <div className={s.dialogs}>
@@ -34,42 +32,59 @@ function Dialogs(props: DialogType) {
             <div className={s.messages}>
                 {messagesElements}
                 <div>
-                    <AddMessageFormRedux onSubmit={sendMessage}/>
+                    <AddMessageFormik/>
                 </div>
             </div>
-
         </div>
     )
 }
 
-let maxLength = maxLengthCreator(40)
-let minLength = minLengthCreator(4)
-
-const AddMessageForm = (props: InjectedFormProps ) => {
-    const [text, setText] = useState('')
-
-    return  <div>
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field
-                    value={text}
-                    onChange={(e: any) => {setText(e?.currentTarget.value)}}
-                    placeholder={'Enter your message'}
-                    style={{margin: '10px 0'}}
-                    validate={[required, maxLength, minLength]}
-                    name={'newMessageBody'} component={Textarea}/>
-            </div>
-            <SuperButton
-                onClick={()=>{setText('')}}
-                style={{width:'120px'}}>
-                Send message
-            </SuperButton>
-        </form>
-    </div>
+type FormikErrorType = {
+    text?: string
 }
-export const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'})(AddMessageForm)
+const AddMessageFormik = () => {
 
-export default Dialogs
+    const dispatch = useDispatch()
+
+    const formik = useFormik({
+        initialValues: {
+            text: '',
+        },
+        onSubmit: (values, actions) => {
+            dispatch(sendMessageCreator(values.text))
+            actions.setFieldValue('text', '', false)
+        },
+        validate: (values) => {
+            const errors: FormikErrorType = {}
+            if (values.text.length < 2) {
+                errors.text = 'Message must be more than 2 characters'
+            }
+            return errors
+        },
+    })
+
+
+    return <form onSubmit={formik.handleSubmit}>
+        <FormControl style={{display: 'flex', flex: '1 0'}}>
+            <FormGroup>
+                            <textarea
+                                className={s.textarea}
+                                placeholder={'Enter your message'}
+                                {...formik.getFieldProps('text')}
+                            />
+
+                {formik.touched.text && formik.errors.text
+                    ? <div style={{color: 'red'}}>{formik.errors.text}</div>
+                    : null}
+
+                <SuperButton style={{width: '155px'}} type={'submit'}> Send message</SuperButton>
+            </FormGroup>
+        </FormControl>
+    </form>
+
+}
+
+export default compose<React.ComponentType>(WithAuthRedirect)(Dialogs)
 
 
 

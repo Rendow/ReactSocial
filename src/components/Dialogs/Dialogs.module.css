@@ -15,8 +15,25 @@
 .messages {
     flex: 1;
     padding: 20px;
-    margin: 15px ;
+    margin: 15px;
 
-    box-shadow:0 0 10px rgba(40, 55, 141 , 0.1);
+    box-shadow: 0 0 10px rgba(40, 55, 141, 0.1);
     border-radius: 7px;
+}
+
+.textarea {
+    background: #F5F5F5;
+    border: rgba(48, 63, 159, 0.49) solid 1px;
+    font-size: 14px;
+    border-radius: 13px;
+    padding: 7px 5px 5px 10px;
+    height: 40px;
+    width: 30%;
+    resize: none;
+    margin: 8px 40px 0 0;
+    overflow: hidden;
+}
+
+.textarea:focus {
+    box-shadow: 1px 1px 10px #C0C0C0;
 }

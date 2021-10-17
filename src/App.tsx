@@ -2,7 +2,6 @@ import React, {lazy, Suspense} from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
 import {HashRouter, Redirect, Route, Switch} from "react-router-dom";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import {connect, Provider} from "react-redux";
@@ -12,6 +11,7 @@ import {Preloader} from "./components/common/Preloader/Preloader";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import Error404 from './components/common/404/Error404';
+import Dialogs from "./components/Dialogs/Dialogs";
 
 
 const ChatPage = lazy(() => import('./components/Chat/ChatPage'));
@@ -53,7 +53,7 @@ class App extends React.Component<HeaderContainerType, {}> {
                             <Switch>
                                 <Route path='/' exact render={() => <Redirect to={'profile'}/>}/>
                                 <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                                <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                                <Route path='/dialogs' render={() => <Dialogs/>}/>
                                 <Route path='/users' render={() => <UsersContainer/>}/>
                                 <Route path='/login' render={() => <Login />}/>
                                 <Route path='/chat' render={() => <ChatPage/>}/>

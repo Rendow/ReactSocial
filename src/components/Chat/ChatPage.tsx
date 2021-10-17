@@ -4,6 +4,10 @@ import SuperButton from "../common/Button/SuperButton";
 import {Avatar} from "@material-ui/core";
 import {NavLink} from "react-router-dom";
 import logo from "../Users/img/logo2.png";
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import Dialogs from "../Dialogs/Dialogs";
 
 
 type ChatMessageType = {
@@ -156,5 +160,5 @@ function AddMessageForm({wsChannel}: WsChannelType) {
     </div>;
 }
 
-export default ChatPage
 
+export default compose<React.ComponentType>(WithAuthRedirect)(ChatPage)
