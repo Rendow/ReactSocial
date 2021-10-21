@@ -19,7 +19,7 @@ const MyPosts = React.memo(() => {
                 <AddMessageFormik placeholder={'Create new post'}
                                   buttonWidth={'initial'}
                                   addPost={addPostCreator}
-                                  textareaClass={s.myPostInput}
+                                //  textareaClass={s.myPstInput}
                                   style={{
                                       width: 'inherit',
                                       margin: '8px 0 0 0',

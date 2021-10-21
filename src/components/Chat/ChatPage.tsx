@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {MutableRefObject, RefObject, useEffect, useRef, useState} from 'react';
 import s from './Chat.module.css'
 import SuperButton from "../common/Button/SuperButton";
 import {Avatar} from "@material-ui/core";
@@ -65,6 +65,7 @@ function ChatPage() {
 
 function Messages({wsChannel}: WsChannelType) {
     const [messages, setMessages] = useState<ChatMessageType[]>([])
+    let ref = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
 
@@ -73,8 +74,7 @@ function Messages({wsChannel}: WsChannelType) {
             setMessages((prevMessages) => [...prevMessages, ...newMessage])
 
             //авто скролл вниз
-            let element = document.getElementById('chatlogs');
-            if (element) element.scrollTop = element.scrollHeight;
+            if (ref && ref.current) ref.current.scrollTop = ref.current.scrollHeight;
         }
         wsChannel?.addEventListener('message', messageHandler)
 
@@ -86,7 +86,7 @@ function Messages({wsChannel}: WsChannelType) {
 
 
     return (
-        <div id={'chatlogs'} className={s.messages}>
+        <div ref={ref} className={s.messages}>
             {messages.map((m, index) => <Message
                 key={index} message={m.message} userId={m.userId}
                 userName={m.userName} photo={m.photo}/>)}

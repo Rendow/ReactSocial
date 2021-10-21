@@ -34,7 +34,7 @@ function Header(props:HeaderPropsType) {
                                     background: '#303f9f',
                                     color: 'white',
                                 }}
-                                className={s.outButton}
+                                // className={s.outButton}
                                 onClick={props.logout}>
                                 Log out
                             </SuperButton>

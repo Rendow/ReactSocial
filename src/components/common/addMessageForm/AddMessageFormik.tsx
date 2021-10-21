@@ -37,7 +37,7 @@ export const AddMessageFormik = (props: AddMessageFormikType) => {
         },
     })
 
-    let textareaClass = props.textareaClass ? s.textarea + ' ' + props.textareaClass : s.textarea
+    let textareaClass = props.textareaClass ? props.textareaClass + ' ' + s.textarea : s.textarea
 
     return <form onSubmit={formik.handleSubmit}>
         <FormControl style={{display: 'flex', flex: '1 0'}}>
@@ -54,6 +54,7 @@ export const AddMessageFormik = (props: AddMessageFormikType) => {
                     : null}
 
                 <SuperButton style={{width: props.buttonWidth}}
+                    //  className={s.btn}
                              type={'submit'}> Send message</SuperButton>
             </FormGroup>
         </FormControl>
