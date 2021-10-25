@@ -9,8 +9,9 @@ type SubscriberType = (messages: ChatMessageType[]) => void
 
 let subscribers = [] as SubscriberType[]
 
-let ws: WebSocket
+let ws: WebSocket | null = null
 
+//в removeEventListener нужно передавать ту же функци, что и в addEventListener - поэтому выносим в отдельную переменную
 const closeHandler = () => {
     setTimeout(createChannel, 3000)
 }
@@ -21,6 +22,7 @@ function createChannel() {
 
     ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
     ws.addEventListener('close', closeHandler)
+    ws.addEventListener('message', messageHandler)
 
 }
 
@@ -30,6 +32,15 @@ const messageHandler = (e: MessageEvent) => {
 }
 
 export const ChatApi = {
+    start() {
+        createChannel()
+    },
+    stop() {
+        subscribers = []
+        ws?.removeEventListener('close', closeHandler)
+        ws?.removeEventListener('message', messageHandler)
+        ws?.close()
+    },
     subscribe(callback: SubscriberType) {
         subscribers.push(callback)
         return () => {
@@ -40,5 +51,8 @@ export const ChatApi = {
         return () => {
             subscribers = subscribers.filter(s => s !== callback)
         }
+    },
+    sendMessage(message: string) {
+        ws?.send(message)
     },
 }

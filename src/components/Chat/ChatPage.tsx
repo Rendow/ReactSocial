@@ -5,9 +5,11 @@ import {Avatar} from "@material-ui/core";
 import {NavLink} from "react-router-dom";
 import logo from "../Users/img/logo2.png";
 import {compose} from "redux";
-import {connect} from "react-redux";
+import {connect, useDispatch, useSelector} from "react-redux";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import Dialogs from "../Dialogs/Dialogs";
+import {sendMessage, startMessagesListening, stopMessagesListening} from "../../redux/chat-reducer";
+import {ReduxStateType} from "../../redux/redux-store";
 
 
 export type ChatMessageType = {
@@ -21,32 +23,15 @@ type WsChannelType = {
 }
 
 function ChatPage() {
-    const [wsChannel, setWsChannel] = useState<WebSocket | null>(null)
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        let ws: WebSocket
-
-        //в removeEventListener нужно передавать ту же функци, что и в addEventListener - поэтому выносим в отдельную переменную
-        const closeHandler = () => {
-            setTimeout(createChannel, 3000)
-        }
-
-        function createChannel() {
-            ws?.removeEventListener('close', closeHandler)
-            ws?.close()
-
-            ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
-            ws.addEventListener('close', closeHandler)
-            setWsChannel(ws)
-        }
-
-        createChannel()
+        dispatch(startMessagesListening())
 
         return () => {
-            ws?.removeEventListener('close', closeHandler)
-            ws?.close()
+            dispatch(stopMessagesListening())
         }
-
     }, [])
 
     useEffect(() => {
@@ -55,35 +40,23 @@ function ChatPage() {
 
 
     return (
-
         <div className={s.chatWrap}>
-            <Messages wsChannel={wsChannel}/>
-            <AddMessageForm wsChannel={wsChannel}/>
+            <Messages/>
+            <AddMessageForm/>
         </div>
     )
 }
 
 
-function Messages({wsChannel}: WsChannelType) {
-    const [messages, setMessages] = useState<ChatMessageType[]>([])
+function Messages() {
+    const messages = useSelector((state: ReduxStateType) => state.chat.messages)
+
     let ref = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
-
-        const messageHandler = (e: MessageEvent) => {
-            let newMessage = JSON.parse(e.data)
-            setMessages((prevMessages) => [...prevMessages, ...newMessage])
-
-            //авто скролл вниз
-            if (ref && ref.current) ref.current.scrollTop = ref.current.scrollHeight;
-        }
-        wsChannel?.addEventListener('message', messageHandler)
-
-        return () => {
-            wsChannel?.removeEventListener('message', messageHandler)
-        }
-
-    }, [wsChannel])
+        //авто скролл вниз
+        if (ref && ref.current) ref.current.scrollTop = ref.current.scrollHeight;
+    }, [messages])
 
 
     return (
@@ -118,27 +91,17 @@ function Messages({wsChannel}: WsChannelType) {
      );
  }
 
-function AddMessageForm({wsChannel}: WsChannelType) {
+function AddMessageForm() {
+    const messages = useSelector((state: ReduxStateType) => state.chat.messages)
+    const dispatch = useDispatch()
+
     const [message, setMessage] = useState('')
     const [readyStatus, setReadyStatus] = useState<'pending' | 'ready'>('pending')
 
-    useEffect(() => {
-        const openHandler = () => {
-            setReadyStatus('ready')
-        }
-
-        wsChannel?.addEventListener('open', openHandler)
-
-        return () => {
-            wsChannel?.removeEventListener('open', openHandler)
-        }
-
-    }, [wsChannel])
-
-    const sendMessage = () => {
+    const sendMessageHandler = () => {
         if (!message) return;
 
-        wsChannel?.send(message)
+        dispatch(sendMessage(message))
         setMessage('')
     }
 
@@ -146,7 +109,7 @@ function AddMessageForm({wsChannel}: WsChannelType) {
         if (!message) return;
 
         if (e?.key === 'Enter') {
-            wsChannel?.send(message)
+            dispatch(sendMessage(message))
             setMessage('')
         }
     }
@@ -156,8 +119,9 @@ function AddMessageForm({wsChannel}: WsChannelType) {
                   value={message} onChange={(e) => {
             setMessage(e.currentTarget.value)
         }}/>
-        <SuperButton style={{marginRight: '40px'}} disabled={readyStatus !== 'ready'}
-                     onClick={sendMessage}>Send </SuperButton>
+        <SuperButton style={{marginRight: '40px'}}
+            //disabled={readyStatus !== 'ready'}
+                     onClick={sendMessageHandler}>Send </SuperButton>
     </div>;
 }
 
