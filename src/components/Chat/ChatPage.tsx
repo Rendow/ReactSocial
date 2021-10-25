@@ -23,7 +23,6 @@ type WsChannelType = {
 }
 
 function ChatPage() {
-
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -92,11 +91,10 @@ function Messages() {
  }
 
 function AddMessageForm() {
-    const messages = useSelector((state: ReduxStateType) => state.chat.messages)
     const dispatch = useDispatch()
+    const status = useSelector((state: ReduxStateType) => state.chat.status)
 
     const [message, setMessage] = useState('')
-    const [readyStatus, setReadyStatus] = useState<'pending' | 'ready'>('pending')
 
     const sendMessageHandler = () => {
         if (!message) return;
@@ -119,8 +117,7 @@ function AddMessageForm() {
                   value={message} onChange={(e) => {
             setMessage(e.currentTarget.value)
         }}/>
-        <SuperButton style={{marginRight: '40px'}}
-            //disabled={readyStatus !== 'ready'}
+        <SuperButton style={{marginRight: '40px'}} disabled={status !== 'ready'}
                      onClick={sendMessageHandler}>Send </SuperButton>
     </div>;
 }
