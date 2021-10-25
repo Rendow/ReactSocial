@@ -7,15 +7,17 @@ import {AuthActionType, authReducer} from "./auth-reducer";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import {reducer as formReducer} from 'redux-form'
 import {AppActionType, appReducer} from "./app-reducer";
+import {ChatActionType, chatReducer} from "./chat-reducer";
 
 export const rootReducer = combineReducers({
     sidebar: sidebarReducer,
     dialogsPage: dialogsReducer,
     profilePage: profileReducer,
     usersPage: usersReducer,
-    auth:authReducer,
-    app:appReducer,
-    form:formReducer
+    auth: authReducer,
+    app: appReducer,
+    form: formReducer,
+    chat: chatReducer,
 })
 
 //@ts-ignore
@@ -32,7 +34,13 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMid
 // @ts-ignore
 window.store = store
 
-export type ReduxActionType = AuthActionType | UsersActionType | DialogActionType | ProfileActionType | AppActionType
-export type AppThunkType <ReturnType = void> = ThunkAction<ReturnType, ReduxStateType,unknown, ReduxActionType>
+export type ReduxActionType =
+    AuthActionType
+    | UsersActionType
+    | DialogActionType
+    | ProfileActionType
+    | AppActionType
+    | ChatActionType
+export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, ReduxStateType, unknown, ReduxActionType>
 
 export default store
