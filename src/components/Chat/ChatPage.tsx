@@ -26,6 +26,7 @@ function ChatPage() {
     useEffect(() => {
         let ws: WebSocket
 
+        //в removeEventListener нужно передавать ту же функци, что и в addEventListener - поэтому выносим в отдельную переменную
         const closeHandler = () => {
             setTimeout(createChannel, 3000)
         }
