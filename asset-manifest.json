@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/ReactSocial/static/css/main.110d0b69.chunk.css",
-    "main.js": "/ReactSocial/static/js/main.96a10fa5.chunk.js",
-    "main.js.map": "/ReactSocial/static/js/main.96a10fa5.chunk.js.map",
-    "runtime-main.js": "/ReactSocial/static/js/runtime-main.6339683f.js",
-    "runtime-main.js.map": "/ReactSocial/static/js/runtime-main.6339683f.js.map",
+    "main.js": "/ReactSocial/static/js/main.b209bd2e.chunk.js",
+    "main.js.map": "/ReactSocial/static/js/main.b209bd2e.chunk.js.map",
+    "runtime-main.js": "/ReactSocial/static/js/runtime-main.9ddbf0bc.js",
+    "runtime-main.js.map": "/ReactSocial/static/js/runtime-main.9ddbf0bc.js.map",
     "static/js/2.de7a86c0.chunk.js": "/ReactSocial/static/js/2.de7a86c0.chunk.js",
     "static/js/2.de7a86c0.chunk.js.map": "/ReactSocial/static/js/2.de7a86c0.chunk.js.map",
     "static/css/3.4fcf08ef.chunk.css": "/ReactSocial/static/css/3.4fcf08ef.chunk.css",
     "static/js/3.d90319b8.chunk.js": "/ReactSocial/static/js/3.d90319b8.chunk.js",
     "static/js/3.d90319b8.chunk.js.map": "/ReactSocial/static/js/3.d90319b8.chunk.js.map",
-    "static/css/4.475a3792.chunk.css": "/ReactSocial/static/css/4.475a3792.chunk.css",
-    "static/js/4.505eee22.chunk.js": "/ReactSocial/static/js/4.505eee22.chunk.js",
-    "static/js/4.505eee22.chunk.js.map": "/ReactSocial/static/js/4.505eee22.chunk.js.map",
+    "static/css/4.42d89e10.chunk.css": "/ReactSocial/static/css/4.42d89e10.chunk.css",
+    "static/js/4.93bd4a50.chunk.js": "/ReactSocial/static/js/4.93bd4a50.chunk.js",
+    "static/js/4.93bd4a50.chunk.js.map": "/ReactSocial/static/js/4.93bd4a50.chunk.js.map",
     "index.html": "/ReactSocial/index.html",
     "static/css/3.4fcf08ef.chunk.css.map": "/ReactSocial/static/css/3.4fcf08ef.chunk.css.map",
-    "static/css/4.475a3792.chunk.css.map": "/ReactSocial/static/css/4.475a3792.chunk.css.map",
+    "static/css/4.42d89e10.chunk.css.map": "/ReactSocial/static/css/4.42d89e10.chunk.css.map",
     "static/css/main.110d0b69.chunk.css.map": "/ReactSocial/static/css/main.110d0b69.chunk.css.map",
     "static/js/2.de7a86c0.chunk.js.LICENSE.txt": "/ReactSocial/static/js/2.de7a86c0.chunk.js.LICENSE.txt",
     "static/media/img.1c5b1442.webp": "/ReactSocial/static/media/img.1c5b1442.webp",
@@ -23,9 +23,9 @@
     "static/media/rocket33.bf84b78f.png": "/ReactSocial/static/media/rocket33.bf84b78f.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.6339683f.js",
+    "static/js/runtime-main.9ddbf0bc.js",
     "static/js/2.de7a86c0.chunk.js",
     "static/css/main.110d0b69.chunk.css",
-    "static/js/main.96a10fa5.chunk.js"
+    "static/js/main.b209bd2e.chunk.js"
   ]
 }
