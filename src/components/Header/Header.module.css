@@ -21,7 +21,8 @@
 .logo {
     display: flex;
     align-items: center;
-    margin-top: 5px;
+    /*margin-top: 5px;*/
+    height: 65px;
 }
 
 .brand {
@@ -34,11 +35,20 @@
     color: #0B3D91;
     margin: 0 0 0 15px;
 }
-.logo img{
+
+.logo img {
     width: 60px;
     height: 60px;
-    margin:0 0 0 10px;
+    margin: 0 0 0 10px;
 }
+
+.logoMove {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(152, 155, 164, 0.3);
+
+}
+
 a:visited {
     color: #28378d;
 }

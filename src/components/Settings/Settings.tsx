@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
 import {useDispatch, useSelector} from "react-redux";
@@ -13,6 +13,7 @@ import s from "./Settings.module.css";
         document.title = 'Settings'
     },[])
 
+     const [disable, setDisable] = useState(false)
      const dispatch = useDispatch()
      const theme = useSelector<ReduxStateType,string>((state) => state.app.theme)
 
@@ -20,14 +21,20 @@ import s from "./Settings.module.css";
      const title = theme === 'light'? 'Set rocket as wallpaper' : 'Remove rocket from wallpaper'
 
      const changeThemeHandler = () => {
+         if (theme === 'light') setDisable(true);
+
          dispatch(changeTheme(thisTheme))
          document.body.className = thisTheme
+
+         if (theme === 'light') setTimeout(() => {
+             setDisable(false)
+         }, 6000);
      }
 
     return (
         <div className={s.container}>
             <div>{title}</div>
-            <SuperButton onClick={changeThemeHandler}> Click</SuperButton>
+            <SuperButton disabled={disable} onClick={changeThemeHandler}> Click</SuperButton>
         </div>
     )
 }

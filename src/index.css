@@ -17,8 +17,8 @@ code {
   /*transition: .5s all ease-in;*/
 }
 
-dark {
-  transition: .5s all ease-in;
-  background: rgba(52, 58, 64, 0.69) url("https://storge.pic2.me/c/1360x800/727/5286d9de23e4c.jpg") no-repeat center center fixed;
-  background-size: cover;
+.dark {
+    transition: .5s all ease-in;
+    background: rgba(52, 58, 64, 0.69) url("https://storge.pic2.me/c/1360x800/727/5286d9de23e4c.jpg") no-repeat center center fixed;
+    background-size: cover;
 }

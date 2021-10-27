@@ -86,7 +86,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
             let newPost: PostsType = {
                 id: new Date().getTime(),
                 messages: action.newPostText,
-                likesCount: 0,
+                likesCount: Math.ceil(Math.random() * 100),
             }
             return {
                 ...state,
