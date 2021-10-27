@@ -1,0 +1,13 @@
+.container{
+    width: 50%;
+    box-shadow: 0 0 10px rgba(40, 55, 141, 0.1);
+    border-radius: 7px;
+    margin: 60px auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .btn:hover {
+        box-shadow: 10px 10px 10px rgba(126, 27, 27, 0.84);
+    }
+}

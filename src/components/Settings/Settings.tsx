@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {changeTheme} from "../../redux/app-reducer";
 import {ReduxStateType} from "../../redux/redux-store";
 import SuperButton from "../common/Button/SuperButton";
-import s from "./Settings.module.css";
+import s from "./Settings.module.scss";
 
 
  function Settings  () {
@@ -34,7 +34,7 @@ import s from "./Settings.module.css";
     return (
         <div className={s.container}>
             <div>{title}</div>
-            <SuperButton disabled={disable} onClick={changeThemeHandler}> Click</SuperButton>
+            <SuperButton className={s.btn} disabled={disable} onClick={changeThemeHandler}> Click</SuperButton>
         </div>
     )
 }

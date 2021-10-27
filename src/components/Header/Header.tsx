@@ -39,37 +39,29 @@ function Header(props:HeaderPropsType) {
 
     const ignition = () => {
         return new Promise<void>(res => {
-            imgRef.current?.animate({transform: 'rotate(2120deg)'}, 1000)
+            imgRef.current?.animate({transform: 'rotate(1400deg)'}, 500)
 
             setTimeout(() => {
                 res()
-            }, 1000)
+            }, 500)
         })
     }
     const start = () => {
         return new Promise<void>(res => {
+            let left = imgRef.current?.getBoundingClientRect().left
+            let top = imgRef.current?.getBoundingClientRect().top
             imgRef.current?.animate([
                 { // from
                     transform: 'rotate(90deg)',
-                    //  marginLeft:'10px',
-                    //  offsetDistance: '0%',
-                    left: '0',
-                    top: '0',
-                    boxShadow: '1px 1px 1px black',
-                    //borderRadius:'0%',
-
-                    //  easing: 'ease-in',
+                    left: left + 'px',
+                    top: top + 'px',
+                    boxShadow: '-3px 1px 1px rgba(126, 27, 27, 0.84)',
                 },
                 { // to
-                    transform: 'rotate(55deg)',
-                    // marginLeft:'260px',
-                    // offsetDistance: '100%',
-                    left: '990px',
-                    top: '900px',
-                    boxShadow: '10px 10px 10px black',
-                    // display:'none',
-                    //  borderRadius:'50%',
-                    // easing:  'ease-out' ,
+                    transform: 'rotate(60deg)',
+                    left: left && left + 990 + 'px',
+                    top: top && top + 900 + 'px',
+                    boxShadow: '-25px 15px 15px rgba(126, 27, 27, 0.84)',
                 }
             ], 5000)
 
