@@ -6,6 +6,7 @@ import {changeTheme} from "../../redux/app-reducer";
 import {ReduxStateType} from "../../redux/redux-store";
 import SuperButton from "../common/Button/SuperButton";
 import s from "./Settings.module.scss";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 
  function Settings  () {
@@ -39,5 +40,5 @@ import s from "./Settings.module.scss";
     )
 }
 
-export default  compose<React.ComponentType> (withRouter)(Settings)
+export default compose<React.ComponentType>(WithAuthRedirect)(Settings)
 

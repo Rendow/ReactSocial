@@ -3,10 +3,12 @@ import {sidebarReducer} from "./sidebar-reducer";
 import {DialogActionType, dialogsReducer} from "./dialogs-reducer";
 import {ProfileActionType, profileReducer} from "./propfile-reducer";
 import {UsersActionType, usersReducer} from "./users-reducer";
-import {AuthActionType, authReducer} from "./auth-reducer";
+import {AuthActionType, authReducer, authWatcherSaga} from "./auth-reducer";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import {reducer as formReducer} from 'redux-form'
-import {AppActionType, appReducer} from "./app-reducer";
+import {AppActionType, appReducer, appWatcherSaga} from "./app-reducer";
+import createSagaMiddleware from 'redux-saga'
+import {all} from 'redux-saga/effects';
 
 export const rootReducer = combineReducers({
     sidebar: sidebarReducer,
@@ -27,10 +29,19 @@ export type ReduxStateType = ReturnType<typeof rootReducer>
 // если переданное значение(Т) соотвествует ключ-массив аргументов, infer запишет этот тип в U и вернет его
 //https://habr.com/ru/company/alfa/blog/452620/
 export type InferActionTypes<T> = T extends { [keys: string]: (...args: any[]) => infer U } ? U : never
+const sagaMiddleWare = createSagaMiddleware()
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware, sagaMiddleWare)))
 // @ts-ignore
 window.store = store
+
+
+sagaMiddleWare.run(rootWatcher)
+
+function* rootWatcher() {
+    yield all([appWatcherSaga(), authWatcherSaga()])
+}
+
 
 export type ReduxActionType =
     AuthActionType

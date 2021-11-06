@@ -54,17 +54,18 @@ a:visited {
 }
 
 .loginBlock {
+    display: flex;
+    justify-content: space-around;
+    width: 155px;
     cursor: pointer;
     margin: 4px 30px 0 0;
     color: #28378d;
     font-weight: bold;
 }
 
-.outButton {
-    font-size: 12px;
-    width: 60px;
-    margin: 0 0 0 8px;
-    padding: 4px;
-    background: #303f9f;
-    color: white;
+.logout {
+    cursor: pointer;
+    margin: 4px 30px 0 0;
+    color: #28378d;
+    font-weight: bold;
 }

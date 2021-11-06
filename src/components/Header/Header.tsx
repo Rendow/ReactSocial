@@ -5,6 +5,7 @@ import logo from './logo/rocket33.png';
 import SuperButton from "../common/Button/SuperButton";
 import {useSelector} from "react-redux";
 import {ReduxStateType} from "../../redux/redux-store";
+import {ImExit} from "react-icons/all";
 
 type HeaderPropsType = {
     login: string | null
@@ -83,25 +84,20 @@ function Header(props:HeaderPropsType) {
                 <div className={s.logo}><img ref={imgRef} src={logo} alt=""/>
                     <div ref={divRef} className={s.brand}>SOCIAL NETWORK</div>
                 </div>
-                <div className={s.loginBlock}>
+                <div>
                     {props.isAuth
-                        ? <div>
+                        ? <div className={s.loginBlock}>
                             <NavLink to={'/profile'}> {props.login} </NavLink>
-                            <SuperButton
+                            <ImExit
                                 style={{
-                                    fontSize: '12px',
-                                    width: '60px',
-                                    margin: '0 0 0 8px',
-                                    padding: '4px',
-                                    background: '#303f9f',
-                                    color: 'white',
+                                    height: '25px',
+                                    width: '25px',
                                 }}
-                                // className={s.outButton}
-                                onClick={props.logout}>
-                                Log out
-                            </SuperButton>
+                                onClick={props.logout}
+                            />
+
                         </div>
-                        : <NavLink to={'/login'}> Login </NavLink>}
+                        : <NavLink className={s.logout} to={'/login'}> Login </NavLink>}
                 </div>
             </div>
         </header>

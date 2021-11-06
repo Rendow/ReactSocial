@@ -22,7 +22,7 @@ type UsersCommonType = {
     totalCount: number
     error: null | string
 }
-type MeResponseType = {
+export type MeResponseType = {
     id: number
     email: string
     login: string
