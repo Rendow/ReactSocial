@@ -57,7 +57,6 @@ export const Users : React.FC<UsersPropsType> = (
                 break
         }
 
-       // dispatch(getUsers(actualPage,usersOnPage,actualFilter))
         dispatch(getUsers({currentPage: actualPage, pageSize: usersOnPage, filter: actualFilter}))
 
     },[])

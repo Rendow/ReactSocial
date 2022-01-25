@@ -1,8 +1,4 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {authUser} from "./auth-reducer";
-
-const SEND_MESSAGE = 'DIALOGS/SEND_MESSAGE'
-
 
 export type MessagesType = {
     id: number
@@ -13,9 +9,6 @@ export type DialogsType = {
     id: number
     name: string
 }
-// export type DialogActionType = SendMessageActionType
-// export type SendMessageActionType = ReturnType<typeof sendMessageCreator>
-//
 
 const initialState = {
     dialogs: [
@@ -32,26 +25,7 @@ const initialState = {
         {id: 3, messages: 'Good'},
     ] as MessagesType[]
 }
-//export type InitialStateType = typeof initialState
 
-// export const dialogsReducer = (state: InitialStateType = initialState, action: DialogActionType):InitialStateType => {
-//
-//     switch (action.type) {
-//         case SEND_MESSAGE:
-//             let body = action.newMessageBody
-//             return {...state,
-//                 messages:[...state.messages,{id: new Date().getTime(), messages: body}]}
-//
-//         default:
-//             return state
-//     }
-// }
-//
-// export const sendMessageCreator = (newMessageBody: string) => {
-//     return {
-//         type: SEND_MESSAGE, newMessageBody
-//     } as const
-// }
 export const slice = createSlice({
     name: 'dialogs',
     initialState: initialState,
