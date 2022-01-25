@@ -7,6 +7,7 @@ import {ReduxStateType} from "../../redux/redux-store";
 import SuperButton from "../common/Button/SuperButton";
 import s from "./Settings.module.scss";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {getAppTheme} from "../../redux/selectors/app-selectors";
 
 
  function Settings  () {
@@ -16,7 +17,7 @@ import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
      const [disable, setDisable] = useState(false)
      const dispatch = useDispatch()
-     const theme = useSelector<ReduxStateType,string>((state) => state.app.theme)
+     const theme = useSelector(getAppTheme)
 
      const thisTheme = theme === 'light' ? 'dark' : 'light'
      const title = theme === 'light'? 'Set rocket as wallpaper' : 'Remove rocket from wallpaper'
@@ -31,7 +32,7 @@ import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
              setDisable(false)
          }, 6000);
      }
-
+     console.log(theme)
     return (
         <div className={s.container}>
             <div>{title}</div>

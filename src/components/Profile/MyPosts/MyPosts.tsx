@@ -5,10 +5,11 @@ import {useSelector} from "react-redux";
 import {ReduxStateType} from "../../../redux/redux-store";
 import {addPostCreator} from "../../../redux/propfile-reducer";
 import {AddMessageFormik} from "../../common/addMessageForm/AddMessageFormik";
+import {getPropfilePage} from "../../../redux/selectors/propfile-selectors";
 
 
 const MyPosts = React.memo(() => {
-    const {posts} = useSelector((state: ReduxStateType) => state.profilePage)
+    const {posts} = useSelector(getPropfilePage)
 
     let PostsElements =
         posts.map(post => <Post key={post.id} message={post.messages} like={post.likesCount}/>)

@@ -8,8 +8,10 @@ import {login} from "../../redux/auth-reducer";
 import {ReduxStateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
 import s from "./Login.module.css";
+import {getCapthcaUrl, getIsAuth} from "../../redux/selectors/auth-selectors";
+import SuperCheckbox from "../common/Checkbox/SuperCheckbox";
 
- type FormDataType = {
+ export type FormDataType = {
     email:string
     password:string
     captchaURL:string | null
@@ -21,7 +23,7 @@ let minLength = minLengthCreator(4)
 
  const LoginForm:React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit,...props}) => {
 
-    const captchaURL = useSelector<ReduxStateType,string | null>(state => state.auth.captchaURL)
+    const captchaURL = useSelector(getCapthcaUrl)
 
     useEffect(() => {
         document.title = 'Login'
@@ -57,11 +59,11 @@ let minLength = minLengthCreator(4)
             <div style={{display: 'flex', marginTop: '5px'}}>
                 <Field
                     style={{marginRight: '8px'}}
-                    component={'input'}
+                    component={SuperCheckbox}
                     name={'rememberMe'}
                     type={"checkbox"}
                 />
-                <p style={{marginTop: '-6px'}}>Remember me</p>
+                <p>Remember me</p>
             </div>
             <div style={{display: 'flex', marginTop: '5px'}}>
                 {captchaURL && <img src={captchaURL}/>}
@@ -86,11 +88,12 @@ const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
 
 const Login = () => {
-    const isAuth = useSelector<ReduxStateType,boolean >(state => state.auth.isAuth)
+    const isAuth = useSelector(getIsAuth)
     const dispatch = useDispatch()
 
+
     const onSubmit = (formData: FormDataType) => {
-        dispatch(login(formData.email,formData.password,formData.rememberMe,formData.captchaURL))
+        dispatch(login(formData))
     }
 
     if(isAuth){ return <Redirect to={'/profile'}/> }

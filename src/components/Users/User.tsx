@@ -5,7 +5,7 @@ import {follow, unFollow, UsersType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import SuperButton from "../common/Button/SuperButton";
 import {useDispatch, useSelector} from "react-redux";
-import {getFollowingInProgress} from "../../redux/users-selectors";
+import {getFollowingInProgress} from "../../redux/selectors/users-selectors";
 
 type UserPropsType = {
     users: UsersType
@@ -50,14 +50,14 @@ export const User: React.FC<UserPropsType> = ({users,...props}) => {
 
                         {users.followed
                             ? <SuperButton
-                                style={{letterSpacing: '1px', fontSize: '14px'}}
+                                style={{letterSpacing: '1px', fontSize: '12px'}}
                                 disabled={followingInProgress.some(id => id === users.id)}
                                 onClick={() => {
                                     dispatch(unFollow(users.id))
                                 }}>
                                 UNFOLLOW
                             </SuperButton>
-                            : <SuperButton style={{letterSpacing: '1px', fontSize: '14px'}}
+                            : <SuperButton style={{letterSpacing: '1px', fontSize: '12px'}}
                                            disabled={followingInProgress.some(id => id === users.id)}
                                             onClick={() => {dispatch(follow(users.id))}}>
                                 FOLLOW

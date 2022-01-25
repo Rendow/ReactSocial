@@ -22,7 +22,6 @@ function Profile(props:PropsType) {
     useEffect(() => {
         document.title =  props.profile?.fullName ? props.profile?.fullName : 'Profile'
     },[props.profile?.fullName])
-
         if(!props.isAuth){ return <Redirect to={'/login'}/> }
 
     return (

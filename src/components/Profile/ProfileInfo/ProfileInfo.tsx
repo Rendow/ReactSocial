@@ -7,6 +7,8 @@ import {ProfileStatusWithHooks} from "./ProfileStatus/ProfileStatusWithHooks";
 import {DragAndDrop} from "../../common/DragAndDrop/DragAndDrop";
 import {ContentForm, FormType} from "./ContentForm/ContentForm";
 import SuperButton from "../../common/Button/SuperButton";
+import {useSelector} from "react-redux";
+import {getPropfilePage} from "../../../redux/selectors/propfile-selectors";
 
 type PropsType = {
     profile: ProfileType | null

@@ -14,10 +14,12 @@ const UsersContainer = () => {
     const dispatch = useDispatch()
 
     const onPageChanged = (pageNumber:number) => {
-        dispatch(getUsers(pageNumber,usersOnPage,filter))
+        dispatch(getUsers({currentPage: pageNumber, filter: filter, pageSize: usersOnPage}))
     }
     const onFilterChanged = (filter:FilterType) => {
-        dispatch(getUsers(1,usersOnPage,filter))
+       // dispatch(getUsers(1,usersOnPage,filter))
+        dispatch(getUsers({currentPage: 1, filter: filter, pageSize: usersOnPage}))
+
     }
 
     return <>

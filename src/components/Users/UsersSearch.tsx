@@ -5,7 +5,7 @@ import SuperButton from "../common/Button/SuperButton";
 import {FormInput, FormSelect} from "../common/FormsControl/FormsControls";
 import s from "./Users.module.css";
 import {useSelector} from "react-redux";
-import {getUsersFilter} from "../../redux/users-selectors";
+import {getUsersFilter} from "../../redux/selectors/users-selectors";
 
 const usersSearchValidate = (values: any) => {
     const errors = {};
@@ -45,7 +45,7 @@ export const UsersSearch:React.FC<PropsType> = React.memo((props) => {
                     <option value="true">Only followed</option>
                     <option value="false">Only unfollowed</option>
                 </Field>
-                <Field placeholder={'  Find...'}  component={FormInput}  type="text" name="term" />
+                <Field placeholder={'  Find...'}  component={FormInput} autoComplete={'off'} type="text" name="term" />
                 <SuperButton style={{width:'20%'}} type="submit" disabled={isSubmitting}>
                     Find
                 </SuperButton>
